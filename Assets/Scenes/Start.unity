@@ -417,20 +417,52 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1576081120}
-    - target: {fileID: 507085449562037198, guid: a47b3d4e4d8634b4bbdd1b62ca9e3ec4, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1576081120}
-    - target: {fileID: 507085450707111941, guid: a47b3d4e4d8634b4bbdd1b62ca9e3ec4, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1576081120}
     - target: {fileID: 6955174371995505930, guid: a47b3d4e4d8634b4bbdd1b62ca9e3ec4, type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1576081120}
+    - target: {fileID: 8710674075260048633, guid: a47b3d4e4d8634b4bbdd1b62ca9e3ec4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1576081120}
+    - target: {fileID: 8710674075870914313, guid: a47b3d4e4d8634b4bbdd1b62ca9e3ec4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1576081120}
+    - target: {fileID: 8710674076420329526, guid: a47b3d4e4d8634b4bbdd1b62ca9e3ec4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1576081120}
+    - target: {fileID: 8995720749851060204, guid: a47b3d4e4d8634b4bbdd1b62ca9e3ec4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1576081120}
+    - target: {fileID: 9217461527270404238, guid: a47b3d4e4d8634b4bbdd1b62ca9e3ec4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1576081120}
+    - target: {fileID: 9217461527341742917, guid: a47b3d4e4d8634b4bbdd1b62ca9e3ec4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1576081120}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a47b3d4e4d8634b4bbdd1b62ca9e3ec4, type: 3}
+--- !u!1 &507085449385824496 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8710674076223773744, guid: a47b3d4e4d8634b4bbdd1b62ca9e3ec4, type: 3}
+  m_PrefabInstance: {fileID: 507085449385824495}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &507085449385824497 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 227854810, guid: a47b3d4e4d8634b4bbdd1b62ca9e3ec4, type: 3}
+  m_PrefabInstance: {fileID: 507085449385824495}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a21265a75ff9b3349999a53e21a57e9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1899603065582651562
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -447,6 +479,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6382991}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
+      propertyPath: DeathScreen
+      value: 
+      objectReference: {fileID: 1809346942}
+    - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: MusicToggle
       value: 
       objectReference: {fileID: 656506480}
@@ -455,9 +491,13 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1550678080}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
+      propertyPath: EndLevelMoney
+      value: 
+      objectReference: {fileID: 507085449385824497}
+    - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: EndLevelScreen
       value: 
-      objectReference: {fileID: 1809346942}
+      objectReference: {fileID: 507085449385824496}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: TapToStartPanel
       value: 

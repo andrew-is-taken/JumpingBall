@@ -49,12 +49,17 @@ MonoBehaviour:
   saveData:
     volume: 0
     musikEnabled: 0
+  difficulty: 0
+  Level: 0
+  MoneyForLevel: 64000000
   EndLevelScreen: {fileID: 0}
+  DeathScreen: {fileID: 0}
   PauseScreen: {fileID: 0}
   TapToStartPanel: {fileID: 0}
   GameCanvas: {fileID: 0}
   AudioSlider: {fileID: 0}
   MusicToggle: {fileID: 0}
+  EndLevelMoney: {fileID: 0}
 --- !u!82 &1899603064465989237
 AudioSource:
   m_ObjectHideFlags: 0

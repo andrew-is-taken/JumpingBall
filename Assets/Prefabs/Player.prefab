@@ -280,6 +280,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotating: 0
   DeathParticles: {fileID: 629974259476688486, guid: 541be4857267b2e488042e1f38658e1d, type: 3}
+  HintVector: {fileID: 0}
+  HintDanger: {fileID: 0}
+  Projection: {fileID: 0}
+  renderingVector: 0
+  renderingDanger: 0
+  hintVectorPos: {x: 0, y: 0, z: 0}
   movingCamera: 0
   t: 0
   mainCamera: {fileID: 0}
@@ -288,13 +294,15 @@ MonoBehaviour:
   mainMovementDirection: 0
   movingHorizontally: 0
   levelManager: {fileID: 0}
+  m_Rigidbody: {fileID: 0}
+  finished: 0
+  jumpsAfterFinish: 0
   mMovement:
-    speed: 8
-    startDirection: {x: 0, y: 1, z: 0}
+    speed: 10
+    startDirection: {x: 1, y: 0, z: 0}
     additionalDirection: {x: 0, y: 0, z: 0}
     canJump: 0
     waitingToChangeDirection: 0
-    offsetForRaycast: {x: 0, y: 0, z: 0}
 --- !u!82 &6638849170203546390
 AudioSource:
   m_ObjectHideFlags: 0

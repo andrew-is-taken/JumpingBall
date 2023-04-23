@@ -44,5 +44,7 @@ public class FileSaver : MonoBehaviour
     private void setDefaultParameters()
     {
         saveData.volume = 1;
+        saveData.lastLevel = 0;
+        saveData.lastLevelDifficulty = -1;
     }
 }

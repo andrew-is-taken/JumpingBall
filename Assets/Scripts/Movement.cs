@@ -157,6 +157,13 @@ public class Movement : MonoBehaviour
             }
         }
 
+        public void AddForceInAdditionalDirection()
+        {
+            //m_Rigidbody.velocity = Vector2.zero;
+            m_Rigidbody.AddForce(additionalDirection * speed, ForceMode2D.Impulse);
+            canJump = false;
+        }
+
         public bool GetMovingHorizontally()
         {
             return movingHorizontally;
@@ -166,9 +173,11 @@ public class Movement : MonoBehaviour
         {
             if (canJump)
             {
-                RaycastHit2D hit = Physics2D.Linecast(position + offsetForRaycast, position + offsetForRaycast + additionalDirection);
-                //Debug.DrawLine(position + offsetForRaycast, position + offsetForRaycast + additionalDirection);
-                if (hit.collider == null)
+                RaycastHit2D hitBack = Physics2D.Linecast(position + offsetForRaycast, position + offsetForRaycast + additionalDirection);
+                RaycastHit2D hitFront = Physics2D.Linecast(position - offsetForRaycast, position - offsetForRaycast + additionalDirection);
+                Debug.DrawLine(position + offsetForRaycast, position + offsetForRaycast + additionalDirection);
+                Debug.DrawLine(position - offsetForRaycast, position - offsetForRaycast + additionalDirection);
+                if (hitBack.collider == null && hitFront.collider == null)
                 {
                     m_Rigidbody.AddForce(additionalDirection * speed, ForceMode2D.Impulse);
                     canJump = false;
@@ -183,7 +192,7 @@ public class Movement : MonoBehaviour
     public GameObject DeathParticles;
     public Transform HintVector;
     public Transform HintDanger;
-    public GameObject Projection;
+    public Transform Projection;
     [HideInInspector] public bool renderingVector = false;
     [HideInInspector] public bool renderingDanger = false;
     [HideInInspector] public Vector3 hintVectorPos;
@@ -196,6 +205,9 @@ public class Movement : MonoBehaviour
     [HideInInspector] public bool movingHorizontally;
     [HideInInspector] public LevelManager levelManager;
     [HideInInspector] public Rigidbody2D m_Rigidbody;
+    [HideInInspector] public bool finished;
+    [HideInInspector] public float endLevelBonus;
+    [HideInInspector] public bool gameEnded;
 
     public MainMovement mMovement;
 
@@ -206,18 +218,24 @@ public class Movement : MonoBehaviour
         levelManager = FindObjectOfType<LevelManager>();
         defineDifficulty();
         HintVisible(false);
+        finished = false;
         mainCamera = Camera.main.transform;
         movingHorizontally = mMovement.GetMovingHorizontally();
         mainMovementDirection = movingHorizontally ? mMovement.startDirection.x : mMovement.startDirection.y;
         mainMovementCoordinate = movingHorizontally ? transform.position.y : transform.position.x;
+        endLevelBonus = 1f;
     }
 
     private void Update()
     {
         UpdateCamera();
         CheckIfPlayerFlewAway();
-        CheckWallInAdditionalDirection();
         UpdateHints();
+    }
+
+    private void FixedUpdate()
+    {
+        CheckWallInAdditionalDirection();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -239,6 +257,14 @@ public class Movement : MonoBehaviour
                 if(!rotating)
                     mMovement.canJump = true;
             }
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (finished && mMovement.canJump)
+        {
+            mMovement.AddForceInAdditionalDirection();
         }
     }
 
@@ -295,12 +321,16 @@ public class Movement : MonoBehaviour
 
                 if (hit)
                 {
-                    Projection.SetActive(true);
+                    //Projection.gameObject.SetActive(true);
+                    //HintVector.gameObject.SetActive(true);
+                    HintVisible(true);
                     Projection.transform.position = hit.point - new Vector2(hintVectorPos.x, hintVectorPos.y) * Mathf.Sqrt(2) * .2f;
                 }
                 else
                 {
-                    Projection.SetActive(false);
+                    //Projection.gameObject.SetActive(false);
+                    //HintVector.gameObject.SetActive(false);
+                    HintVisible(false);
                 }
             }
             if (renderingDanger)
@@ -338,9 +368,13 @@ public class Movement : MonoBehaviour
         Vector3 topRight = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0));
         Vector3 bottomLeft = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 0));
         Vector3 pos = transform.position;
-        if(pos.x > topRight.x || pos.x < bottomLeft.x || pos.y > topRight.y || pos.y < bottomLeft.y)
+        if(!gameEnded && (pos.x > topRight.x || pos.x < bottomLeft.x || pos.y > topRight.y || pos.y < bottomLeft.y))
         {
-            Death();
+            gameEnded = true;
+            if(!finished)
+                Death();
+            else
+                Finish();
         }
     }
 
@@ -351,6 +385,12 @@ public class Movement : MonoBehaviour
         Destroy(fx, 5);
         gameObject.SetActive(false);
         levelManager.Death();
+    }
+
+    public void Finish()
+    {
+        HintVisible(false);
+        levelManager.Finish(endLevelBonus);
     }
 
     private void defineDifficulty()
@@ -381,7 +421,7 @@ public class Movement : MonoBehaviour
         movingHorizontally = mMovement.GetMovingHorizontally();
         mainMovementCoordinate = newMainCoord;
         HintVisible(false);
-        Projection.SetActive(false);
+        Projection.gameObject.SetActive(false);
         if (movingHorizontally)
         {
             mainMovementDirection = newDirection.x;
@@ -398,7 +438,7 @@ public class Movement : MonoBehaviour
         mMovement.AddMainForceInDirection(newDirection);
         hintVectorPos = mMovement.hintVectorPositionAndRot(HintVector);
         HintVisible(true);
-        Projection.SetActive(true);
+        Projection.gameObject.SetActive(true);
     }
 
     private void HintVisible(bool isOn)
@@ -406,6 +446,7 @@ public class Movement : MonoBehaviour
         if (renderingVector)
         {
             HintVector.gameObject.SetActive(isOn);
+            Projection.gameObject.SetActive(isOn);
         }
         if (renderingDanger)
         {
