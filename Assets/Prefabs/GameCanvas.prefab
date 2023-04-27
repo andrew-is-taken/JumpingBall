@@ -70,7 +70,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 0 <sprite anim=0,5,8>
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: f4057d98626079c409a3b99d22bcb02b, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 161227c3d38d17c4fb9d269220a57e22, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}

@@ -6,10 +6,9 @@ using TMPro;
 
 public class Menu : MonoBehaviour
 {
-    public TMP_Text levelText;
+    public TMP_Text levelTextMain;
     public TMP_Text difficultyText;
-
-    public Animator menuAnim;
+    public TMP_Text levelTextLevelSelection;
 
     public Color easyColor;
     public Color mediumColor;
@@ -36,7 +35,7 @@ public class Menu : MonoBehaviour
 
     public void ChangeLevelSelectionMenuState(bool isOn)
     {
-        menuAnim.SetBool("OpenLevelSelection", isOn);
+        GetComponent<Animator>().SetBool("OpenLevelSelection", isOn);
     }
 
     public void StartNextLevel()
@@ -49,7 +48,7 @@ public class Menu : MonoBehaviour
     {
         LevelManager levelManager = FindObjectOfType<LevelManager>();
 
-        nextLevel = levelManager.saveData.lastLevel;
+        nextLevel = levelManager.saveData.lastLevel + 1;
         nextDifficulty = levelManager.saveData.lastLevelDifficulty;
 
         if (nextDifficulty == 2)
@@ -65,7 +64,8 @@ public class Menu : MonoBehaviour
 
     private void DisplayNextLevel()
     {
-        levelText.text = "Level " + nextLevel.ToString();
+        levelTextMain.text = "Level " + nextLevel.ToString();
+        levelTextLevelSelection.text = nextLevel.ToString();
         switch (nextDifficulty)
         {
             case 0:

@@ -6,6 +6,9 @@ using UnityEngine.SceneManagement;
 public class LevelManager : MonoBehaviour
 {
     public SaveData saveData;
+    public PlayerSkin[] Skins;
+
+    public int equippedSkin;
     public int difficulty;
     public int Level;
     public int[] MoneyForLevel;
@@ -44,9 +47,11 @@ public class LevelManager : MonoBehaviour
 
     private void SyncronizeLevels()
     {
+        //ClearBoughtSkinsFromSaveData();
         //ClearLevelsDoneFromSaveData();
         //SaveDataToFile();
         //PrintLevelsFromSaveData();
+
         int a = SceneManager.sceneCountInBuildSettings - 2; // Minus Start and Menu scenes
         if (saveData.levelsDone != null)
         {
@@ -91,7 +96,10 @@ public class LevelManager : MonoBehaviour
         Time.timeScale = 0f;
         GameCanvas.SetActive(true);
         Player = FindObjectOfType<Movement>();
+        SyncPlayerSkin();
+
         EndLevelScreen.SetActive(false);
+        DeathScreen.SetActive(false);
         PauseScreen.SetActive(false);
         TapToStartPanel.SetActive(true);
 
@@ -99,6 +107,24 @@ public class LevelManager : MonoBehaviour
         {
             StopCoroutine(lastCoroutine);
         }
+    }
+
+    private void SyncPlayerSkin()
+    {
+        Player.GetComponent<SpriteRenderer>().sprite = Skins[equippedSkin].sprite;
+        Player.GetComponentInChildren<TrailRenderer>().colorGradient = Skins[equippedSkin].color;
+        Player.GetComponentInChildren<TrailRenderer>().time = Skins[equippedSkin].time;
+
+        Color dieCol = Skins[equippedSkin].dieColor;
+
+        var mainPs = Player.DeathParticles.GetComponent<ParticleSystem>().main;
+        mainPs.startColor = dieCol;
+
+        var c = Player.DeathParticles.GetComponentsInChildren<ParticleSystem>()[1].colorOverLifetime;
+        Gradient grad = new Gradient();
+        grad.SetKeys(new GradientColorKey[] { new GradientColorKey(dieCol, 0.0f), new GradientColorKey(dieCol, 1.0f) }, 
+            new GradientAlphaKey[] { new GradientAlphaKey(1.0f, 0.0f), new GradientAlphaKey(1.0f, 0.8f), new GradientAlphaKey(0.0f, 1.0f) });
+        c.color = grad;
     }
 
     public void TouchScreenTap()
@@ -136,6 +162,7 @@ public class LevelManager : MonoBehaviour
     public void getSaveData(SaveData loadedSaveData)
     {
         saveData = loadedSaveData;
+        equippedSkin = saveData.equippedSkin;
         GetComponent<AudioSource>().enabled = saveData.musikEnabled;
         SetAllAudiosToValue();
     }
@@ -205,7 +232,7 @@ public class LevelManager : MonoBehaviour
         SceneManager.LoadScene("Level" + Level.ToString());
     }
 
-    private void SaveDataToFile()
+    public void SaveDataToFile()
     {
         GetComponent<FileSaver>().SaveFile(saveData);
     }
@@ -223,6 +250,8 @@ public class LevelManager : MonoBehaviour
 
     private void ClearLevelsDoneFromSaveData()
     {
+        saveData.lastLevel = 0;
+        saveData.lastLevelDifficulty = -1;
         for (int i = 0; i < saveData.levelsDone.Count; i++)
         {
             for (int j = 0; j < saveData.levelsDone[i].Count; j++)
@@ -230,6 +259,11 @@ public class LevelManager : MonoBehaviour
                 saveData.levelsDone[i][j] = false;
             }
         }
+    }
+
+    private void ClearBoughtSkinsFromSaveData()
+    {
+        saveData.ClearBoughtSkins();
     }
 
     IEnumerator StopTimeOnLevelEnd(int money)

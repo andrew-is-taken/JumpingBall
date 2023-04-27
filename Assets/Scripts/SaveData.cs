@@ -6,6 +6,8 @@ using System.Collections.Generic;
 public class SaveData
 {
     public int crystalls;
+    public int equippedSkin;
+    public List<int> boughtSkins = new List<int>{ 0 };
 
     public float volume;
     public bool musikEnabled;
@@ -27,5 +29,10 @@ public class SaveData
     public void AddFirstLineOfLevels()
     {
         levelsDone = new List<List<bool>>() { new List<bool>() { false, false, false } };
+    }
+
+    public void ClearBoughtSkins()
+    {
+        boughtSkins = new List<int> { 0 };
     }
 }

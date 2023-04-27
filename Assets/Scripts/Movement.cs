@@ -257,6 +257,7 @@ public class Movement : MonoBehaviour
                 if(!rotating)
                     mMovement.canJump = true;
             }
+            AddRotation();
         }
     }
 
@@ -266,6 +267,7 @@ public class Movement : MonoBehaviour
         {
             mMovement.AddForceInAdditionalDirection();
         }
+        ClearRotation();
     }
 
     public void TapOnScreen()
@@ -462,5 +464,20 @@ public class Movement : MonoBehaviour
     public float GetSpeed()
     {
         return mMovement.speed;
+    }
+
+    public void AddRotation()
+    {
+        float speed = mMovement.speed;
+        print(speed * (mMovement.additionalDirection.y == 1 ? 100 : -100));
+        if (movingHorizontally)
+            m_Rigidbody.angularVelocity = speed * (mMovement.additionalDirection.y == 1 ? 100 : -100);
+        else
+            m_Rigidbody.angularVelocity = speed * (mMovement.additionalDirection.x == 1 ? -100 : 100);
+    }
+
+    public void ClearRotation()
+    {
+        m_Rigidbody.angularVelocity = 0;
     }
 }

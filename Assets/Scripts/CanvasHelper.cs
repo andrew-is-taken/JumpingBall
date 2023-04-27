@@ -28,7 +28,7 @@ public class CanvasHelper : MonoBehaviour
         canvas = GetComponent<Canvas>();
         rectTransform = GetComponent<RectTransform>();
 
-        safeAreaTransform = transform.Find("SafeArea") as RectTransform;
+        safeAreaTransform = transform.Find("RealSafeArea") as RectTransform;
 
         if (!screenChangeVarsInitialized)
         {
