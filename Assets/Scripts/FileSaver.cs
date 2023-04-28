@@ -27,6 +27,7 @@ public class FileSaver : MonoBehaviour
 
     public void readFile()
     {
+        path = Application.persistentDataPath + "/data.xd";
         if (File.Exists(path))
         {
             dataStream = new FileStream(path, FileMode.Open);
@@ -43,8 +44,13 @@ public class FileSaver : MonoBehaviour
 
     private void setDefaultParameters()
     {
-        saveData.volume = 1;
+        saveData.volume = 0.7f;
         saveData.lastLevel = 0;
         saveData.lastLevelDifficulty = -1;
+        saveData.musikEnabled = true;
+        saveData.AddFirstLineOfLevels();
+        saveData.ClearBoughtSkins();
     }
+
+    
 }

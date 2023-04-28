@@ -209,13 +209,6 @@
       },
       "url": "https://packages.unity.com"
     },
-    "com.unity.services.levelplay": {
-      "version": "1.0.0",
-      "depth": 0,
-      "source": "registry",
-      "dependencies": {},
-      "url": "https://packages.unity.com"
-    },
     "com.unity.shadergraph": {
       "version": "12.1.7",
       "depth": 1,

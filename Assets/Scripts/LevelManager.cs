@@ -29,6 +29,8 @@ public class LevelManager : MonoBehaviour
 
     private void Awake()
     {
+        Application.targetFrameRate = 60;
+        QualitySettings.vSyncCount = 0;
         GetComponent<FileSaver>().readFile();
         int amount = FindObjectsOfType<LevelManager>().Length;
 
