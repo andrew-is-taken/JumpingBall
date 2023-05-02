@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SpeedBonus : MonoBehaviour
 {
+    public bool emitTrails = false;
     public float speedBonus = 1f;
 
     public GameObject InnerPart;
@@ -24,7 +25,8 @@ public class SpeedBonus : MonoBehaviour
         FindObjectOfType<SpeedUI>().AddSpeed(speedBonus);
         InnerPart.SetActive(false);
         yield return new WaitForSeconds(.5f);
-        Instantiate(Trail, trailSpawn.position, trailSpawn.rotation);
+        if(emitTrails)
+            Instantiate(Trail, trailSpawn.position, trailSpawn.rotation);
         gameObject.SetActive(false);
     }
 }

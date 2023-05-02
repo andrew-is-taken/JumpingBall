@@ -22,8 +22,9 @@ public class Rotation : MonoBehaviour
         player.SetMovementDirection(newDirection, newMainMovementCoordinate);
     }
 
-    public void EndOfRotation()
+    public void EndOfRotation(Vector2 pos, Vector2 addDir)
     {
         player.AddForceInDirection(newDirection);
+        player.SetCheckpoint(pos, newDirection, addDir, newSpeed);
     }
 }

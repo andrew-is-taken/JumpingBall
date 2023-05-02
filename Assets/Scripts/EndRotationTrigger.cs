@@ -6,6 +6,8 @@ public class EndRotationTrigger : MonoBehaviour
 {
     private Rotation Parent;
 
+    public Vector2 RespawnDirection;
+
     private void Start()
     {
         Parent = GetComponentInParent<Rotation>();
@@ -13,6 +15,6 @@ public class EndRotationTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Parent.EndOfRotation();
+        Parent.EndOfRotation(transform.position, RespawnDirection);
     }
 }

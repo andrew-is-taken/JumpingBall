@@ -82,7 +82,7 @@ public class Movement : MonoBehaviour
             return result;
         }
 
-        public void SetMovementDirection(Vector3 newDirection, float newMainCoord)
+        public void SetMovementDirection(Vector3 newDirection)
         {
             movingHorizontally = newDirection.y == 0;
             if (canJump)
@@ -208,6 +208,10 @@ public class Movement : MonoBehaviour
     [HideInInspector] public bool finished;
     [HideInInspector] public float endLevelBonus;
     [HideInInspector] public bool gameEnded;
+    [HideInInspector] public Vector2 lastCheckpointPos;
+    [HideInInspector] public Vector2 lastCheckpointMainDir;
+    [HideInInspector] public Vector2 lastCheckpointAddDir;
+    [HideInInspector] public float lastCheckpointSpeed;
 
     public MainMovement mMovement;
 
@@ -224,6 +228,7 @@ public class Movement : MonoBehaviour
         mainMovementDirection = movingHorizontally ? mMovement.startDirection.x : mMovement.startDirection.y;
         mainMovementCoordinate = movingHorizontally ? transform.position.y : transform.position.x;
         endLevelBonus = 1f;
+        SetCheckpoint(transform.position, mMovement.startDirection, mMovement.additionalDirection, mMovement.speed);
     }
 
     private void Update()
@@ -384,7 +389,7 @@ public class Movement : MonoBehaviour
     {
         GameObject fx = Instantiate(DeathParticles, transform.position, Quaternion.Euler(0, -90, 0));
         fx.GetComponent<AudioSource>().volume = GetComponent<AudioSource>().volume;
-        Destroy(fx, 5);
+        Destroy(fx, 2.5f);
         gameObject.SetActive(false);
         levelManager.Death();
     }
@@ -419,7 +424,7 @@ public class Movement : MonoBehaviour
         movingCamera = true;
         rotating = true;
         mainCameraOldPos = mainCamera.position;
-        mMovement.SetMovementDirection(newDirection, newMainCoord);
+        mMovement.SetMovementDirection(newDirection);
         movingHorizontally = mMovement.GetMovingHorizontally();
         mainMovementCoordinate = newMainCoord;
         HintVisible(false);
@@ -479,5 +484,23 @@ public class Movement : MonoBehaviour
     public void ClearRotation()
     {
         m_Rigidbody.angularVelocity = 0;
+    }
+
+    public void SetCheckpoint(Vector2 position, Vector2 mainDir, Vector2 additionalDir, float speed)
+    {
+        lastCheckpointPos = position;
+        lastCheckpointMainDir = mainDir;
+        lastCheckpointAddDir = additionalDir;
+        lastCheckpointSpeed = speed;
+    }
+
+    public void RespawnOnLastCheckpoint()
+    {
+        gameObject.SetActive(true);
+        levelManager.PrepareMainUI();
+        transform.position = lastCheckpointPos;
+        mMovement.additionalDirection = lastCheckpointAddDir;
+        mMovement.speed = lastCheckpointSpeed;
+        mMovement.AddMainForceInDirection(lastCheckpointMainDir);
     }
 }

@@ -95,20 +95,26 @@ public class LevelManager : MonoBehaviour
 
     private void StartOfLevel()
     {
-        Time.timeScale = 0f;
         GameCanvas.SetActive(true);
         Player = FindObjectOfType<Movement>();
-        SyncPlayerSkin();
 
-        EndLevelScreen.SetActive(false);
-        DeathScreen.SetActive(false);
-        PauseScreen.SetActive(false);
-        TapToStartPanel.SetActive(true);
+        SyncPlayerSkin();
+        PrepareMainUI();
 
         if (lastCoroutine != null)
         {
             StopCoroutine(lastCoroutine);
         }
+    }
+
+    public void PrepareMainUI()
+    {
+        Time.timeScale = 0f;
+
+        EndLevelScreen.SetActive(false);
+        DeathScreen.SetActive(false);
+        PauseScreen.SetActive(false);
+        TapToStartPanel.SetActive(true);
     }
 
     private void SyncPlayerSkin()
@@ -223,15 +229,15 @@ public class LevelManager : MonoBehaviour
         SceneManager.LoadScene("Menu");
     }
 
-    public void WatchAdToRespawn()
-    {
-        print("Try to respawn");
-    }
-
     public void StartNextLevel()
     {
         Level += 1;
         SceneManager.LoadScene("Level" + Level.ToString());
+    }
+
+    public void RespawnPlayer()
+    {
+        Player.RespawnOnLastCheckpoint();
     }
 
     public void SaveDataToFile()
