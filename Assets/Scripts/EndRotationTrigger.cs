@@ -11,6 +11,7 @@ public class EndRotationTrigger : MonoBehaviour
     private void Start()
     {
         Parent = GetComponentInParent<Rotation>();
+        RespawnDirection = new Vector2(Parent.newDirection.x, Parent.newDirection.y);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

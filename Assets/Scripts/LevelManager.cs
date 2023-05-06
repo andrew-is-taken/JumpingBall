@@ -10,7 +10,8 @@ public class LevelManager : MonoBehaviour
 
     public int equippedSkin;
     public int difficulty;
-    public int Level;
+    public int RealLevel;
+    public int LevelInList;
     public int[] MoneyForLevel;
 
     public GameObject EndLevelScreen;
@@ -24,7 +25,7 @@ public class LevelManager : MonoBehaviour
 
     public EndLevelMoneyManager EndLevelMoney;
 
-    private Movement Player;
+    public Movement Player;
     private Coroutine lastCoroutine;
 
     private void Awake()
@@ -33,7 +34,7 @@ public class LevelManager : MonoBehaviour
         QualitySettings.vSyncCount = 0;
         GetComponent<FileSaver>().readFile();
         int amount = FindObjectsOfType<LevelManager>().Length;
-
+        print(amount);
         if (amount == 1)
         {
             DontDestroyOnLoad(gameObject);
@@ -97,6 +98,8 @@ public class LevelManager : MonoBehaviour
     {
         GameCanvas.SetActive(true);
         Player = FindObjectOfType<Movement>();
+        RealLevel = int.Parse(SceneManager.GetActiveScene().name.Remove(0, 5));
+        LevelInList = RealLevel - 1;
 
         SyncPlayerSkin();
         PrepareMainUI();
@@ -177,8 +180,10 @@ public class LevelManager : MonoBehaviour
 
     public void StartFromTap()
     {
+        Player = FindObjectOfType<Movement>();
         Time.timeScale = 1.0f;
         TapToStartPanel.SetActive(false);
+        Player.StartFromTap();
     }
 
     public void MusicToggleChanged()
@@ -208,31 +213,50 @@ public class LevelManager : MonoBehaviour
 
     private int CalculateMoneyAfterFinish(float multiplier)
     {
-        return (int)(MoneyForLevel[Level] * (difficulty + 1) * 0.5f * multiplier);
+        return (int)(MoneyForLevel[LevelInList] * (difficulty + 1) * 0.5f * multiplier);
     }
 
     private void WriteLevelDataAfterFinish(int money)
     {
-        saveData.levelsDone[Level][difficulty] = true;
+        print("Added " + money);
+        saveData.levelsDone[LevelInList][difficulty] = true;
         saveData.crystalls += money;
-        saveData.lastLevel = Level;
+        saveData.lastLevel = RealLevel;
         saveData.lastLevelDifficulty = difficulty;
     }
 
     public void RestartLevel()
     {
+        PrepareMainUI();
+        Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void GoToMenu()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene("Menu");
     }
 
     public void StartNextLevel()
     {
-        Level += 1;
-        SceneManager.LoadScene("Level" + Level.ToString());
+        if(difficulty == 2)
+        {
+            RealLevel += 1;
+            difficulty = 0;
+        }
+        else
+        {
+            difficulty += 1;
+        }
+        SceneManager.LoadScene("Level " + RealLevel.ToString());
+    }
+
+    public void StartSelectedLevel(int selectedLevel, int diff)
+    {
+        RealLevel = selectedLevel;
+        difficulty = diff;
+        SceneManager.LoadScene("Level " + RealLevel.ToString());
     }
 
     public void RespawnPlayer()
@@ -251,14 +275,14 @@ public class LevelManager : MonoBehaviour
         {
             for (int j = 0; j < saveData.levelsDone[i].Count; j++)
             {
-                print(saveData.levelsDone[i][j]);
+                print("Level " + i + " with difficulty " + j + " has value " + saveData.levelsDone[i][j]);
             }
         }
     }
 
     private void ClearLevelsDoneFromSaveData()
     {
-        saveData.lastLevel = 0;
+        saveData.lastLevel = 1;
         saveData.lastLevelDifficulty = -1;
         for (int i = 0; i < saveData.levelsDone.Count; i++)
         {
@@ -272,6 +296,11 @@ public class LevelManager : MonoBehaviour
     private void ClearBoughtSkinsFromSaveData()
     {
         saveData.ClearBoughtSkins();
+    }
+
+    public void OpenLottery()
+    {
+        FindObjectOfType<Menu>().OpenLottery();
     }
 
     IEnumerator StopTimeOnLevelEnd(int money)

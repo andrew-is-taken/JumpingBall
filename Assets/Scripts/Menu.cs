@@ -14,8 +14,13 @@ public class Menu : MonoBehaviour
     public Color mediumColor;
     public Color hardColor;
 
+    public GameObject LotteryPanel;
+    public GameObject DifficultyPanel;
+
     private int nextLevel;
     private int nextDifficulty;
+
+    private int selectedLevel;
 
     private void Start()
     {
@@ -25,7 +30,7 @@ public class Menu : MonoBehaviour
 
     public void StartLevel(int levelNumber)
     {
-        SceneManager.LoadScene("Level" + levelNumber);
+        SceneManager.LoadScene("Level " + levelNumber);
     }
 
     public void SetLevelDifficulty(int difficulty)
@@ -48,17 +53,33 @@ public class Menu : MonoBehaviour
     {
         LevelManager levelManager = FindObjectOfType<LevelManager>();
 
-        nextLevel = levelManager.saveData.lastLevel + 1;
+        nextLevel = levelManager.saveData.lastLevel;
         nextDifficulty = levelManager.saveData.lastLevelDifficulty;
 
-        if (nextDifficulty == 2)
+        if(nextLevel != 0)
         {
-            nextLevel += 1;
-            nextDifficulty = 0;
+            if (nextDifficulty == 2)
+            {
+                nextLevel += 1;
+                nextDifficulty = 0;
+            }
+            else
+            {
+                nextDifficulty += 1;
+            }
         }
         else
         {
-            nextDifficulty += 1;
+            if (nextDifficulty == 2)
+            {
+                nextLevel += 2;
+                nextDifficulty = 0;
+            }
+            else
+            {
+                nextLevel += 1;
+                nextDifficulty += 1;
+            }
         }
     }
 
@@ -81,5 +102,26 @@ public class Menu : MonoBehaviour
                 difficultyText.color = hardColor;
                 break;
         }
+    }
+
+    public void OpenLottery()
+    {
+        LotteryPanel.SetActive(true);
+    }
+
+    public void CloseDifficultySelection()
+    {
+        GetComponent<Animator>().SetBool("OpenDifficultySelection", false);
+    }
+
+    public void SelectLevel(int level)
+    {
+        selectedLevel = level;
+        GetComponent<Animator>().SetBool("OpenDifficultySelection", true);
+    }
+
+    public void SelectDifficuultyAndStartLevel(int diff)
+    {
+        FindObjectOfType<LevelManager>().StartSelectedLevel(selectedLevel, diff);
     }
 }

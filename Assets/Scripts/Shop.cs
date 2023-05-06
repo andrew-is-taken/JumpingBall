@@ -109,6 +109,7 @@ public class Shop : MonoBehaviour
 
         FindObjectOfType<MenuMoneyManager>().updateMoney(levelManager.saveData.crystalls);
         shopItems[currentId].UnlockItem();
+        shopItems[levelManager.equippedSkin].ChangeItemState(true);
         confirmationPanel.SetActive(false);
     }
 

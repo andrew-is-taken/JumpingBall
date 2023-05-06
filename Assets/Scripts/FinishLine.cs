@@ -9,6 +9,7 @@ public class FinishLine : MonoBehaviour
         if (collision.tag == "Player")
         {
             collision.GetComponent<Movement>().finished = true;
+            GetComponent<AudioSource>().Play();
         }
     }
 }

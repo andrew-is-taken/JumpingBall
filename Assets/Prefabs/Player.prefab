@@ -34,7 +34,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!96 &3301509969290004038
 TrailRenderer:
-  serializedVersion: 2
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -75,6 +75,7 @@ TrailRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Time: 0.2
+  m_PreviewTimeScale: 1
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -91,13 +92,13 @@ TrailRenderer:
         inWeight: 0.33333334
         outWeight: 0.41818368
       - serializedVersion: 3
-        time: 0.38593653
+        time: 0.5
         value: 0
-        inSlope: -2.9582007
-        outSlope: -2.9582007
+        inSlope: -1.6921031
+        outSlope: -1.6921031
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0.21897599
+        inWeight: 0.20314956
         outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -129,17 +130,21 @@ TrailRenderer:
       atime6: 0
       atime7: 0
       m_Mode: 0
+      m_ColorSpace: -1
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
     numCornerVertices: 0
     numCapVertices: 0
     alignment: 0
     textureMode: 0
+    textureScale: {x: 1, y: 1}
     shadowBias: 0.5
     generateLightingData: 0
-  m_MinVertexDistance: 0.05
+  m_MinVertexDistance: 0.02
+  m_MaskInteraction: 0
   m_Autodestruct: 0
   m_Emitting: 1
+  m_ApplyActiveColorSpace: 0
 --- !u!1 &3301509969744461455
 GameObject:
   m_ObjectHideFlags: 0
@@ -239,6 +244,25 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 6200000, guid: 73b5df1bcafaaf448a7bb98e811f5662, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -262,6 +286,12 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 6200000, guid: 73b5df1bcafaaf448a7bb98e811f5662, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
@@ -298,6 +328,11 @@ MonoBehaviour:
   finished: 0
   endLevelBonus: 0
   gameEnded: 0
+  lastCheckpointPos: {x: 0, y: 0}
+  lastCheckpointMainDir: {x: 0, y: 0}
+  lastCheckpointAddDir: {x: 0, y: 0}
+  lastCheckpointSpeed: 0
+  startOfLevel: 0
   mMovement:
     speed: 10
     startDirection: {x: 1, y: 0, z: 0}
@@ -314,7 +349,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 0fbaa8a21b493e24d90299d0234090f6, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 4e5f9f80ca6f7b049a39884a3dd8f484, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

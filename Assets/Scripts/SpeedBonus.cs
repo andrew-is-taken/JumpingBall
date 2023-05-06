@@ -5,7 +5,7 @@ using UnityEngine;
 public class SpeedBonus : MonoBehaviour
 {
     public bool emitTrails = false;
-    public float speedBonus = 1f;
+    public float speedBonus = -1f;
 
     public GameObject InnerPart;
     public GameObject Trail;

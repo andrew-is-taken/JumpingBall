@@ -14,7 +14,7 @@ public class SaveData
 
     public List<List<bool>> levelsDone;
 
-    public int lastLevel = 0;
+    public int lastLevel = 1;
     public int lastLevelDifficulty = -1;
 
     public void AddNewLevelsToList(int amount)

@@ -13,6 +13,7 @@ public class Rotation : MonoBehaviour
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Movement>();
+        newMainMovementCoordinate = newDirection.x != 0 ? transform.position.y : transform.position.x;
     }
 
     public void StartOfRotation()

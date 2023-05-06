@@ -4,20 +4,21 @@ using UnityEngine;
 
 public class SpeedUI : MonoBehaviour
 {
-    private Movement Player;
+    //private Movement Player;
 
     public GameObject HorizontalSpeed;
     public GameObject VerticalSpeed;
 
     private void Start()
     {
-        Player = FindObjectOfType<Movement>();
+        //Player = FindObjectOfType<Movement>();
         HorizontalSpeed.SetActive(false);
         VerticalSpeed.SetActive(false);
     }
 
     public void AddSpeed(float additionalSpeed)
     {
+        Movement Player = FindObjectOfType<Movement>();
         Player.SetSpeed(Player.GetSpeed() + additionalSpeed);
         if (Player.movingHorizontally)
         {

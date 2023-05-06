@@ -60,12 +60,13 @@ public class RewardedVideo : MonoBehaviour
         {
             case "Crystalls":
                 Debug.Log("Gave crystalls to user");
+                GetComponent<LevelManager>().OpenLottery();
                 break;
             case "Respawn":
                 Debug.Log("Respawned user on last checkpoint");
                 GetComponent<LevelManager>().RespawnPlayer();
                 break;
-            case "CrystallsX2":
+            case "ExtraCrystalls":
                 Debug.Log("X2 crystalls for finished level");
                 break;
         }

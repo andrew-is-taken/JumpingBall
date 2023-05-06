@@ -11,9 +11,10 @@ public class Movement : MonoBehaviour
         public float speed = 8f;
 
         public Vector3 startDirection;
+        public Vector3 mainDirection;
         public Vector3 additionalDirection = new Vector3(1, 0, 0);
 
-        private bool movingHorizontally;
+        public bool movingHorizontally;
 
         public bool canJump;
         public bool waitingToChangeDirection;
@@ -41,6 +42,7 @@ public class Movement : MonoBehaviour
                 additionalDirection.y = 0;
                 offsetForRaycast = new Vector3(.2f * additionalDirection.x, -.2f, 0);
             }
+            mainDirection = startDirection;
             m_Rigidbody.AddForce((startDirection + additionalDirection) * speed, ForceMode2D.Impulse);
         }
 
@@ -71,13 +73,16 @@ public class Movement : MonoBehaviour
             Vector3 result;
             if (movingHorizontally)
             {
-                result = new Vector3(.7f, .7f * -additionalDirection.y, 0);
-                HintVector.rotation = Quaternion.Euler(0, 0, -90 + 45 * -additionalDirection.y);
+                result = new Vector3(.4f * mainDirection.x, .4f * -additionalDirection.y, 0);
+                HintVector.rotation = Quaternion.Euler(0, 0, -90 * mainDirection.x + 45 * -additionalDirection.y);
             }
             else
             {
-                result = new Vector3(.7f * -additionalDirection.x, .7f, 0);
-                HintVector.rotation = Quaternion.Euler(0, 0, 45 * additionalDirection.x);
+                result = new Vector3(.4f * -additionalDirection.x, .4f * mainDirection.y, 0);
+                if(mainDirection.y > 0)
+                    HintVector.rotation = Quaternion.Euler(0, 0, 45 * additionalDirection.x);
+                else
+                    HintVector.rotation = Quaternion.Euler(0, 0, -180 + 45 * -additionalDirection.x);
             }
             return result;
         }
@@ -85,6 +90,7 @@ public class Movement : MonoBehaviour
         public void SetMovementDirection(Vector3 newDirection)
         {
             movingHorizontally = newDirection.y == 0;
+            mainDirection = newDirection;
             if (canJump)
             {
                 canJump = false;
@@ -111,6 +117,7 @@ public class Movement : MonoBehaviour
         public void SetMovementDirectionDelayed()
         {
             waitingToChangeDirection = false;
+            mainDirection = savedDirection;
             if (movingHorizontally)
             {
                 additionalDirection.y = additionalDirection.x == 1 ? -1 : 1;
@@ -130,6 +137,7 @@ public class Movement : MonoBehaviour
 
         public void AddMainForceInDirection(Vector3 newDirection)
         {
+            mainDirection = newDirection;
             if (!waitingToChangeDirection)
             {
                 m_Rigidbody.velocity = Vector2.zero;
@@ -174,17 +182,46 @@ public class Movement : MonoBehaviour
             if (canJump)
             {
                 RaycastHit2D hitBack = Physics2D.Linecast(position + offsetForRaycast, position + offsetForRaycast + additionalDirection);
-                RaycastHit2D hitFront = Physics2D.Linecast(position - offsetForRaycast, position - offsetForRaycast + additionalDirection);
+                RaycastHit2D hitFront = Physics2D.Linecast(position - offsetForRaycast * .9f, position - offsetForRaycast * .9f + additionalDirection);
                 Debug.DrawLine(position + offsetForRaycast, position + offsetForRaycast + additionalDirection);
-                Debug.DrawLine(position - offsetForRaycast, position - offsetForRaycast + additionalDirection);
+                Debug.DrawLine(position - offsetForRaycast * .9f, position - offsetForRaycast * .9f + additionalDirection);
                 if (hitBack.collider == null && hitFront.collider == null)
                 {
                     m_Rigidbody.AddForce(additionalDirection * speed, ForceMode2D.Impulse);
                     canJump = false;
                     return false;
                 }
+                //if (hitFront.collider == null)
+                //{
+                //    m_Rigidbody.AddForce(additionalDirection * speed, ForceMode2D.Impulse);
+                //    canJump = false;
+                //    return false;
+                //}
             }
             return true;
+        }
+
+        public void ResetSpeed()
+        {
+            if (canJump)
+            {
+                if (movingHorizontally)
+                {
+                    if (Mathf.Abs(m_Rigidbody.velocity.x) != speed || m_Rigidbody.velocity.y != 0)
+                    {
+                        m_Rigidbody.velocity = Vector2.zero;
+                        m_Rigidbody.AddForce(mainDirection * speed, ForceMode2D.Impulse);
+                    }
+                }
+                else
+                {
+                    if (Mathf.Abs(m_Rigidbody.velocity.y) != speed || m_Rigidbody.velocity.x != 0)
+                    {
+                        m_Rigidbody.velocity = Vector2.zero;
+                        m_Rigidbody.AddForce(mainDirection * speed, ForceMode2D.Impulse);
+                    }
+                }
+            }
         }
     }
 
@@ -212,23 +249,35 @@ public class Movement : MonoBehaviour
     [HideInInspector] public Vector2 lastCheckpointMainDir;
     [HideInInspector] public Vector2 lastCheckpointAddDir;
     [HideInInspector] public float lastCheckpointSpeed;
+     public bool startOfLevel;
 
     public MainMovement mMovement;
 
     void Awake()
     {
+        startOfLevel = true;
         m_Rigidbody = GetComponent<Rigidbody2D>();
-        mMovement.Start(m_Rigidbody, GetComponent<AudioSource>());
         levelManager = FindObjectOfType<LevelManager>();
-        defineDifficulty();
-        HintVisible(false);
         finished = false;
         mainCamera = Camera.main.transform;
-        movingHorizontally = mMovement.GetMovingHorizontally();
+        endLevelBonus = 1f;
+
+        movingHorizontally = mMovement.startDirection.y == 0;
         mainMovementDirection = movingHorizontally ? mMovement.startDirection.x : mMovement.startDirection.y;
         mainMovementCoordinate = movingHorizontally ? transform.position.y : transform.position.x;
-        endLevelBonus = 1f;
-        SetCheckpoint(transform.position, mMovement.startDirection, mMovement.additionalDirection, mMovement.speed);
+    }
+
+    public void StartFromTap()
+    {
+        if (startOfLevel)
+        {
+            mMovement.Start(m_Rigidbody, GetComponent<AudioSource>());
+            defineDifficulty();
+            HintVisible(false);
+
+            SetCheckpoint(transform.position, mMovement.startDirection, mMovement.additionalDirection, mMovement.speed);
+            startOfLevel = false;
+        }
     }
 
     private void Update()
@@ -236,11 +285,12 @@ public class Movement : MonoBehaviour
         UpdateCamera();
         CheckIfPlayerFlewAway();
         UpdateHints();
+        CheckWallInAdditionalDirection();
     }
 
     private void FixedUpdate()
     {
-        CheckWallInAdditionalDirection();
+        //CheckWallInAdditionalDirection();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -266,11 +316,18 @@ public class Movement : MonoBehaviour
         }
     }
 
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (!rotating)
+            mMovement.ResetSpeed();
+    }
+
     private void OnCollisionExit2D(Collision2D collision)
     {
         if (finished && mMovement.canJump)
         {
-            mMovement.AddForceInAdditionalDirection();
+            //print("HERE");
+            //mMovement.AddForceInAdditionalDirection();
         }
         ClearRotation();
     }
@@ -318,46 +375,51 @@ public class Movement : MonoBehaviour
 
     private void UpdateHints()
     {
-        if (mMovement.canJump)
+        if (rotating)
         {
-            if (renderingVector)
+            HintVisible(false);
+        }
+        else
+        {
+            if (mMovement.canJump)
             {
-                HintVector.position = transform.position + hintVectorPos;
+                if (renderingVector)
+                {
+                    HintVector.position = transform.position + hintVectorPos;
 
-                RaycastHit2D hit = Physics2D.Raycast(transform.position, hintVectorPos, 10);
+                    RaycastHit2D hit = Physics2D.Raycast(transform.position, hintVectorPos, 10);
 
-                if (hit)
-                {
-                    //Projection.gameObject.SetActive(true);
-                    //HintVector.gameObject.SetActive(true);
-                    HintVisible(true);
-                    Projection.transform.position = hit.point - new Vector2(hintVectorPos.x, hintVectorPos.y) * Mathf.Sqrt(2) * .2f;
-                }
-                else
-                {
-                    //Projection.gameObject.SetActive(false);
-                    //HintVector.gameObject.SetActive(false);
-                    HintVisible(false);
-                }
-            }
-            if (renderingDanger)
-            {
-                RaycastHit2D hit = Physics2D.Raycast(transform.position, m_Rigidbody.velocity, 8);
-                //Debug.DrawLine(transform.position, hit.point, Color.green);
-                if (hit.collider == null)
-                {
-                    HintDanger.gameObject.SetActive(false);
-                }
-                else
-                {
-                    if (hit.collider.tag == "Enemy")
+                    if (hit)
                     {
-                        HintDanger.gameObject.SetActive(true);
-                        HintDanger.position = transform.position + new Vector3(0, .5f, 0);
+                        HintVisible(true);
+                        Projection.transform.position = hit.point - new Vector2(hintVectorPos.x, hintVectorPos.y).normalized * Mathf.Sqrt(2) * .2f;
                     }
                     else
                     {
+                        HintVisible(false);
+                    }
+                }
+                if (renderingDanger)
+                {
+                    RaycastHit2D hit = Physics2D.Raycast(transform.position, m_Rigidbody.velocity, 8);
+                    if (hit.collider == null)
+                    {
                         HintDanger.gameObject.SetActive(false);
+                    }
+                    else
+                    {
+                        if (hit.collider.tag == "Enemy")
+                        {
+                            HintDanger.gameObject.SetActive(true);
+                            if(movingHorizontally)
+                                HintDanger.position = transform.position + new Vector3(0, .5f, 0);
+                            else
+                                HintDanger.position = transform.position + new Vector3(0, .5f * mMovement.mainDirection.y, 0);
+                        }
+                        else
+                        {
+                            HintDanger.gameObject.SetActive(false);
+                        }
                     }
                 }
             }
@@ -444,6 +506,7 @@ public class Movement : MonoBehaviour
         rotating = false;
         mMovement.AddMainForceInDirection(newDirection);
         hintVectorPos = mMovement.hintVectorPositionAndRot(HintVector);
+
         HintVisible(true);
         Projection.gameObject.SetActive(true);
     }
@@ -474,7 +537,6 @@ public class Movement : MonoBehaviour
     public void AddRotation()
     {
         float speed = mMovement.speed;
-        print(speed * (mMovement.additionalDirection.y == 1 ? 100 : -100));
         if (movingHorizontally)
             m_Rigidbody.angularVelocity = speed * (mMovement.additionalDirection.y == 1 ? 100 : -100);
         else
