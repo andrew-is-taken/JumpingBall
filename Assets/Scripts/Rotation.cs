@@ -5,9 +5,10 @@ using UnityEngine;
 public class Rotation : MonoBehaviour
 {
     private Movement player;
+    private float newMainMovementCoordinate;
 
     public float newSpeed;
-    public float newMainMovementCoordinate;
+    public bool inverted;
     public Vector3 newDirection;
 
     private void Start()
@@ -20,12 +21,12 @@ public class Rotation : MonoBehaviour
     {
         if (newSpeed > 0)
             player.SetSpeed(newSpeed);
-        player.SetMovementDirection(newDirection, newMainMovementCoordinate);
+        player.SetMovementDirection(newDirection, newMainMovementCoordinate, inverted);
     }
 
     public void EndOfRotation(Vector2 pos, Vector2 addDir)
     {
         player.AddForceInDirection(newDirection);
-        player.SetCheckpoint(pos, newDirection, addDir, newSpeed);
+        player.SetCheckpoint(pos, newDirection, addDir, newSpeed, inverted);
     }
 }

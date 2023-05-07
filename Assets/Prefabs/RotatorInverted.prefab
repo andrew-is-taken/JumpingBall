@@ -346,7 +346,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   newSpeed: 8
-  newMainMovementCoordinate: 0
+  inverted: 1
   newDirection: {x: 0, y: 1, z: 0}
 --- !u!1 &5913403460609749160
 GameObject:
