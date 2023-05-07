@@ -6,21 +6,20 @@ using TMPro;
 
 public class Menu : MonoBehaviour
 {
-    public TMP_Text levelTextMain;
-    public TMP_Text difficultyText;
-    public TMP_Text levelTextLevelSelection;
+    public TMP_Text levelTextMain; // main next level number
+    public TMP_Text difficultyText; // next level difficulty
+    public TMP_Text levelTextLevelSelection; // next level number in level selection button
 
-    public Color easyColor;
-    public Color mediumColor;
-    public Color hardColor;
+    public Color easyColor; // color of easy difficulty
+    public Color mediumColor; // color of medium difficulty
+    public Color hardColor; // color of hard difficulty
 
-    public GameObject LotteryPanel;
-    public GameObject DifficultyPanel;
+    public GameObject LotteryPanel; // screen with lottery
 
-    private int nextLevel;
-    private int nextDifficulty;
+    private int nextLevel; // next level number
+    private int nextDifficulty; // next level difficulty
 
-    private int selectedLevel;
+    private int selectedLevel; // currently selected level
 
     private void Start()
     {
@@ -28,27 +27,45 @@ public class Menu : MonoBehaviour
         DisplayNextLevel();
     }
 
+    /// <summary>
+    /// Starts the selected level.
+    /// </summary>
+    /// <param name="levelNumber"></param>
     public void StartLevel(int levelNumber)
     {
         SceneManager.LoadScene("Level " + levelNumber);
     }
 
-    public void SetLevelDifficulty(int difficulty)
-    {
-        FindObjectOfType<LevelManager>().difficulty = difficulty;
-    }
-
-    public void ChangeLevelSelectionMenuState(bool isOn)
-    {
-        GetComponent<Animator>().SetBool("OpenLevelSelection", isOn);
-    }
-
+    /// <summary>
+    /// Starts the next level.
+    /// </summary>
     public void StartNextLevel()
     {
         SetLevelDifficulty(nextDifficulty);
         StartLevel(nextLevel);
     }
 
+    /// <summary>
+    /// Sets the difficulty for the next level.
+    /// </summary>
+    /// <param name="difficulty"></param>
+    public void SetLevelDifficulty(int difficulty)
+    {
+        FindObjectOfType<LevelManager>().difficulty = difficulty;
+    }
+
+    /// <summary>
+    /// Opens or closes the level selection screen.
+    /// </summary>
+    /// <param name="isOn"></param>
+    public void ChangeLevelSelectionMenuState(bool isOn)
+    {
+        GetComponent<Animator>().SetBool("OpenLevelSelection", isOn);
+    }
+
+    /// <summary>
+    /// Calculates the next level parameters.
+    /// </summary>
     private void CalculateNextLevel()
     {
         LevelManager levelManager = FindObjectOfType<LevelManager>();
@@ -83,6 +100,9 @@ public class Menu : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Updates the next level texts in main menu.
+    /// </summary>
     private void DisplayNextLevel()
     {
         levelTextMain.text = "Level " + nextLevel.ToString();
@@ -104,22 +124,36 @@ public class Menu : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Opens lottery.
+    /// </summary>
     public void OpenLottery()
     {
         LotteryPanel.SetActive(true);
     }
 
-    public void CloseDifficultySelection()
-    {
-        GetComponent<Animator>().SetBool("OpenDifficultySelection", false);
-    }
-
+    /// <summary>
+    /// Selects the level and opens difficulty selection screen.
+    /// </summary>
+    /// <param name="level"></param>
     public void SelectLevel(int level)
     {
         selectedLevel = level;
         GetComponent<Animator>().SetBool("OpenDifficultySelection", true);
     }
 
+    /// <summary>
+    /// Closes difficulty selection screen.
+    /// </summary>
+    public void CloseDifficultySelection()
+    {
+        GetComponent<Animator>().SetBool("OpenDifficultySelection", false);
+    }
+
+    /// <summary>
+    /// Starts the level when user selected difficulty for that level.
+    /// </summary>
+    /// <param name="diff"></param>
     public void SelectDifficuultyAndStartLevel(int diff)
     {
         FindObjectOfType<LevelManager>().StartSelectedLevel(selectedLevel, diff);

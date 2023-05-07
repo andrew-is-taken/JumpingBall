@@ -6,17 +6,21 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 public class FileSaver : MonoBehaviour
 {
-    public SaveData saveData;
-    public string path; 
+    public SaveData saveData; // where data is stored
+    public string path; // path for saving the file
 
-    private FileStream dataStream;
-    private BinaryFormatter converter = new BinaryFormatter();
+    private FileStream dataStream; // stream to the file path
+    private BinaryFormatter converter = new BinaryFormatter(); // formatter for encrypting
 
     private void Awake()
     {
         path = Application.persistentDataPath + "/data.xd";
     }
 
+    /// <summary>
+    /// Writes the data to file.
+    /// </summary>
+    /// <param name="newSaveData"></param>
     public void SaveFile(SaveData newSaveData)
     {
         saveData = newSaveData;
@@ -25,6 +29,9 @@ public class FileSaver : MonoBehaviour
         dataStream.Close();
     }
 
+    /// <summary>
+    /// Reades the data from file.
+    /// </summary>
     public void readFile()
     {
         path = Application.persistentDataPath + "/data.xd";
@@ -39,9 +46,12 @@ public class FileSaver : MonoBehaviour
             setDefaultParameters();
             SaveFile(saveData);
         }
-        GetComponent<LevelManager>().getSaveData(saveData);
+        GetComponent<LevelManager>().setSaveData(saveData);
     }
 
+    /// <summary>
+    /// Restarts the data parameters to default.
+    /// </summary>
     private void setDefaultParameters()
     {
         saveData.volume = 0.7f;
@@ -51,6 +61,4 @@ public class FileSaver : MonoBehaviour
         saveData.AddFirstLineOfLevels();
         saveData.ClearBoughtSkins();
     }
-
-    
 }

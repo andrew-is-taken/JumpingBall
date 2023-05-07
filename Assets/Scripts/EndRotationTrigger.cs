@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class EndRotationTrigger : MonoBehaviour
 {
-    private Rotation Parent;
-
-    public Vector2 RespawnDirection;
+    private Rotation Parent; // main rotation element
+    private Vector2 RespawnDirection; // direction to respawn the player
 
     private void Start()
     {

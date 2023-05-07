@@ -6,13 +6,13 @@ using TMPro;
 
 public class LotterySpin : MonoBehaviour
 {
-    private bool spinning;
-    private float spinPositionStart;
-    private float spinPositionEnd;
-    private float t;
+    private bool spinning; // if lottery is spinning rn
+    private float spinPositionStart; // start position of spin
+    private float spinPositionEnd; // end position of spin
+    private float t; // time for lerp
 
-    public float result;
-    public int droppedItemId;
+    public float result; // the frame with prize
+    public int droppedItemId; // id of prize
 
     public int[] numberForItem; // chance to get rarest drop from lottery
     public int amountOfCells; // amount of items in spin session
@@ -24,14 +24,14 @@ public class LotterySpin : MonoBehaviour
     public List<Sprite> Items; // all items' sprites
     public List<int> ItemsCrystallAmount; // amount of crystalls for player
 
-    public GameObject startPanel;
-    public GameObject resultPanel;
-    public Image resultSprite;
-    public TMP_Text resultText;
+    public GameObject startPanel; // lottery's start screen
+    public GameObject resultPanel; // lottery's end screen
+
+    public Image resultSprite; // sprite of result item
+    public TMP_Text resultText; // text of result amount
 
     private void OnEnable()
     {
-        result = Random.Range(amountOfCells - 5f, amountOfCells);
         RestartRoulette();
     }
 
@@ -46,15 +46,22 @@ public class LotterySpin : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Restarts the lottery for new spin.
+    /// </summary>
     public void RestartRoulette()
     {
         t = 0f;
+        result = Random.Range(amountOfCells - 5f, amountOfCells);
         roulette.anchoredPosition = new Vector2(roulette.anchoredPosition.x, -75f);
         resultPanel.SetActive(false);
         startPanel.SetActive(true);
         GenerateItems();
     }
 
+    /// <summary>
+    /// Starts the spin of lottery  and calculates end position.
+    /// </summary>
     public void StartSpin()
     {
         startPanel.SetActive(false);
@@ -64,12 +71,15 @@ public class LotterySpin : MonoBehaviour
         GivePrize();
     }
 
+    /// <summary>
+    /// Ends the spin and displays results.
+    /// </summary>
     private void EndOfSpin()
     {
         spinning = false;
         resultPanel.SetActive(true);
         resultSprite.sprite = Items[droppedItemId];
-        if(droppedItemId > 2)
+        if(droppedItemId > 2) // if player got money, not skin
         {
             FindObjectOfType<MenuMoneyManager>().updateMoney(FindObjectOfType<LevelManager>().saveData.crystalls);
             resultText.text = ItemsCrystallAmount[droppedItemId] + " <sprite anim=0,5,8>";
@@ -80,6 +90,9 @@ public class LotterySpin : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Gives prize to player.
+    /// </summary>
     private void GivePrize()
     {
         LevelManager levelManager = FindObjectOfType<LevelManager>();
@@ -114,6 +127,9 @@ public class LotterySpin : MonoBehaviour
         levelManager.SaveDataToFile();
     }
 
+    /// <summary>
+    /// Generates items in lottery slots.
+    /// </summary>
     private void GenerateItems()
     {
         int droppedItem = Mathf.FloorToInt(result);
@@ -146,6 +162,9 @@ public class LotterySpin : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Closes the lottery screen.
+    /// </summary>
     public void CloseLottery()
     {
         transform.parent.gameObject.SetActive(false);

@@ -7,7 +7,6 @@ public class GameCanvasManager : MonoBehaviour
     private void Awake()
     {
         int amount = FindObjectsOfType<GameCanvasManager>().Length;
-        print(amount);
 
         if (amount == 1)
         {

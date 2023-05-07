@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class StartRotationTrigger : MonoBehaviour
 {
-    private Rotation Parent;
+    private Rotation Parent; // main rotation element
 
     private void Start()
     {

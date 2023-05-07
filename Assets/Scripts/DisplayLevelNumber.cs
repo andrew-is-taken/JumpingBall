@@ -3,12 +3,12 @@ using UnityEngine.UI;
 
 public class DisplayLevelNumber : MonoBehaviour
 {
-    private LevelManager levelManager;
-    public int levelNumber;
+    private LevelManager levelManager; // manager
+    public int levelNumber; // this button number
 
-    public Image Lock;
-    public Image[] Stars;
-    public Color[] StarsColors;
+    public Image Lock; // loch image
+    public Image[] Stars; // difficulty stars
+    public Color[] StarsColors; // colors for difficulty stars
 
     void Start()
     {
@@ -20,12 +20,15 @@ public class DisplayLevelNumber : MonoBehaviour
         GetComponent<Button>().onClick.AddListener(SelectLevel);
     }
 
+    /// <summary>
+    /// Selects the level number when user clicks on button.
+    /// </summary>
     private void SelectLevel()
     {
         if(levelNumber != 0)
         {
-            if (levelManager.saveData.levelsDone[levelNumber][0]
-            || levelManager.saveData.levelsDone[levelNumber][1] || levelManager.saveData.levelsDone[levelNumber][2])
+            if (levelManager.saveData.levelsDone[levelNumber][0] 
+                || levelManager.saveData.levelsDone[levelNumber][1] || levelManager.saveData.levelsDone[levelNumber][2])
             {
                 FindObjectOfType<Menu>().SelectLevel(levelNumber + 1);
             }
@@ -36,12 +39,18 @@ public class DisplayLevelNumber : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Sets the button's text to level number.
+    /// </summary>
     private void UpdateText()
     {
         GetComponentInChildren<Text>().text = name.Remove(0, 2);
         levelNumber = int.Parse(GetComponentInChildren<Text>().text) - 1;
     }
 
+    /// <summary>
+    /// Sets the visibility of the lock and stars for button.
+    /// </summary>
     private void UpdateLockVisibility()
     {
         if (levelNumber != 0)
@@ -68,6 +77,9 @@ public class DisplayLevelNumber : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Gives color to the stars.
+    /// </summary>
     private void PaintStars()
     {
         for(int i = 0; i < 3; i++)

@@ -57,13 +57,13 @@ public class Movement : MonoBehaviour
                 {
                     additionalDirection.y = additionalDirection.y == 1 ? -1 : 1; // changing additional direction to opposite one
                     additionalDirection.x = 0; // removing additional direction on wrong axis
-                    offsetForRaycast = new Vector3(.2f * additionalDirection.x, .2f * -additionalDirection.y, 0); // calculating offset for raycasts that check wall
+                    offsetForRaycast = new Vector3(.2f * mainDirection.x, .2f * -additionalDirection.y, 0); // calculating offset for raycasts that check wall
                 }
                 else
                 {
                     additionalDirection.x = additionalDirection.x == 1 ? -1 : 1; // changing additional direction to opposite one
                     additionalDirection.y = 0; // removing additional direction on wrong axis
-                    offsetForRaycast = new Vector3(.2f * -additionalDirection.x, .2f * additionalDirection.y, 0); // calculating offset for raycasts that check wall
+                    offsetForRaycast = new Vector3(.2f * mainDirection.y, .2f * -additionalDirection.x, 0); // calculating offset for raycasts that check wall
                 }
                 m_AudioSource.Play(); // playing the audio of jump
                 m_Rigidbody.AddForce(additionalDirection * speed, ForceMode2D.Impulse); // adding force to new additional direction
@@ -80,16 +80,19 @@ public class Movement : MonoBehaviour
             Vector3 result; // vector to return
             if (movingHorizontally)
             {
-                result = new Vector3(.4f * mainDirection.x, .4f * -additionalDirection.y, 0); // calculating offset
-                HintVector.rotation = Quaternion.Euler(0, 0, -90 * mainDirection.x + 45 * -additionalDirection.y); // rotating vector
+                result = new Vector3(.4f * mainDirection.x, .4f * -additionalDirection.y, 0);
+                if(mainDirection.x < 0)
+                    HintVector.rotation = Quaternion.Euler(0, 0, 90 + 45 * additionalDirection.y);
+                else
+                    HintVector.rotation = Quaternion.Euler(0, 0, -90 + 45 * -additionalDirection.y);
             }
             else
             {
-                result = new Vector3(.4f * -additionalDirection.x, .4f * mainDirection.y, 0); // calculating offset
+                result = new Vector3(.4f * -additionalDirection.x, .4f * mainDirection.y, 0);
                 if (mainDirection.y > 0)
-                    HintVector.rotation = Quaternion.Euler(0, 0, 45 * additionalDirection.x); // rotating vector
+                    HintVector.rotation = Quaternion.Euler(0, 0, 45 * additionalDirection.x);
                 else
-                    HintVector.rotation = Quaternion.Euler(0, 0, -180 + 45 * -additionalDirection.x); // rotating vector
+                    HintVector.rotation = Quaternion.Euler(0, 0, -180 + 45 * -additionalDirection.x);
             }
             return result;
         }
@@ -241,72 +244,77 @@ public class Movement : MonoBehaviour
         }
     }
 
-    public bool rotating;
-    public GameObject DeathParticles;
-    public Transform HintVector;
-    public Transform HintDanger;
-    public Transform Projection;
-    [HideInInspector] public bool renderingVector = false;
-    [HideInInspector] public bool renderingDanger = false;
-    [HideInInspector] public Vector3 hintVectorPos;
-    [HideInInspector] public bool movingCamera;
-    [HideInInspector] public float t = 0f;
-    [HideInInspector] public Transform mainCamera;
-    [HideInInspector] public Vector3 mainCameraOldPos;
-    [HideInInspector] public float mainMovementCoordinate;
-    [HideInInspector] public float mainMovementDirection;
-    [HideInInspector] public bool movingHorizontally;
-    [HideInInspector] public LevelManager levelManager;
-    [HideInInspector] public Rigidbody2D m_Rigidbody;
-    [HideInInspector] public bool finished;
-    [HideInInspector] public float endLevelBonus;
-    [HideInInspector] public bool gameEnded;
-    [HideInInspector] public Vector2 lastCheckpointPos;
-    [HideInInspector] public Vector2 lastCheckpointMainDir;
-    [HideInInspector] public Vector2 lastCheckpointAddDir;
-    [HideInInspector] public float lastCheckpointSpeed;
-    [HideInInspector] public bool startOfLevel;
+    public bool rotating; // if player is on a rotation element
+    public GameObject DeathParticles; // death effect
+
+    public Transform HintVector; // vector that indicates direction of next jump
+    public Transform HintDanger; // sign that indicates an obstacle nearby
+    public Transform Projection; // result of next jump
+    [HideInInspector] public bool renderingVector = false; // if rendering vector
+    [HideInInspector] public bool renderingDanger = false; // if rendering sign
+    [HideInInspector] public Vector3 hintVectorPos; // position of hint vector
+
+    [HideInInspector] public Transform mainCamera; // camera
+    [HideInInspector] public bool movingCamera; // if we need to move camera on a rotation element
+    [HideInInspector] public float t = 0f; // time for lerp of camera on rotation element
+    [HideInInspector] public Vector3 mainCameraOldPos; // start of lerp on rotation element
+    [HideInInspector] public float mainMovementCoordinate; // static coordinate for moving camera
+    [HideInInspector] public float mainMovementDirection; // direction of player movement
+
+    [HideInInspector] public bool movingHorizontally; // if player is moving horizontally
+    [HideInInspector] public LevelManager levelManager; // manager
+    [HideInInspector] public Rigidbody2D m_Rigidbody; // player's rigidbody
+    [HideInInspector] public bool finished; // if player crossed the finish line
+    [HideInInspector] public float endLevelBonus; // bonus at the end of level
+    [HideInInspector] public bool gameEnded; // if the game has ended
+    [HideInInspector] public bool startOfLevel; // if user started the game
+
+    [HideInInspector] public Vector2 lastCheckpointPos; // position of last checkpoint
+    [HideInInspector] public Vector2 lastCheckpointMainDir; // main direction on last checkpoint
+    [HideInInspector] public Vector2 lastCheckpointAddDir; // additional direction on last checkpoint
+    [HideInInspector] public float lastCheckpointSpeed; // speed on last checkpoint
 
     public MainMovement mMovement;
 
     void Awake()
     {
-        startOfLevel = true;
         m_Rigidbody = GetComponent<Rigidbody2D>();
         levelManager = FindObjectOfType<LevelManager>();
-        finished = false;
         mainCamera = Camera.main.transform;
-        endLevelBonus = 1f;
 
-        movingHorizontally = mMovement.startDirection.y == 0;
-        mainMovementDirection = movingHorizontally ? mMovement.startDirection.x : mMovement.startDirection.y;
-        mainMovementCoordinate = movingHorizontally ? transform.position.y : transform.position.x;
+        startOfLevel = true; // indicates that user didn't tap on screen for the first time
+        finished = false; // indicates that player didn't finish
+        endLevelBonus = 1f; // default bonus
+
+        movingHorizontally = mMovement.startDirection.y == 0; // whether player starts to move horizontally
+        mainMovementDirection = movingHorizontally ? mMovement.startDirection.x : mMovement.startDirection.y; // main direction at the start
+        mainMovementCoordinate = movingHorizontally ? transform.position.y : transform.position.x; // main coordinate at the start
     }
 
+    /// <summary>
+    /// Real start of the level.
+    /// Called when user touches the screen to start the level.
+    /// </summary>
     public void StartFromTap()
     {
         if (startOfLevel)
         {
-            mMovement.Start(m_Rigidbody, GetComponent<AudioSource>());
-            defineDifficulty();
-            HintVisible(false);
+            mMovement.Start(m_Rigidbody, GetComponent<AudioSource>()); // initial player setup
 
-            SetCheckpoint(transform.position, mMovement.startDirection, mMovement.additionalDirection, mMovement.speed, false);
-            startOfLevel = false;
+            defineDifficulty(); // set difficulty
+            HintVisible(false); // hide hints at the start
+
+            SetCheckpoint(transform.position, mMovement.startDirection, mMovement.additionalDirection, mMovement.speed); // first checkpoint
+            startOfLevel = false; // level started
         }
     }
 
     private void Update()
     {
-        UpdateCamera();
-        CheckIfPlayerFlewAway();
-        UpdateHints();
-        CheckWallInAdditionalDirection();
-    }
-
-    private void FixedUpdate()
-    {
-        //CheckWallInAdditionalDirection();
+        UpdateCamera(); // updating camera position
+        CheckIfPlayerFlewAway(); // check if player flew away from the screen
+        UpdateHints(); // hints positioning
+        CheckWallInAdditionalDirection(); // check if we need to throw player in void
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -318,43 +326,49 @@ public class Movement : MonoBehaviour
         else // when player collides with ground
         {
             HintVisible(true);
-            if (mMovement.waitingToChangeDirection)
+            if (mMovement.waitingToChangeDirection) // if player collides after rotation
             {
-                mMovement.SetMovementDirectionDelayed();
-                hintVectorPos = mMovement.hintVectorPositionAndRot(HintVector);
+                mMovement.SetMovementDirectionDelayed(); // setting new direction of movement
+                hintVectorPos = mMovement.hintVectorPositionAndRot(HintVector); // calculate position of vector
             }
             else
             {
                 if(!rotating)
-                    mMovement.canJump = true;
+                    mMovement.canJump = true; //  player can jump if not in the rotation element
             }
-            AddRotation();
+            AddRotation(); // spinning player
         }
     }
 
     private void OnCollisionStay2D(Collision2D collision)
     {
         if (!rotating)
-            mMovement.ResetSpeed();
+            mMovement.ResetSpeed(); // recalculate speed if not in rotation element
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (finished && mMovement.canJump)
-        {
-            //print("HERE");
-            //mMovement.AddForceInAdditionalDirection();
-        }
-        ClearRotation();
+        //if (finished && mMovement.canJump)
+        //{
+        //    //print("HERE");
+        //    //mMovement.AddForceInAdditionalDirection();
+        //}
+        ClearRotation(); // stop player rotation after jump
     }
 
+    /// <summary>
+    /// Called when user touches the screen to jump.
+    /// </summary>
     public void TapOnScreen()
     {
-        mMovement.TapOnScreen();
-        hintVectorPos = mMovement.hintVectorPositionAndRot(HintVector);
-        HintVisible(false);
+        mMovement.TapOnScreen(); // player jumps
+        hintVectorPos = mMovement.hintVectorPositionAndRot(HintVector); // updating vector
+        HintVisible(false); // disabling hints
     }
 
+    /// <summary>
+    /// Updates camera position based on player position.
+    /// </summary>
     private void UpdateCamera()
     {
         if (!movingCamera) // main camera normal positioning
@@ -370,8 +384,8 @@ public class Movement : MonoBehaviour
         }
         else // camera positioning when rotating in corner
         {
-            t += Time.deltaTime * (mMovement.speed / 4);
-            Vector3 target;
+            t += Time.deltaTime * (mMovement.speed / 4); // time for lerp
+            Vector3 target; // desired position for camera
             if (movingHorizontally)
             {
                 target = new Vector3(transform.position.x + 1.5f * mainMovementDirection, mainMovementCoordinate, -10);
@@ -382,57 +396,61 @@ public class Movement : MonoBehaviour
                 target = new Vector3(mainMovementCoordinate, transform.position.y + 3f * mainMovementDirection, -10);
                 mainCamera.position = Vector3.Lerp(mainCameraOldPos, target, t);
             }
-            if (mainCamera.position == target)
+            if (t > 1f) // if camera is in right position
             {
                 movingCamera = false;
             }
         }
     }
 
+    /// <summary>
+    /// Positioning hints.
+    /// </summary>
     private void UpdateHints()
     {
-        if (rotating)
+        if (rotating) // if in rotation element
         {
             HintVisible(false);
         }
         else
         {
-            if (mMovement.canJump)
+            if (mMovement.canJump) // if player is grounded
             {
-                if (renderingVector)
+                if (renderingVector) // if we need to render vector
                 {
-                    HintVector.position = transform.position + hintVectorPos;
+                    HintVector.position = transform.position + hintVectorPos; // position of vector based on player position and offset
 
-                    RaycastHit2D hit = Physics2D.Raycast(transform.position, hintVectorPos, 10);
+                    RaycastHit2D hit = Physics2D.Raycast(transform.position, hintVectorPos, 10); // raycast to place the projection
 
                     if (hit)
                     {
                         HintVisible(true);
-                        Projection.transform.position = hit.point - new Vector2(hintVectorPos.x, hintVectorPos.y).normalized * Mathf.Sqrt(2) * .2f;
+                        Projection.transform.position = hit.point - new Vector2(hintVectorPos.x, hintVectorPos.y).normalized * Mathf.Sqrt(2) * .2f; // position of projection
                     }
                     else
                     {
                         HintVisible(false);
                     }
                 }
-                if (renderingDanger)
+                if (renderingDanger) // if we need to render danger sign
                 {
-                    RaycastHit2D hit = Physics2D.Raycast(transform.position, m_Rigidbody.velocity, 8);
-                    if (hit.collider == null)
+                    RaycastHit2D hit = Physics2D.Raycast(transform.position, m_Rigidbody.velocity, 8); // raycast to check for danger
+
+                    if (hit.collider == null) // if there is no collision at all
                     {
                         HintDanger.gameObject.SetActive(false);
                     }
                     else
                     {
-                        if (hit.collider.tag == "Enemy")
+                        if (hit.collider.tag == "Enemy") // if there is a danger
                         {
                             HintDanger.gameObject.SetActive(true);
-                            if(movingHorizontally)
-                                HintDanger.position = transform.position + new Vector3(0, .5f, 0);
+                            if (movingHorizontally)
+                                HintDanger.position = transform.position + new Vector3(0, .5f, 0); // positioning sign
                             else
-                                HintDanger.position = transform.position + new Vector3(0, .5f * mMovement.mainDirection.y, 0);
+                                HintDanger.position = transform.position + new Vector3(0, .5f * mMovement.mainDirection.y, 0); // positioning sign
                         }
-                        else
+                        else // if there is no danger
                         {
                             HintDanger.gameObject.SetActive(false);
                         }
@@ -442,92 +460,127 @@ public class Movement : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Checks if we need to throw player in void.
+    /// </summary>
     private void CheckWallInAdditionalDirection()
     {
         if (!mMovement.CheckWallInAdditionalDirection(transform.position))
             HintVisible(false);
     }
 
+    /// <summary>
+    /// Checks if player flew away from the screen.
+    /// </summary>
     private void CheckIfPlayerFlewAway()
     {
-        Vector3 topRight = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0));
-        Vector3 bottomLeft = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 0));
-        Vector3 pos = transform.position;
-        if(!gameEnded && (pos.x > topRight.x || pos.x < bottomLeft.x || pos.y > topRight.y || pos.y < bottomLeft.y))
+        Vector3 pos = transform.position; // player position
+
+        Vector3 topRight = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0)); // top right corner of the screen
+        Vector3 bottomLeft = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 0)); // bottom left corner of the screen
+
+        if(!gameEnded && (pos.x > topRight.x || pos.x < bottomLeft.x || pos.y > topRight.y || pos.y < bottomLeft.y)) // if player is outsideof the screen
         {
             gameEnded = true;
-            if(!finished)
-                Death();
-            else
+            if(finished) // if player crossed the finish line
                 Finish();
+            else
+                Death();
         }
     }
 
+    /// <summary>
+    /// Death of player.
+    /// </summary>
     private void Death()
     {
-        GameObject fx = Instantiate(DeathParticles, transform.position, Quaternion.Euler(0, -90, 0));
-        fx.GetComponent<AudioSource>().volume = GetComponent<AudioSource>().volume;
-        Destroy(fx, 2.5f);
-        gameObject.SetActive(false);
-        levelManager.Death();
+        GameObject fx = Instantiate(DeathParticles, transform.position, Quaternion.Euler(0, -90, 0)); // spawn the effect
+        fx.GetComponent<AudioSource>().volume = GetComponent<AudioSource>().volume; // set the volume
+        Destroy(fx, 2.5f); // timer to destroy effect
+        gameObject.SetActive(false); // remove player
+        levelManager.Death(); // death event
     }
 
+    /// <summary>
+    /// Player finished the level.
+    /// </summary>
     public void Finish()
     {
         HintVisible(false);
-        levelManager.Finish(endLevelBonus);
+        levelManager.Finish(endLevelBonus); // finish event
     }
 
+    /// <summary>
+    /// Sets the difficulty of the level.
+    /// </summary>
     private void defineDifficulty()
     {
-        hintVectorPos = mMovement.hintVectorPositionAndRot(HintVector);
+        hintVectorPos = mMovement.hintVectorPositionAndRot(HintVector); // initial position of vector
         switch (levelManager.difficulty)
         {
-            case 0:
+            case 0: // if easy difficulty
                 HintVector.gameObject.SetActive(true);
                 HintDanger.gameObject.SetActive(true);
                 renderingVector = true;
                 renderingDanger = true;
                 break;
-            case 1:
+            case 1: // if medium difficulty
                 HintVector.gameObject.SetActive(true);
                 renderingVector = true;
                 break;
         }
     }
 
+    /// <summary>
+    /// <para>Changes the main direction when player ENTERS the rotation on level.</para>
+    /// Changes the additional direction if player didn't jump before the rotation on level, <br/>
+    /// otherwise the additional direction will be calculated later when player collides with level border.
+    /// <para>Called from OnTriggerEnter of rotation element.</para>
+    /// </summary>
+    /// <param name="newDirection"></param>
+    /// <param name="newMainCoord"></param>
+    /// <param name="inverted"></param>
     public void SetMovementDirection(Vector3 newDirection, float newMainCoord, bool inverted)
     {
-        t = 0f;
-        movingCamera = true;
-        rotating = true;
-        mainCameraOldPos = mainCamera.position;
-        mMovement.SetMovementDirection(newDirection, inverted);
-        movingHorizontally = mMovement.GetMovingHorizontally();
-        mainMovementCoordinate = newMainCoord;
+        t = 0f; // reset timer for camera lerp
+        movingCamera = true; // start rotation of the camera
+        mainCameraOldPos = mainCamera.position; // start position of camera in rotation
+        mainMovementCoordinate = newMainCoord; // update coordinate for camera
+
+        rotating = true; // player is in rotation element
+        mMovement.SetMovementDirection(newDirection, inverted); // change player direction
+        movingHorizontally = mMovement.GetMovingHorizontally(); // update if player moves horizontally after rotation
+
         HintVisible(false);
-        Projection.gameObject.SetActive(false);
+
         if (movingHorizontally)
         {
-            mainMovementDirection = newDirection.x;
+            mainMovementDirection = newDirection.x; // update direction for camera
         }
         else
         {
-            mainMovementDirection = newDirection.y;
+            mainMovementDirection = newDirection.y; // update direction for camera
         }
     }
 
+    /// <summary>
+    /// Pushes player in direction after rotation element.
+    /// </summary>
+    /// <param name="newDirection"></param>
     public void AddForceInDirection(Vector3 newDirection)
     {
         rotating = false;
 
-        mMovement.AddMainForceInDirection(newDirection);
-        hintVectorPos = mMovement.hintVectorPositionAndRot(HintVector);
+        mMovement.AddMainForceInDirection(newDirection); // push player
+        hintVectorPos = mMovement.hintVectorPositionAndRot(HintVector); // update vector position
 
         HintVisible(true);
-        Projection.gameObject.SetActive(true);
     }
 
+    /// <summary>
+    /// Changes the visibility of hints in the game.
+    /// </summary>
+    /// <param name="isOn">True - enable hints, False - disable</param>
     private void HintVisible(bool isOn)
     {
         if (renderingVector)
@@ -541,16 +594,27 @@ public class Movement : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Sets player's speed.
+    /// </summary>
+    /// <param name="newSpeed"></param>
     public void SetSpeed(float newSpeed)
     {
         mMovement.speed = newSpeed;
     }
 
+    /// <summary>
+    /// Tells player's speed
+    /// </summary>
+    /// <returns>Player's speed.</returns>
     public float GetSpeed()
     {
         return mMovement.speed;
     }
-
+    
+    /// <summary>
+    /// Adds the spin effect to the player based on speed.
+    /// </summary>
     public void AddRotation()
     {
         float speed = mMovement.speed;
@@ -560,12 +624,23 @@ public class Movement : MonoBehaviour
             m_Rigidbody.angularVelocity = speed * (mMovement.additionalDirection.x == 1 ? -100 : 100);
     }
 
+    /// <summary>
+    /// Removes player's spin.
+    /// </summary>
     public void ClearRotation()
     {
         m_Rigidbody.angularVelocity = 0;
     }
 
-    public void SetCheckpoint(Vector2 position, Vector2 mainDir, Vector2 additionalDir, float speed, bool inverted)
+    /// <summary>
+    /// Sets new checpoint where player can respawn.
+    /// </summary>
+    /// <param name="position"></param>
+    /// <param name="mainDir"></param>
+    /// <param name="additionalDir"></param>
+    /// <param name="speed"></param>
+    /// <param name="inverted"></param>
+    public void SetCheckpoint(Vector2 position, Vector2 mainDir, Vector2 additionalDir, float speed)
     {
         lastCheckpointPos = position;
         lastCheckpointMainDir = mainDir;
@@ -573,10 +648,14 @@ public class Movement : MonoBehaviour
         lastCheckpointSpeed = speed;
     }
 
+    /// <summary>
+    /// Respawns player on last checkpoint.
+    /// </summary>
     public void RespawnOnLastCheckpoint()
     {
-        gameObject.SetActive(true);
-        levelManager.PrepareMainUI();
+        gameObject.SetActive(true); // enable player
+        levelManager.PrepareMainUI(); // enable readysteady screen
+
         transform.position = lastCheckpointPos;
         mMovement.additionalDirection = lastCheckpointAddDir;
         mMovement.speed = lastCheckpointSpeed;
