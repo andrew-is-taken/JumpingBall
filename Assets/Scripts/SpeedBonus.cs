@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class SpeedBonus : MonoBehaviour
 {
-    public bool emitTrails = false;
-    public float speedBonus = -1f;
+    public bool emitTrails = false; // if trails spawn after the player picks up bonus
+    public float speedBonus = -1f; // bonus to player's speed
 
-    public GameObject InnerPart;
-    public GameObject Trail;
-    public Transform trailSpawn;
+    public GameObject InnerPart; // inner part of the bonus
+    public GameObject Trail; // trail prefab
+    public Transform trailSpawn; // spawn point of trails
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -19,6 +19,10 @@ public class SpeedBonus : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Spawns trails that follow player.
+    /// </summary>
+    /// <returns></returns>
     IEnumerator spawnTrails()
     {
         GetComponent<AudioSource>().Play();

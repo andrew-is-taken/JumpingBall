@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class AdsManager : MonoBehaviour
 {
-    //private string YOUR_APP_KEY = "19c430e3d";
-
     private void Start()
     {
 #if UNITY_ANDROID
@@ -15,8 +13,6 @@ public class AdsManager : MonoBehaviour
 #else
         string appKey = "unexpected_platform";
 #endif
-
-
 
         Debug.Log("unity-script: IronSource.Agent.validateIntegration");
         IronSource.Agent.validateIntegration();
@@ -30,27 +26,16 @@ public class AdsManager : MonoBehaviour
         IronSourceEvents.onSdkInitializationCompletedEvent += SdkInitializationCompletedEvent;
     }
 
-    /// <summary>
-    /// deprecated
-    /// </summary>
-    public void Init()
-    {
-        //IronSource.Agent.init(YOUR_APP_KEY);
-        //IronSourceEvents.onSdkInitializationCompletedEvent += SdkInitializationCompletedEvent;
-        //IronSource.Agent.validateIntegration();
-
-        //IronSource.Agent.setMetaData("is_test_suite", "enable");
-
-
-    }
-
-    private void SdkInitializationCompletedEvent()
-    {
-        Debug.Log("unity-script: I got SdkInitializationCompletedEvent");
-    }
-
     void OnApplicationPause(bool isPaused)
     {
         IronSource.Agent.onApplicationPause(isPaused);
+    }
+
+    /// <summary>
+    /// Event of completed initialization.
+    /// </summary>
+    private void SdkInitializationCompletedEvent()
+    {
+        Debug.Log("unity-script: I got SdkInitializationCompletedEvent");
     }
 }

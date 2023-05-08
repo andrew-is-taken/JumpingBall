@@ -5,13 +5,13 @@ using TMPro;
 
 public class EndLevelMoneyManager : MonoBehaviour
 {
-    public int result;
+    public int result; // total result
 
-    [HideInInspector] public string currentResult;
-    [HideInInspector] public string oldResult;
+    [HideInInspector] public string currentResult; // current result for lerp
+    [HideInInspector] public string oldResult; // old result for lerp
 
-    private TMP_Text resultMoney;
-    private float t;
+    private TMP_Text resultMoney; // ui text after level end
+    private float t; // time for lerp
 
     private void Start()
     {
@@ -19,6 +19,14 @@ public class EndLevelMoneyManager : MonoBehaviour
     }
 
     private void FixedUpdate()
+    {
+        LerpMoney();
+    }
+
+    /// <summary>
+    /// Lerps money from 0 to the result of the level.
+    /// </summary>
+    private void LerpMoney()
     {
         t += Time.deltaTime;
         currentResult = ((int)Mathf.Lerp(0f, result, t)).ToString();
@@ -34,6 +42,10 @@ public class EndLevelMoneyManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Resets the result values and starts the lerp of money.
+    /// </summary>
+    /// <param name="res"></param>
     public void gotNewResult(int res)
     {
         t = 0f;

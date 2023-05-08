@@ -4,18 +4,19 @@ using UnityEngine;
 
 public class SpeedUI : MonoBehaviour
 {
-    //private Movement Player;
-
-    public GameObject HorizontalSpeed;
-    public GameObject VerticalSpeed;
+    public GameObject HorizontalSpeed; // horizontal speed effect
+    public GameObject VerticalSpeed; // vertical speed effect
 
     private void Start()
     {
-        //Player = FindObjectOfType<Movement>();
         HorizontalSpeed.SetActive(false);
         VerticalSpeed.SetActive(false);
     }
 
+    /// <summary>
+    /// Sets the player's speed to new value.
+    /// </summary>
+    /// <param name="additionalSpeed"></param>
     public void AddSpeed(float additionalSpeed)
     {
         Movement Player = FindObjectOfType<Movement>();
@@ -30,6 +31,11 @@ public class SpeedUI : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Disables the effect after it is used.
+    /// </summary>
+    /// <param name="obj"></param>
+    /// <returns></returns>
     IEnumerator fading(GameObject obj)
     {
         obj.SetActive(true);
