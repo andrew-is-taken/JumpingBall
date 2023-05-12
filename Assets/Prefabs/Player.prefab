@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3301509969290004037}
   - component: {fileID: 3301509969290004038}
+  - component: {fileID: 518601305200009049}
   m_Layer: 0
   m_Name: Trail
   m_TagString: Untagged
@@ -145,6 +146,102 @@ TrailRenderer:
   m_Autodestruct: 0
   m_Emitting: 1
   m_ApplyActiveColorSpace: 0
+--- !u!82 &518601305200009049
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3301509969290004036}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 51e21a7b70c769b4e8ab2398e39ec39e, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 0.44
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &3301509969744461455
 GameObject:
   m_ObjectHideFlags: 0
@@ -316,9 +413,9 @@ MonoBehaviour:
   renderingVector: 0
   renderingDanger: 0
   hintVectorPos: {x: 0, y: 0, z: 0}
+  mainCamera: {fileID: 0}
   movingCamera: 0
   t: 0
-  mainCamera: {fileID: 0}
   mainCameraOldPos: {x: 0, y: 0, z: 0}
   mainMovementCoordinate: 0
   mainMovementDirection: 0
@@ -328,15 +425,18 @@ MonoBehaviour:
   finished: 0
   endLevelBonus: 0
   gameEnded: 0
+  startOfLevel: 0
   lastCheckpointPos: {x: 0, y: 0}
   lastCheckpointMainDir: {x: 0, y: 0}
   lastCheckpointAddDir: {x: 0, y: 0}
   lastCheckpointSpeed: 0
-  startOfLevel: 0
+  passedOnlyStart: 0
   mMovement:
     speed: 10
     startDirection: {x: 1, y: 0, z: 0}
+    mainDirection: {x: 0, y: 0, z: 0}
     additionalDirection: {x: 0, y: 0, z: 0}
+    movingHorizontally: 0
     canJump: 0
     waitingToChangeDirection: 0
 --- !u!82 &6638849170203546390

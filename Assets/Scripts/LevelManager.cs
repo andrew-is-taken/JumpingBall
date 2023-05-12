@@ -198,6 +198,8 @@ public class LevelManager : MonoBehaviour
     /// </summary>
     public void Pause()
     {
+        pausePlayerAudio();
+
         AudioSlider.value = saveData.volume;
         MusicToggle.isOn = saveData.musikEnabled;
         PauseScreen.SetActive(true);
@@ -209,13 +211,51 @@ public class LevelManager : MonoBehaviour
     /// </summary>
     public void Continue()
     {
+        continuePlayerAudio();
+        setDataToSettingsAndSave();
+
+        TapToStartPanel.SetActive(true);
+        PauseScreen.SetActive(false);
+    }
+
+    /// <summary>
+    /// Restarts the level.
+    /// </summary>
+    public void RestartLevel(bool fromSettings)
+    {
+        if(fromSettings)
+            setDataToSettingsAndSave();
+
+        Time.timeScale = 1f;
+        PrepareMainUI();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    /// <summary>
+    /// Saves the settings to file.
+    /// </summary>
+    private void setDataToSettingsAndSave()
+    {
         saveData.volume = AudioSlider.value;
         saveData.musikEnabled = MusicToggle.isOn;
         SaveDataToFile();
         SetAllAudiosToValue();
+    }
 
-        TapToStartPanel.SetActive(true);
-        PauseScreen.SetActive(false);
+    /// <summary>
+    /// Pauses player's movement audio.
+    /// </summary>
+    private void pausePlayerAudio()
+    {
+        Player.GetComponentsInChildren<AudioSource>()[1].Pause();
+    }
+
+    /// <summary>
+    /// Unpauses player's movement audio.
+    /// </summary>
+    private void continuePlayerAudio()
+    {
+        Player.GetComponentsInChildren<AudioSource>()[1].Play();
     }
 
     /// <summary>
@@ -299,16 +339,6 @@ public class LevelManager : MonoBehaviour
         saveData.crystalls += money;
         saveData.lastLevel = RealLevel;
         saveData.lastLevelDifficulty = difficulty;
-    }
-
-    /// <summary>
-    /// Restarts the level.
-    /// </summary>
-    public void RestartLevel()
-    {
-        Time.timeScale = 1f;
-        PrepareMainUI();
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     /// <summary>

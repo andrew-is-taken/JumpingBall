@@ -21,9 +21,11 @@ public class Movement : MonoBehaviour
 
         private Rigidbody2D m_Rigidbody; // rigidbody of player
         private AudioSource m_AudioSource; // audio source of player
+        private AudioSource trailSound; // player's movement audio source
 
         private Vector3 savedDirection; // main direction that will be set after rotation
-        private Vector3 offsetForRaycast; // offset for raycasts that check wall to throw player away
+        private Vector3 offsetForRaycastFront; // offset for raycasts on front of the player that check wall to throw player away
+        private Vector3 offsetForRaycastBack; // offset for raycasts on back of the player that check wall to throw player away
 
         private bool invertedRotation; // is player is in inverted rotation element
 
@@ -33,10 +35,11 @@ public class Movement : MonoBehaviour
         /// </summary>
         /// <param name="rigidbody"></param>
         /// <param name="audioSource"></param>
-        public void Start(Rigidbody2D rigidbody, AudioSource audioSource)
+        public void Start(Rigidbody2D rigidbody, AudioSource audioSource, AudioSource trail)
         {
             m_Rigidbody = rigidbody;
             m_AudioSource = audioSource;
+            trailSound = trail;
 
             movingHorizontally = startDirection.y == 0; // if player is starting to move hor or ver
             mainDirection = startDirection; // writing main direction to match the default direction
@@ -57,14 +60,17 @@ public class Movement : MonoBehaviour
                 {
                     additionalDirection.y = additionalDirection.y == 1 ? -1 : 1; // changing additional direction to opposite one
                     additionalDirection.x = 0; // removing additional direction on wrong axis
-                    offsetForRaycast = new Vector3(.2f * mainDirection.x, .2f * -additionalDirection.y, 0); // calculating offset for raycasts that check wall
+                    offsetForRaycastFront = new Vector3(.2f * mainDirection.x, .2f * additionalDirection.y, 0f); // calculating offset for raycasts that check wall
+                    offsetForRaycastBack = new Vector3(.2f * -mainDirection.x, 0f, 0f); // calculating offset for raycasts that check wall
                 }
                 else
                 {
                     additionalDirection.x = additionalDirection.x == 1 ? -1 : 1; // changing additional direction to opposite one
                     additionalDirection.y = 0; // removing additional direction on wrong axis
-                    offsetForRaycast = new Vector3(.2f * mainDirection.y, .2f * -additionalDirection.x, 0); // calculating offset for raycasts that check wall
+                    offsetForRaycastFront = new Vector3(.2f * additionalDirection.x, .2f * mainDirection.y, 0f); // calculating offset for raycasts that check wall
+                    offsetForRaycastBack = new Vector3(0f, .2f * -mainDirection.y, 0f); // calculating offset for raycasts that check wall
                 }
+                trailSound.Pause();
                 m_AudioSource.Play(); // playing the audio of jump
                 m_Rigidbody.AddForce(additionalDirection * speed, ForceMode2D.Impulse); // adding force to new additional direction
             }
@@ -126,11 +132,11 @@ public class Movement : MonoBehaviour
         /// <para>Changes the main and additional direction when player collides with border.</para>
         /// <para>Called from OnTriggerEnter of rotation element.</para>
         /// </summary>
-        public void SetMovementDirectionDelayed()
+        public void SetMovementDirectionDelayed(bool passedOnlyStart)
         {
             waitingToChangeDirection = false; // disabling so we don't calculate everything once again later
 
-            RecalculateAdditionalDirectionOnRotation(!invertedRotation); // recalculating additional direction
+            RecalculateAdditionalDirectionOnRotation(passedOnlyStart ? invertedRotation : !invertedRotation); // recalculating additional direction
             AddMainForceInDirection(savedDirection); // adding force to player in right direction
         }
 
@@ -164,6 +170,7 @@ public class Movement : MonoBehaviour
         /// <param name="inverted">True if rotation is clockwise, otherwise false.</param>
         private void RecalculateAdditionalDirectionOnRotation(bool inverted)
         {
+            print(movingHorizontally);
             if (movingHorizontally)
             {
                 if (inverted)
@@ -175,7 +182,8 @@ public class Movement : MonoBehaviour
                     additionalDirection.y = additionalDirection.x == 1 ? -1 : 1; // calculating additional direction
                 }
                 additionalDirection.x = 0; // removing additional direction on wrong axis
-                offsetForRaycast = new Vector3(.2f * mainDirection.x, .2f * -additionalDirection.y, 0); // calculating the offset for raycasts
+                offsetForRaycastFront = new Vector3(.2f * mainDirection.x, .2f * additionalDirection.y, 0f); // calculating the offset for raycasts
+                offsetForRaycastBack = new Vector3(.2f * -mainDirection.x, 0f, 0f); // calculating the offset for raycasts
             }
             else
             {
@@ -188,7 +196,8 @@ public class Movement : MonoBehaviour
                     additionalDirection.x = additionalDirection.y == 1 ? 1 : -1; // calculating additional direction
                 }
                 additionalDirection.y = 0; // removing additional direction on wrong axis
-                offsetForRaycast = new Vector3(.2f * mainDirection.y, .2f * -additionalDirection.x, 0); // calculating the offset for raycasts
+                offsetForRaycastFront = new Vector3(.2f * additionalDirection.x, .2f * mainDirection.y, 0f); // calculating the offset for raycasts
+                offsetForRaycastBack = new Vector3(0f, .2f * -mainDirection.y, 0f); // calculating the offset for raycasts
             }
         }
 
@@ -201,15 +210,16 @@ public class Movement : MonoBehaviour
         {
             if (canJump)
             {
-                RaycastHit2D hitBack = Physics2D.Linecast(position + offsetForRaycast * .9f, position + offsetForRaycast * .9f + additionalDirection); // raycast on front of the player
-                RaycastHit2D hitFront = Physics2D.Linecast(position - offsetForRaycast, position - offsetForRaycast + additionalDirection); // raycast on back of the player
+                RaycastHit2D hitFront = Physics2D.Linecast(position + offsetForRaycastFront * .8f, position + offsetForRaycastFront * .8f + additionalDirection * 0.1f); // raycast on back of the player
+                RaycastHit2D hitBack = Physics2D.Linecast(position + offsetForRaycastBack, position + offsetForRaycastBack + additionalDirection * 0.3f); // raycast on front of the player
 
-                Debug.DrawLine(position + offsetForRaycast * .9f, position + offsetForRaycast * .9f + additionalDirection); // line on front of the player
-                Debug.DrawLine(position - offsetForRaycast, position - offsetForRaycast + additionalDirection); // line on back of the player
+                Debug.DrawLine(position + offsetForRaycastFront * .8f, position + offsetForRaycastFront * .8f + additionalDirection * 0.1f); // line on front of the player
+                Debug.DrawLine(position + offsetForRaycastBack, position + offsetForRaycastBack + additionalDirection * 0.3f); // line on back of the player
 
                 if (hitBack.collider == null && hitFront.collider == null) // if we didn't hit anything
                 {
                     m_Rigidbody.AddForce(additionalDirection * speed, ForceMode2D.Impulse); // add force to throw away player
+                    trailSound.Pause();
                     canJump = false; // disable jump
                     return false;
                 }
@@ -242,6 +252,15 @@ public class Movement : MonoBehaviour
                 }
             }
         }
+
+        /// <summary>
+        /// Continues to play the audio when player collides with ground.
+        /// </summary>
+        public void ContinueAudio()
+        {
+            if(!trailSound.isPlaying)
+                trailSound.Play();
+        }
     }
 
     public bool rotating; // if player is on a rotation element
@@ -273,6 +292,7 @@ public class Movement : MonoBehaviour
     [HideInInspector] public Vector2 lastCheckpointMainDir; // main direction on last checkpoint
     [HideInInspector] public Vector2 lastCheckpointAddDir; // additional direction on last checkpoint
     [HideInInspector] public float lastCheckpointSpeed; // speed on last checkpoint
+    [HideInInspector] public bool passedOnlyStart; // to solve the problem when player jumps in rotation from wrong side and crosses only start of rotation
 
     public MainMovement mMovement;
 
@@ -299,7 +319,7 @@ public class Movement : MonoBehaviour
     {
         if (startOfLevel)
         {
-            mMovement.Start(m_Rigidbody, GetComponent<AudioSource>()); // initial player setup
+            mMovement.Start(m_Rigidbody, GetComponent<AudioSource>(), GetComponentsInChildren<AudioSource>()[1]); // initial player setup
 
             defineDifficulty(); // set difficulty
             HintVisible(false); // hide hints at the start
@@ -326,9 +346,10 @@ public class Movement : MonoBehaviour
         else // when player collides with ground
         {
             HintVisible(true);
+            mMovement.ContinueAudio();
             if (mMovement.waitingToChangeDirection) // if player collides after rotation
             {
-                mMovement.SetMovementDirectionDelayed(); // setting new direction of movement
+                mMovement.SetMovementDirectionDelayed(passedOnlyStart); // setting new direction of movement
                 hintVectorPos = mMovement.hintVectorPositionAndRot(HintVector); // calculate position of vector
             }
             else
@@ -426,6 +447,9 @@ public class Movement : MonoBehaviour
                     {
                         HintVisible(true);
                         Projection.transform.position = hit.point - new Vector2(hintVectorPos.x, hintVectorPos.y).normalized * Mathf.Sqrt(2) * .2f; // position of projection
+                        print(hit.distance);
+                        if(hit.distance < 1.4f)
+                            HintVector.gameObject.SetActive(false);
                     }
                     else
                     {
@@ -542,6 +566,8 @@ public class Movement : MonoBehaviour
     /// <param name="inverted"></param>
     public void SetMovementDirection(Vector3 newDirection, float newMainCoord, bool inverted)
     {
+        passedOnlyStart = true; // set to true to check if player collides with ground after start of rotation
+
         t = 0f; // reset timer for camera lerp
         movingCamera = true; // start rotation of the camera
         mainCameraOldPos = mainCamera.position; // start position of camera in rotation
@@ -569,6 +595,7 @@ public class Movement : MonoBehaviour
     /// <param name="newDirection"></param>
     public void AddForceInDirection(Vector3 newDirection)
     {
+        passedOnlyStart = false;
         rotating = false;
 
         mMovement.AddMainForceInDirection(newDirection); // push player

@@ -25,17 +25,17 @@ public class DisplayLevelNumber : MonoBehaviour
     /// </summary>
     private void SelectLevel()
     {
-        if(levelNumber != 0)
+        if(levelNumber != 1)
         {
-            if (levelManager.saveData.levelsDone[levelNumber][0] 
-                || levelManager.saveData.levelsDone[levelNumber][1] || levelManager.saveData.levelsDone[levelNumber][2])
+            if (levelManager.saveData.levelsDone[levelNumber-2][0] 
+                || levelManager.saveData.levelsDone[levelNumber-2][1] || levelManager.saveData.levelsDone[levelNumber-2][2])
             {
-                FindObjectOfType<Menu>().SelectLevel(levelNumber + 1);
+                FindObjectOfType<Menu>().SelectLevel(levelNumber);
             }
         }
         else
         {
-            FindObjectOfType<Menu>().SelectLevel(levelNumber + 1);
+            FindObjectOfType<Menu>().SelectLevel(levelNumber);
         }
     }
 
@@ -45,7 +45,7 @@ public class DisplayLevelNumber : MonoBehaviour
     private void UpdateText()
     {
         GetComponentInChildren<Text>().text = name.Remove(0, 2);
-        levelNumber = int.Parse(GetComponentInChildren<Text>().text) - 1;
+        levelNumber = int.Parse(GetComponentInChildren<Text>().text);
     }
 
     /// <summary>
@@ -53,10 +53,10 @@ public class DisplayLevelNumber : MonoBehaviour
     /// </summary>
     private void UpdateLockVisibility()
     {
-        if (levelNumber != 0)
+        if (levelNumber != 1)
         {
-            if (levelManager.saveData.levelsDone[levelNumber - 1][0]
-                || levelManager.saveData.levelsDone[levelNumber - 1][1] || levelManager.saveData.levelsDone[levelNumber - 1][2])
+            if (levelManager.saveData.levelsDone[levelNumber - 2][0]
+                || levelManager.saveData.levelsDone[levelNumber - 2][1] || levelManager.saveData.levelsDone[levelNumber - 2][2])
             {
                 Lock.gameObject.SetActive(false);
                 PaintStars();
@@ -84,7 +84,7 @@ public class DisplayLevelNumber : MonoBehaviour
     {
         for(int i = 0; i < 3; i++)
         {
-            if (levelManager.saveData.levelsDone[levelNumber][i])
+            if (levelManager.saveData.levelsDone[levelNumber-1][i])
                 Stars[i].color = StarsColors[i];
         }
     }
