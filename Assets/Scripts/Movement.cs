@@ -87,7 +87,7 @@ public class Movement : MonoBehaviour
             if (movingHorizontally)
             {
                 result = new Vector3(.4f * mainDirection.x, .4f * -additionalDirection.y, 0);
-                if(mainDirection.x < 0)
+                if (mainDirection.x < 0)
                     HintVector.rotation = Quaternion.Euler(0, 0, 90 + 45 * additionalDirection.y);
                 else
                     HintVector.rotation = Quaternion.Euler(0, 0, -90 + 45 * -additionalDirection.y);
@@ -168,9 +168,8 @@ public class Movement : MonoBehaviour
         /// Recalculates the additional direction when player is in rotation element.
         /// </summary>
         /// <param name="inverted">True if rotation is clockwise, otherwise false.</param>
-        private void RecalculateAdditionalDirectionOnRotation(bool inverted)
+        public void RecalculateAdditionalDirectionOnRotation(bool inverted)
         {
-            print(movingHorizontally);
             if (movingHorizontally)
             {
                 if (inverted)
@@ -258,7 +257,7 @@ public class Movement : MonoBehaviour
         /// </summary>
         public void ContinueAudio()
         {
-            if(!trailSound.isPlaying)
+            if (!trailSound.isPlaying)
                 trailSound.Play();
         }
     }
@@ -288,7 +287,7 @@ public class Movement : MonoBehaviour
     [HideInInspector] public bool gameEnded; // if the game has ended
     [HideInInspector] public bool startOfLevel; // if user started the game
 
-    [HideInInspector] public Vector2 lastCheckpointPos; // position of last checkpoint
+     public Vector2 lastCheckpointPos; // position of last checkpoint
     [HideInInspector] public Vector2 lastCheckpointMainDir; // main direction on last checkpoint
     [HideInInspector] public Vector2 lastCheckpointAddDir; // additional direction on last checkpoint
     [HideInInspector] public float lastCheckpointSpeed; // speed on last checkpoint
@@ -317,6 +316,7 @@ public class Movement : MonoBehaviour
     /// </summary>
     public void StartFromTap()
     {
+        GetComponentInChildren<TrailRenderer>().emitting = true;
         if (startOfLevel)
         {
             mMovement.Start(m_Rigidbody, GetComponent<AudioSource>(), GetComponentsInChildren<AudioSource>()[1]); // initial player setup
@@ -339,7 +339,7 @@ public class Movement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.transform.tag == "Enemy") // when player collides with enemy
+        if (collision.transform.tag == "Enemy") // when player collides with enemy
         {
             Death();
         }
@@ -354,7 +354,7 @@ public class Movement : MonoBehaviour
             }
             else
             {
-                if(!rotating)
+                if (!rotating)
                     mMovement.canJump = true; //  player can jump if not in the rotation element
             }
             AddRotation(); // spinning player
@@ -447,8 +447,7 @@ public class Movement : MonoBehaviour
                     {
                         HintVisible(true);
                         Projection.transform.position = hit.point - new Vector2(hintVectorPos.x, hintVectorPos.y).normalized * Mathf.Sqrt(2) * .2f; // position of projection
-                        print(hit.distance);
-                        if(hit.distance < 1.4f)
+                        if (hit.distance < 1.4f)
                             HintVector.gameObject.SetActive(false);
                     }
                     else
@@ -503,10 +502,10 @@ public class Movement : MonoBehaviour
         Vector3 topRight = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0)); // top right corner of the screen
         Vector3 bottomLeft = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 0)); // bottom left corner of the screen
 
-        if(!gameEnded && (pos.x > topRight.x || pos.x < bottomLeft.x || pos.y > topRight.y || pos.y < bottomLeft.y)) // if player is outsideof the screen
+        if (!gameEnded && (pos.x > topRight.x || pos.x < bottomLeft.x || pos.y > topRight.y || pos.y < bottomLeft.y)) // if player is outsideof the screen
         {
             gameEnded = true;
-            if(finished) // if player crossed the finish line
+            if (finished) // if player crossed the finish line
                 Finish();
             else
                 Death();
@@ -518,6 +517,7 @@ public class Movement : MonoBehaviour
     /// </summary>
     private void Death()
     {
+        GetComponentInChildren<TrailRenderer>().emitting = false;
         GameObject fx = Instantiate(DeathParticles, transform.position, Quaternion.Euler(0, -90, 0)); // spawn the effect
         fx.GetComponent<AudioSource>().volume = GetComponent<AudioSource>().volume; // set the volume
         Destroy(fx, 2.5f); // timer to destroy effect
@@ -638,7 +638,7 @@ public class Movement : MonoBehaviour
     {
         return mMovement.speed;
     }
-    
+
     /// <summary>
     /// Adds the spin effect to the player based on speed.
     /// </summary>
@@ -680,12 +680,22 @@ public class Movement : MonoBehaviour
     /// </summary>
     public void RespawnOnLastCheckpoint()
     {
-        gameObject.SetActive(true); // enable player
-        levelManager.PrepareMainUI(); // enable readysteady screen
+        gameObject.SetActive(true);
+        GetComponentInChildren<TrailRenderer>().emitting = false;
+        levelManager.PrepareMainUI();
 
         transform.position = lastCheckpointPos;
+        mMovement.mainDirection = lastCheckpointMainDir;
         mMovement.additionalDirection = lastCheckpointAddDir;
         mMovement.speed = lastCheckpointSpeed;
+        mMovement.movingHorizontally = mMovement.mainDirection.y == 0;
+        mMovement.RecalculateAdditionalDirectionOnRotation(false);
+        hintVectorPos = mMovement.hintVectorPositionAndRot(HintVector); // calculate position of vector
+
+        movingHorizontally = mMovement.movingHorizontally; // whether player starts to move horizontally
+        mainMovementDirection = movingHorizontally ? mMovement.mainDirection.x : mMovement.mainDirection.y; // main direction at the start
+        mainMovementCoordinate = movingHorizontally ? transform.position.y : transform.position.x; // main coordinate at the start
+
         mMovement.AddMainForceInDirection(lastCheckpointMainDir);
     }
 }

@@ -11,6 +11,7 @@ public class Rotation : MonoBehaviour
     public Vector3 newDirection; // new direction for player's movement
 
     public bool inverted; // if the rotation is clockwise or counter-clockwise
+    public bool hasCheckpoint;
 
     private void Start()
     {
@@ -31,9 +32,13 @@ public class Rotation : MonoBehaviour
     /// <summary>
     /// Ends the rotation process, sets the checkpoint and pushes player in direction.
     /// </summary>
-    public void EndOfRotation(Vector2 pos, Vector2 addDir)
+    public void EndOfRotation(Vector3 pos, Vector2 addDir)
     {
         player.AddForceInDirection(newDirection);
-        player.SetCheckpoint(pos, newDirection, addDir, newSpeed);
+        if (hasCheckpoint)
+        {
+            print("HAS CHECPOINT");
+            player.SetCheckpoint(pos + newDirection, newDirection, addDir, newSpeed);
+        }
     }
 }

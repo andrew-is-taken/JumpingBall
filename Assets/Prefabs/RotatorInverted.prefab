@@ -346,8 +346,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   newSpeed: 8
-  inverted: 1
   newDirection: {x: 0, y: 1, z: 0}
+  inverted: 1
+  hasCheckpoint: 1
 --- !u!1 &5913403460609749160
 GameObject:
   m_ObjectHideFlags: 0
@@ -491,4 +492,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efa2ab8486f42284782cf8ba8b0ac3b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RespawnDirection: {x: 0, y: 1}

@@ -111,12 +111,12 @@ public class LevelManager : MonoBehaviour
     {
         Debug.Log("OnSceneLoaded: " + scene.name);
 
-        if(scene.name == "Menu")
+        if (scene.name == "Menu")
         {
             GameCanvas.SetActive(false); // disable game canvas in menu
             FindObjectOfType<MenuMoneyManager>().updateMoney(saveData.crystalls); // update money text in menu
         }
-        else if(scene.name == "Start")
+        else if (scene.name == "Start")
         {
             GoToMenu();
         }
@@ -180,7 +180,7 @@ public class LevelManager : MonoBehaviour
 
         var c = Player.DeathParticles.GetComponentsInChildren<ParticleSystem>()[1].colorOverLifetime; // splash particles
         Gradient grad = new Gradient();
-        grad.SetKeys(new GradientColorKey[] { new GradientColorKey(dieCol, 0.0f), new GradientColorKey(dieCol, 1.0f) }, 
+        grad.SetKeys(new GradientColorKey[] { new GradientColorKey(dieCol, 0.0f), new GradientColorKey(dieCol, 1.0f) },
             new GradientAlphaKey[] { new GradientAlphaKey(1.0f, 0.0f), new GradientAlphaKey(1.0f, 0.8f), new GradientAlphaKey(0.0f, 1.0f) });
         c.color = grad;
     }
@@ -223,7 +223,7 @@ public class LevelManager : MonoBehaviour
     /// </summary>
     public void RestartLevel(bool fromSettings)
     {
-        if(fromSettings)
+        if (fromSettings)
             setDataToSettingsAndSave();
 
         Time.timeScale = 1f;
@@ -355,7 +355,7 @@ public class LevelManager : MonoBehaviour
     /// </summary>
     public void StartNextLevel()
     {
-        if(difficulty == 2)
+        if (difficulty == 2)
         {
             RealLevel += 1;
             difficulty = 0;
@@ -401,7 +401,7 @@ public class LevelManager : MonoBehaviour
     /// </summary>
     private void PrintLevelsFromSaveData()
     {
-        for(int i = 0; i < saveData.levelsDone.Count; i++)
+        for (int i = 0; i < saveData.levelsDone.Count; i++)
         {
             for (int j = 0; j < saveData.levelsDone[i].Count; j++)
             {
