@@ -252,6 +252,15 @@ public class Movement : MonoBehaviour
             }
         }
 
+        public void ResetSpeedOnRotation()
+        {
+            if (Mathf.Abs(m_Rigidbody.velocity.x) < 1 && Mathf.Abs(m_Rigidbody.velocity.y) < 1) // if speed is very low
+            {
+                m_Rigidbody.velocity = Vector2.zero; // clear velocity
+                m_Rigidbody.AddForce(mainDirection * speed, ForceMode2D.Impulse); // add right force
+            }
+        }
+
         /// <summary>
         /// Continues to play the audio when player collides with ground.
         /// </summary>
@@ -287,10 +296,11 @@ public class Movement : MonoBehaviour
     [HideInInspector] public bool gameEnded; // if the game has ended
     [HideInInspector] public bool startOfLevel; // if user started the game
 
-     public Vector2 lastCheckpointPos; // position of last checkpoint
+    [HideInInspector] public Vector2 lastCheckpointPos; // position of last checkpoint
     [HideInInspector] public Vector2 lastCheckpointMainDir; // main direction on last checkpoint
     [HideInInspector] public Vector2 lastCheckpointAddDir; // additional direction on last checkpoint
     [HideInInspector] public float lastCheckpointSpeed; // speed on last checkpoint
+    [HideInInspector] public bool lastCheckpointWasStart; // speed on last checkpoint
     [HideInInspector] public bool passedOnlyStart; // to solve the problem when player jumps in rotation from wrong side and crosses only start of rotation
 
     public MainMovement mMovement;
@@ -302,6 +312,7 @@ public class Movement : MonoBehaviour
         mainCamera = Camera.main.transform;
 
         startOfLevel = true; // indicates that user didn't tap on screen for the first time
+        lastCheckpointWasStart = true;
         finished = false; // indicates that player didn't finish
         endLevelBonus = 1f; // default bonus
 
@@ -365,6 +376,8 @@ public class Movement : MonoBehaviour
     {
         if (!rotating)
             mMovement.ResetSpeed(); // recalculate speed if not in rotation element
+        else
+            mMovement.ResetSpeedOnRotation(); // recalculate speed if in rotation element
     }
 
     private void OnCollisionExit2D(Collision2D collision)
@@ -669,6 +682,8 @@ public class Movement : MonoBehaviour
     /// <param name="inverted"></param>
     public void SetCheckpoint(Vector2 position, Vector2 mainDir, Vector2 additionalDir, float speed)
     {
+        if (!startOfLevel)
+            lastCheckpointWasStart = false;
         lastCheckpointPos = position;
         lastCheckpointMainDir = mainDir;
         lastCheckpointAddDir = additionalDir;
@@ -680,22 +695,34 @@ public class Movement : MonoBehaviour
     /// </summary>
     public void RespawnOnLastCheckpoint()
     {
-        gameObject.SetActive(true);
-        GetComponentInChildren<TrailRenderer>().emitting = false;
-        levelManager.PrepareMainUI();
+        if (!lastCheckpointWasStart)
+        {
+            gameObject.SetActive(true);
+            GetComponentInChildren<TrailRenderer>().emitting = false;
+            levelManager.PrepareMainUI();
 
-        transform.position = lastCheckpointPos;
-        mMovement.mainDirection = lastCheckpointMainDir;
-        mMovement.additionalDirection = lastCheckpointAddDir;
-        mMovement.speed = lastCheckpointSpeed;
-        mMovement.movingHorizontally = mMovement.mainDirection.y == 0;
-        mMovement.RecalculateAdditionalDirectionOnRotation(false);
-        hintVectorPos = mMovement.hintVectorPositionAndRot(HintVector); // calculate position of vector
+            transform.position = lastCheckpointPos;
+            mMovement.mainDirection = lastCheckpointMainDir;
+            mMovement.additionalDirection = lastCheckpointAddDir;
+            mMovement.speed = lastCheckpointSpeed;
+            mMovement.movingHorizontally = mMovement.mainDirection.y == 0;
+            mMovement.RecalculateAdditionalDirectionOnRotation(false);
+            hintVectorPos = mMovement.hintVectorPositionAndRot(HintVector); // calculate position of vector
 
-        movingHorizontally = mMovement.movingHorizontally; // whether player starts to move horizontally
-        mainMovementDirection = movingHorizontally ? mMovement.mainDirection.x : mMovement.mainDirection.y; // main direction at the start
-        mainMovementCoordinate = movingHorizontally ? transform.position.y : transform.position.x; // main coordinate at the start
+            movingHorizontally = mMovement.movingHorizontally; // whether player starts to move horizontally
+            mainMovementDirection = movingHorizontally ? mMovement.mainDirection.x : mMovement.mainDirection.y; // main direction at the start
+            mainMovementCoordinate = movingHorizontally ? transform.position.y : transform.position.x; // main coordinate at the start
 
-        mMovement.AddMainForceInDirection(lastCheckpointMainDir);
+            mMovement.AddMainForceInDirection(lastCheckpointMainDir);
+
+            foreach(GhostEnemy enemy in FindObjectsOfType<GhostEnemy>())
+            {
+                enemy.RestartEnemy();
+            }
+        }
+        else
+        {
+            levelManager.RestartLevel(false);
+        }
     }
 }

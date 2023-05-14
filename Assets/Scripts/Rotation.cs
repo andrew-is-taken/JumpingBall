@@ -13,9 +13,13 @@ public class Rotation : MonoBehaviour
     public bool inverted; // if the rotation is clockwise or counter-clockwise
     public bool hasCheckpoint;
 
+    private GameObject CheckpointAnim; // animator when checkpoint is set
+
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Movement>();
+        CheckpointAnim = GetComponentInChildren<Animator>().gameObject;
+        CheckpointAnim.SetActive(false);
         newMainMovementCoordinate = newDirection.x != 0 ? transform.position.y : transform.position.x;
     }
 
@@ -37,8 +41,19 @@ public class Rotation : MonoBehaviour
         player.AddForceInDirection(newDirection);
         if (hasCheckpoint)
         {
-            print("HAS CHECPOINT");
+            StartCoroutine(setCheckpoint());
             player.SetCheckpoint(pos + newDirection, newDirection, addDir, newSpeed);
         }
+    }
+
+    /// <summary>
+    /// Visual animation of placing a checkpoint.
+    /// </summary>
+    /// <returns></returns>
+    IEnumerator setCheckpoint()
+    {
+        CheckpointAnim.SetActive(true);
+        yield return new WaitForSeconds(.75f);
+        CheckpointAnim.SetActive(false);
     }
 }
