@@ -11,6 +11,9 @@ public class SpeedBonus : MonoBehaviour
     public GameObject Trail; // trail prefab
     public Transform trailSpawn; // spawn point of trails
 
+    public AudioClip speedUp; // sound when player accelerates
+    public AudioClip slowDown; // sound when player slows down
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Player")
@@ -25,7 +28,7 @@ public class SpeedBonus : MonoBehaviour
     /// <returns></returns>
     IEnumerator spawnTrails()
     {
-        GetComponent<AudioSource>().Play();
+        GetComponent<AudioSource>().PlayOneShot(speedBonus > 0 ? speedUp : slowDown);
         FindObjectOfType<SpeedUI>().AddSpeed(speedBonus);
         InnerPart.SetActive(false);
         yield return new WaitForSeconds(.5f);

@@ -163,6 +163,8 @@ MonoBehaviour:
   InnerPart: {fileID: 7634367477527055281}
   Trail: {fileID: 4802082741438591607, guid: 57cfe163d00f4474c8162f0931612c54, type: 3}
   trailSpawn: {fileID: 7768769887138668287}
+  speedUp: {fileID: 8300000, guid: e23783e94943c2e498998f92de25e2af, type: 3}
+  slowDown: {fileID: 8300000, guid: 87e7c8c3449a1114cb5675abf1e242f2, type: 3}
 --- !u!82 &8491567693274561953
 AudioSource:
   m_ObjectHideFlags: 0
@@ -173,7 +175,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 87e7c8c3449a1114cb5675abf1e242f2, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
