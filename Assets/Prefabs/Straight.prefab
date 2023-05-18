@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 4047783478862004606}
   - component: {fileID: 7349076010533078735}
   - component: {fileID: 1672528262055688254}
+  - component: {fileID: 1352201668984800993}
+  - component: {fileID: 6282614107904559078}
   m_Layer: 0
   m_Name: Right
   m_TagString: Untagged
@@ -95,6 +97,25 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 6200000, guid: 73b5df1bcafaaf448a7bb98e811f5662, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -114,6 +135,43 @@ PolygonCollider2D:
       - {x: 0.17, y: 2.56}
       - {x: -0.17, y: 2.56}
       - {x: -0.17, y: -2.56}
+  m_UseDelaunayMesh: 0
+--- !u!95 &1352201668984800993
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6092810151434312522}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b3d5057a9f4636f4e9ae044a8d6875ee, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &6282614107904559078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6092810151434312522}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d968def4814b734989bb87bb98b610f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  disappearing: 0
+  visiblePeriod: 1
+  invisiblePeriod: 1
 --- !u!1 &7057041319369552517
 GameObject:
   m_ObjectHideFlags: 0
@@ -158,6 +216,8 @@ GameObject:
   - component: {fileID: 3857004337515322501}
   - component: {fileID: 2345196955905964869}
   - component: {fileID: 4519299698497580422}
+  - component: {fileID: 5905689576711120423}
+  - component: {fileID: 2679716630606769744}
   m_Layer: 0
   m_Name: Left
   m_TagString: Untagged
@@ -242,6 +302,25 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 6200000, guid: 73b5df1bcafaaf448a7bb98e811f5662, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -261,3 +340,40 @@ PolygonCollider2D:
       - {x: 0.17, y: 2.56}
       - {x: -0.17, y: 2.56}
       - {x: -0.17, y: -2.56}
+  m_UseDelaunayMesh: 0
+--- !u!95 &5905689576711120423
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9211170798110567187}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b3d5057a9f4636f4e9ae044a8d6875ee, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2679716630606769744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9211170798110567187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d968def4814b734989bb87bb98b610f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  disappearing: 0
+  visiblePeriod: 1
+  invisiblePeriod: 1
