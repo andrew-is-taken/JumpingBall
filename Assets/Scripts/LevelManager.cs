@@ -109,7 +109,9 @@ public class LevelManager : MonoBehaviour
     /// <param name="mode"></param>
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+#if UNITY_EDITOR
         Debug.Log("OnSceneLoaded: " + scene.name);
+#endif
 
         if (scene.name == "Menu")
         {

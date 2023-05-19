@@ -11,7 +11,6 @@ public class FinishMultiplierText : MonoBehaviour
         if(transform.up != Vector3.up)
         {
             transform.rotation = Quaternion.LookRotation(transform.forward, Vector3.up);
-            print(transform.localRotation.eulerAngles.z);
             if (transform.localRotation.eulerAngles.z == 180 || transform.localRotation.eulerAngles.z < 0.1f) // if finish line is horizontal
                 transform.localPosition = new Vector3(xOffset, 0, 0);
         }

@@ -14,6 +14,7 @@ public class AdsManager : MonoBehaviour
         string appKey = "unexpected_platform";
 #endif
 
+#if UNITY_EDITOR
         Debug.Log("unity-script: IronSource.Agent.validateIntegration");
         IronSource.Agent.validateIntegration();
 
@@ -22,6 +23,10 @@ public class AdsManager : MonoBehaviour
         // SDK init
         Debug.Log("unity-script: IronSource.Agent.init");
         IronSource.Agent.init(appKey);
+#else
+        IronSource.Agent.validateIntegration();
+        IronSource.Agent.init(appKey);
+#endif
 
         IronSourceEvents.onSdkInitializationCompletedEvent += SdkInitializationCompletedEvent;
     }

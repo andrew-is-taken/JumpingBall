@@ -175,10 +175,12 @@ public class Movement : MonoBehaviour
                 if (inverted)
                 {
                     additionalDirection.y = additionalDirection.x == 1 ? 1 : -1; // calculating additional direction
+                    //additionalDirection.y = additionalDirection.x; // changing additional direction
                 }
                 else
                 {
                     additionalDirection.y = additionalDirection.x == 1 ? -1 : 1; // calculating additional direction
+                    //additionalDirection.y = -additionalDirection.x; // changing additional direction
                 }
                 additionalDirection.x = 0; // removing additional direction on wrong axis
                 offsetForRaycastFront = new Vector3(.2f * mainDirection.x, .2f * additionalDirection.y, 0f); // calculating the offset for raycasts
@@ -189,10 +191,12 @@ public class Movement : MonoBehaviour
                 if (inverted)
                 {
                     additionalDirection.x = additionalDirection.y == 1 ? -1 : 1; // calculating additional direction
+                    //additionalDirection.x = -additionalDirection.y; // changing additional direction
                 }
                 else
                 {
                     additionalDirection.x = additionalDirection.y == 1 ? 1 : -1; // calculating additional direction
+                    //additionalDirection.x = additionalDirection.y; // changing additional direction
                 }
                 additionalDirection.y = 0; // removing additional direction on wrong axis
                 offsetForRaycastFront = new Vector3(.2f * additionalDirection.x, .2f * mainDirection.y, 0f); // calculating the offset for raycasts
