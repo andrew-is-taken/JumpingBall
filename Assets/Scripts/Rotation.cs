@@ -19,7 +19,7 @@ public class Rotation : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Movement>();
         CheckpointAnim = GetComponentInChildren<Animator>().gameObject;
-        CheckpointAnim.SetActive(false);
+        CheckpointAnim.SetActive(hasCheckpoint);
         newMainMovementCoordinate = newDirection.x != 0 ? transform.position.y : transform.position.x;
     }
 
@@ -52,7 +52,6 @@ public class Rotation : MonoBehaviour
     /// <returns></returns>
     IEnumerator setCheckpoint()
     {
-        CheckpointAnim.SetActive(true);
         yield return new WaitForSeconds(.75f);
         CheckpointAnim.SetActive(false);
     }
