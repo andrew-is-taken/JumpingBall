@@ -645,6 +645,7 @@ public class Movement : MonoBehaviour
     public void SetSpeed(float newSpeed)
     {
         mMovement.speed = newSpeed;
+        mMovement.ResetSpeed();
     }
 
     /// <summary>
