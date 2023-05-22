@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Rotation : MonoBehaviour
 {
-    private Movement player; // player
+    private MovementManager player; // player
 
     private float newMainMovementCoordinate; // new coordinate for player's movement
     public float newSpeed; // new speed for player's movement
@@ -17,7 +17,7 @@ public class Rotation : MonoBehaviour
 
     private void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Movement>();
+        player = MovementManager.instance;
         CheckpointAnim = GetComponentInChildren<Animator>().gameObject;
         CheckpointAnim.SetActive(hasCheckpoint);
         newMainMovementCoordinate = newDirection.x != 0 ? transform.position.y : transform.position.x;

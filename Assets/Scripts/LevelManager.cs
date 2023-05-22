@@ -7,7 +7,6 @@ public class LevelManager : MonoBehaviour
 {
     public SaveData saveData; // where data is stored
     public PlayerSkin[] Skins; // all player skins
-    public Movement Player; // player
 
     public int equippedSkin; // currently active skin
     public int difficulty; // level difficulty
@@ -25,6 +24,7 @@ public class LevelManager : MonoBehaviour
     public Toggle MusicToggle; // music toggle in settings
 
     public EndLevelMoneyManager EndLevelMoney; // money manager
+    private MovementManager player;
 
     private Coroutine lastCoroutine; // last saved coroutine
 
@@ -139,7 +139,7 @@ public class LevelManager : MonoBehaviour
     private void StartOfLevel()
     {
         GameCanvas.SetActive(true);
-        Player = FindObjectOfType<Movement>();
+        player = MovementManager.instance;
 
         RealLevel = int.Parse(SceneManager.GetActiveScene().name.Remove(0, 5)); // get level number
         LevelInList = RealLevel - 1;
@@ -171,16 +171,16 @@ public class LevelManager : MonoBehaviour
     /// </summary>
     private void SyncPlayerSkin()
     {
-        Player.GetComponent<SpriteRenderer>().sprite = Skins[equippedSkin].sprite;
-        Player.GetComponentInChildren<TrailRenderer>().colorGradient = Skins[equippedSkin].color;
-        Player.GetComponentInChildren<TrailRenderer>().time = Skins[equippedSkin].time;
+        player.GetComponent<SpriteRenderer>().sprite = Skins[equippedSkin].sprite;
+        player.GetComponentInChildren<TrailRenderer>().colorGradient = Skins[equippedSkin].color;
+        player.GetComponentInChildren<TrailRenderer>().time = Skins[equippedSkin].time;
 
         Color dieCol = Skins[equippedSkin].dieColor;
 
-        var mainPs = Player.DeathParticles.GetComponent<ParticleSystem>().main; // main death particle system
+        var mainPs = player.DeathParticles.GetComponent<ParticleSystem>().main; // main death particle system
         mainPs.startColor = dieCol;
 
-        var c = Player.DeathParticles.GetComponentsInChildren<ParticleSystem>()[1].colorOverLifetime; // splash particles
+        var c = player.DeathParticles.GetComponentsInChildren<ParticleSystem>()[1].colorOverLifetime; // splash particles
         Gradient grad = new Gradient();
         grad.SetKeys(new GradientColorKey[] { new GradientColorKey(dieCol, 0.0f), new GradientColorKey(dieCol, 1.0f) },
             new GradientAlphaKey[] { new GradientAlphaKey(1.0f, 0.0f), new GradientAlphaKey(1.0f, 0.8f), new GradientAlphaKey(0.0f, 1.0f) });
@@ -192,7 +192,7 @@ public class LevelManager : MonoBehaviour
     /// </summary>
     public void TouchScreenTap()
     {
-        Player.TapOnScreen();
+        player.TapOnScreen();
     }
 
     /// <summary>
@@ -249,7 +249,7 @@ public class LevelManager : MonoBehaviour
     /// </summary>
     private void pausePlayerAudio()
     {
-        Player.GetComponentsInChildren<AudioSource>()[1].Pause();
+        player.GetComponentsInChildren<AudioSource>()[1].Pause();
     }
 
     /// <summary>
@@ -257,7 +257,7 @@ public class LevelManager : MonoBehaviour
     /// </summary>
     private void continuePlayerAudio()
     {
-        Player.GetComponentsInChildren<AudioSource>()[1].Play();
+        player.GetComponentsInChildren<AudioSource>()[1].Play();
     }
 
     /// <summary>
@@ -278,9 +278,9 @@ public class LevelManager : MonoBehaviour
     public void StartFromTap()
     {
         Time.timeScale = 1f;
-        Player = FindObjectOfType<Movement>();
+        //player = MovementManager.instance;
         TapToStartPanel.SetActive(false);
-        Player.StartFromTap();
+        player.StartFromTap();
     }
 
     /// <summary>
@@ -300,7 +300,7 @@ public class LevelManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Player's death.
+    /// player's death.
     /// </summary>
     public void Death()
     {
@@ -386,7 +386,7 @@ public class LevelManager : MonoBehaviour
     /// </summary>
     public void RespawnPlayer()
     {
-        Player.RespawnOnLastCheckpoint();
+        player.RespawnOnLastCheckpoint();
     }
 
     /// <summary>
@@ -448,6 +448,6 @@ public class LevelManager : MonoBehaviour
         EndLevelScreen.SetActive(true);
         EndLevelMoney.gotNewResult(money);
         yield return new WaitForSeconds(2.5f);
-        Player.gameObject.SetActive(false);
+        player.gameObject.SetActive(false);
     }
 }

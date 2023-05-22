@@ -11,10 +11,11 @@ public class FinalBonusMultiplier : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            collision.GetComponent<Movement>().endLevelBonus = BonusMultiplier;
+            MovementManager player = MovementManager.instance;
+            player.SetEndLevelBonus(BonusMultiplier);
             if (TrueFinish)
             {
-                collision.GetComponent<Movement>().Finish();
+                player.Finish();
             }
         }
     }

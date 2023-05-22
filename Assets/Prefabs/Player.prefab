@@ -255,6 +255,7 @@ GameObject:
   - component: {fileID: 3301509969744461460}
   - component: {fileID: 3301509969744461461}
   - component: {fileID: 3301509969744461459}
+  - component: {fileID: 315916239277596835}
   - component: {fileID: 6638849170203546390}
   m_Layer: 0
   m_Name: Player
@@ -405,40 +406,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c58e8179a9276649a7b0011f82381ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotating: 0
-  DeathParticles: {fileID: 629974259476688486, guid: 541be4857267b2e488042e1f38658e1d, type: 3}
-  HintVector: {fileID: 0}
-  HintDanger: {fileID: 0}
-  Projection: {fileID: 0}
-  renderingVector: 0
-  renderingDanger: 0
-  hintVectorPos: {x: 0, y: 0, z: 0}
-  mainCamera: {fileID: 0}
-  movingCamera: 0
-  t: 0
-  mainCameraOldPos: {x: 0, y: 0, z: 0}
-  mainMovementCoordinate: 0
-  mainMovementDirection: 0
-  movingHorizontally: 0
-  levelManager: {fileID: 0}
-  m_Rigidbody: {fileID: 0}
-  finished: 0
-  endLevelBonus: 0
-  gameEnded: 0
-  startOfLevel: 0
-  lastCheckpointPos: {x: 0, y: 0}
-  lastCheckpointMainDir: {x: 0, y: 0}
-  lastCheckpointAddDir: {x: 0, y: 0}
-  lastCheckpointSpeed: 0
-  passedOnlyStart: 0
-  mMovement:
-    speed: 10
-    startDirection: {x: 1, y: 0, z: 0}
+  Movement:
+    speed: 8
+    startDirection: {x: -1, y: 0, z: 0}
     mainDirection: {x: 0, y: 0, z: 0}
-    additionalDirection: {x: 0, y: 0, z: 0}
-    movingHorizontally: 0
+    additionalDirection: {x: 1, y: 0, z: 0}
     canJump: 0
     waitingToChangeDirection: 0
+  <rotating>k__BackingField: 0
+  <DeathParticles>k__BackingField: {fileID: 629974259476688486, guid: 541be4857267b2e488042e1f38658e1d, type: 3}
+  <HintVectorPrefab>k__BackingField: {fileID: 1327922213573749414, guid: 6df93abdabdff9e40ac58b091f2e4231, type: 3}
+  <HintDangerPrefab>k__BackingField: {fileID: 8849683467199586234, guid: 7359e7a210c13fb48bc59e41faca83e2, type: 3}
+  <ProjectionPrefab>k__BackingField: {fileID: 4193031899653907302, guid: 82026605eb728b14c91b3d64fb908787, type: 3}
+--- !u!114 &315916239277596835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3301509969744461455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20b86aee5580a3744a0e8e758cd80419, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!82 &6638849170203546390
 AudioSource:
   m_ObjectHideFlags: 0

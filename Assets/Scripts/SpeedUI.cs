@@ -19,7 +19,7 @@ public class SpeedUI : MonoBehaviour
     /// <param name="additionalSpeed"></param>
     public void AddSpeed(float additionalSpeed)
     {
-        Movement Player = FindObjectOfType<Movement>();
+        MovementManager Player = MovementManager.instance;
         Player.SetSpeed(Player.GetSpeed() + additionalSpeed);
         if (Player.movingHorizontally)
         {

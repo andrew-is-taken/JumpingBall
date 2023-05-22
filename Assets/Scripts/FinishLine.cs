@@ -8,7 +8,7 @@ public class FinishLine : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            collision.GetComponent<Movement>().finished = true;
+            MovementManager.instance.CrossedFinishLine();
             GetComponent<AudioSource>().Play();
         }
     }
