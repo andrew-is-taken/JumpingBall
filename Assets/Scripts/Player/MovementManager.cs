@@ -368,7 +368,7 @@ public class MovementManager : MonoBehaviour
             defineDifficulty(); // set difficulty
             HintVisible(false); // hide hints at the start
 
-            SetCheckpoint(transform.position, Movement.startDirection, Movement.additionalDirection, Movement.speed); // first checkpoint
+            SetCheckpoint(transform.position, Movement.startDirection, Movement.speed); // first checkpoint
             startOfLevel = false; // level started
         }
     }
@@ -677,13 +677,13 @@ public class MovementManager : MonoBehaviour
     /// <param name="additionalDir"></param>
     /// <param name="speed"></param>
     /// <param name="inverted"></param>
-    public void SetCheckpoint(Vector2 position, Vector2 mainDir, Vector2 additionalDir, float speed)
+    public void SetCheckpoint(Vector2 position, Vector2 mainDir, float speed)
     {
         if (!startOfLevel)
             lastCheckpointWasStart = false;
         lastCheckpointPos = position;
         lastCheckpointMainDir = mainDir;
-        lastCheckpointAddDir = additionalDir;
+        lastCheckpointAddDir = mainDir;
         lastCheckpointSpeed = speed;
     }
 
@@ -715,6 +715,8 @@ public class MovementManager : MonoBehaviour
             {
                 enemy.RestartEnemy();
             }
+
+            cameraController.UpdateCamera();
         }
         else
         {

@@ -1,17 +1,18 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Rotation : MonoBehaviour
 {
     private MovementManager player; // player
 
+    [Header("New parameters")]
+    [SerializeField] private float newSpeed; // new speed for player's movement
+    [SerializeField] private Vector3 newDirection; // new direction for player's movement
     private float newMainMovementCoordinate; // new coordinate for player's movement
-    public float newSpeed; // new speed for player's movement
-    public Vector3 newDirection; // new direction for player's movement
 
-    public bool inverted; // if the rotation is clockwise or counter-clockwise
-    public bool hasCheckpoint;
+    [Header("Rotation parameters")]
+    [SerializeField] private bool inverted; // if the rotation is clockwise or counter-clockwise
+    [SerializeField] private bool hasCheckpoint;
 
     private GameObject CheckpointAnim; // animator when checkpoint is set
 
@@ -36,13 +37,13 @@ public class Rotation : MonoBehaviour
     /// <summary>
     /// Ends the rotation process, sets the checkpoint and pushes player in direction.
     /// </summary>
-    public void EndOfRotation(Vector3 pos, Vector2 addDir)
+    public void EndOfRotation(Vector3 pos)
     {
         player.AddForceInDirection(newDirection);
         if (hasCheckpoint)
         {
             StartCoroutine(setCheckpoint());
-            player.SetCheckpoint(pos + newDirection, newDirection, addDir, newSpeed);
+            player.SetCheckpoint(pos + newDirection, newDirection, newSpeed);
         }
     }
 

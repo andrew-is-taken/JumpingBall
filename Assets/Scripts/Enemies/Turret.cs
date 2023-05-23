@@ -4,17 +4,19 @@ using UnityEngine;
 
 public class Turret : MonoBehaviour
 {
-    public List<GameObject> bulletPool;
+    [SerializeField] private List<GameObject> bulletPool;
 
-    public Sprite brokenSprite;
+    [SerializeField] private Sprite brokenSprite;
 
-    public float timeToAim;
-    public float timeBetweenShots;
+    [Header("Time")]
+    [SerializeField] private float timeToAim;
+    [SerializeField] private float timeBetweenShots;
 
-    public LineRenderer laser;
-    public Transform laserStart;
+    [Header("Laser")]
+    [SerializeField] private LineRenderer laser;
+    [SerializeField] private Transform laserStart;
 
-    public Transform player;
+    private Transform player;
     private bool broken;
     private bool readyToShoot;
     private bool playerInSight;
@@ -24,7 +26,7 @@ public class Turret : MonoBehaviour
     {
         broken = false;
         readyToShoot = true;
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        player = MovementManager.instance.transform;
         laser.SetPosition(0, laserStart.position);
     }
 

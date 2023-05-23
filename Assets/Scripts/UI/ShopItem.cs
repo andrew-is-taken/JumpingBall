@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,8 +5,8 @@ public class ShopItem : MonoBehaviour
 {
     public int id; // id of this item
 
-    public GameObject Tick; // tick if item is equipped
-    public GameObject Lock; // lock if item isn't purchased
+    [SerializeField] private GameObject Tick; // tick if item is equipped
+    [SerializeField] private GameObject Lock; // lock if item isn't purchased
 
     private Shop shop; // main shop script
 

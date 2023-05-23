@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,21 +5,24 @@ using TMPro;
 
 public class Shop : MonoBehaviour
 {
-    public Animator MenuAnim; // animator with menu ui
+    private Animator MenuAnim; // animator with menu ui
 
     private LevelManager levelManager; // manager
     private List<int> boughtSkins; // list of purchased skins
 
+    [Header("Items")]
     public List<ShopItem> shopItems; // list of all items in shop
-    public List<int> shopItemsPrice; // list with prices of items
+    [SerializeField] private List<int> shopItemsPrice; // list with prices of items
 
-    public GameObject confirmationPanel; // confirmation screen to proceed purchasing
-    public TMP_Text confirmationPriceText; // price on confirmation screen
-    public Button buySkinButton; // button to proceed purchasing
+    [Header("Confirmation UI")]
+    [SerializeField] private GameObject confirmationPanel; // confirmation screen to proceed purchasing
+    [SerializeField] private TMP_Text confirmationPriceText; // price on confirmation screen
+    [SerializeField] private Button buySkinButton; // button to proceed purchasing
 
-    public GameObject notEnoughMoneyPanel; // alert screen of lack of money
-    public TMP_Text notEnoughMoneyPriceText; // how much extra money user needs to buy skin
-    public TMP_Text alertText; // alert
+    [Header("Rejection UI")]
+    [SerializeField] private GameObject notEnoughMoneyPanel; // alert screen of lack of money
+    [SerializeField] private TMP_Text notEnoughMoneyPriceText; // how much extra money user needs to buy skin
+    [SerializeField] private TMP_Text alertText; // alert
 
     private int currentId; // selected skin id
 
@@ -29,6 +31,7 @@ public class Shop : MonoBehaviour
         if(levelManager == null)
             levelManager = FindObjectOfType<LevelManager>();
         boughtSkins = levelManager.saveData.boughtSkins;
+        MenuAnim = Menu.instance.GetComponent<Animator>();
     }
 
     private void Start()

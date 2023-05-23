@@ -1,12 +1,11 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class RollingEnemy : MonoBehaviour
 {
-    public Vector2 rollingDirection;
-    public float speed;
-    public float delay;
+    [SerializeField] private Vector2 rollingDirection;
+    [SerializeField] private float speed;
+    [SerializeField] private float delay;
 
     private void Start()
     {
@@ -21,17 +20,27 @@ public class RollingEnemy : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Waits delay time to start the movement.
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator Delay()
     {
         yield return new WaitForSeconds(delay);
         AddForce();
     }
 
+    /// <summary>
+    /// Pushes enemy in direction.
+    /// </summary>
     private void AddForce()
     {
         GetComponent<Rigidbody2D>().AddForce(rollingDirection * 100f * speed, ForceMode2D.Impulse);
     }
 
+    /// <summary>
+    /// Turns on death animation and stops the enemy.
+    /// </summary>
     private void Death()
     {
         GetComponent<Rigidbody2D>().velocity = Vector2.zero;

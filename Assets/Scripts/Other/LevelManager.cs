@@ -9,9 +9,11 @@ public class LevelManager : MonoBehaviour
     public SaveData saveData; // where data is stored
     private MovementManager player; // player
 
+    [Header("Skins")]
     [HideInInspector] public int equippedSkin; // currently active skin
-    private PlayerSkin[] Skins; // all player skins
+    [SerializeField] private PlayerSkin[] Skins; // all player skins
 
+    [Header("Level info")]
     [HideInInspector] public int difficulty; // level difficulty
     private int RealLevel; // level number in game
     private int LevelInList; // level number in lists

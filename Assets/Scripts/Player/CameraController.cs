@@ -30,7 +30,7 @@ public class CameraController : MonoBehaviour
     /// <summary>
     /// Updates camera position based on player position.
     /// </summary>
-    private void UpdateCamera()
+    public void UpdateCamera()
     {
         if (!movingCamera) // main camera normal positioning
         {
