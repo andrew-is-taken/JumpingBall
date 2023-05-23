@@ -1,15 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
 public class MenuMoneyManager : MonoBehaviour
 {
-    public Animator Menu; // main animator with menu ui
+    private Animator MenuAnim; // main animator with menu ui
 
     private void Start()
     {
+        MenuAnim = Menu.instance.GetComponent<Animator>();
         GetComponent<Button>().onClick.AddListener(OpenMoneyShop);
     }
 
@@ -27,7 +26,7 @@ public class MenuMoneyManager : MonoBehaviour
     /// </summary>
     public void OpenMoneyShop()
     {
-        Menu.SetBool("OpenMoneyShop", true);
+        MenuAnim.SetBool("OpenMoneyShop", true);
     }
 
     /// <summary>
@@ -35,6 +34,6 @@ public class MenuMoneyManager : MonoBehaviour
     /// </summary>
     public void CloseMoneyShop()
     {
-        Menu.SetBool("OpenMoneyShop", false);
+        MenuAnim.SetBool("OpenMoneyShop", false);
     }
 }

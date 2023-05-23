@@ -1,13 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MovingSaw : MonoBehaviour
 {
-    public float speed = 1f; // speed of saw
-    public float startPositionX; // position of saw on start from -.6 to .6
-    public bool movingUp; // if the saw is moving up
-    public bool hasPauseOnEnd; // if the saw needs to stop a fter movement
+    [SerializeField] private float speed = 1f; // speed of saw
+    [SerializeField] private float startPositionX; // position of saw on start from -.6 to .6
+    [SerializeField] private bool movingUp; // if the saw is moving up
+    [SerializeField] private bool hasPauseOnEnd; // if the saw needs to stop a fter movement
 
     private Transform child; // saw
     private float t; // time for move lerp

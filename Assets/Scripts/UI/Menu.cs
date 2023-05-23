@@ -1,28 +1,32 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 
 public class Menu : MonoBehaviour
 {
-    public TMP_Text levelTextMain; // main next level number
-    public TMP_Text difficultyText; // next level difficulty
-    public TMP_Text levelTextLevelSelection; // next level number in level selection button
+    public static Menu instance;
 
-    public Color easyColor; // color of easy difficulty
-    public Color mediumColor; // color of medium difficulty
-    public Color hardColor; // color of hard difficulty
+    [Header("Menu texts")]
+    [SerializeField] private TMP_Text levelTextMain; // main next level number
+    [SerializeField] private TMP_Text difficultyText; // next level difficulty
+    [SerializeField] private TMP_Text levelTextLevelSelection; // next level number in level selection button
 
-    public GameObject LotteryPanel; // screen with lottery
+    [Header("Colors")]
+    [SerializeField] private Color easyColor; // color of easy difficulty
+    [SerializeField] private Color mediumColor; // color of medium difficulty
+    [SerializeField] private Color hardColor; // color of hard difficulty
+
+    [Header("Lottery")]
+    [SerializeField] private GameObject LotteryPanel; // screen with lottery
 
     private int nextLevel; // next level number
     private int nextDifficulty; // next level difficulty
 
     private int selectedLevel; // currently selected level
 
-    private void Start()
+    private void Awake()
     {
+        instance = this;
         CalculateNextLevel();
         DisplayNextLevel();
     }

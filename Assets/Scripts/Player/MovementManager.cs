@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using System;
 
@@ -322,7 +320,7 @@ public class MovementManager : MonoBehaviour
 
     void Awake()
     {
-        if(instance != null)
+        if (instance != null)
         {
             Debug.LogError("More than 1 movement managers in the scene");
         }
@@ -347,7 +345,7 @@ public class MovementManager : MonoBehaviour
     private void InstantiateHints()
     {
         HintVector = HintVector == null ? Instantiate(HintVectorPrefab) : HintVector;
-        HintVector.gameObject.SetActive(false);  
+        HintVector.gameObject.SetActive(false);
 
         HintDanger = HintDanger == null ? Instantiate(HintDangerPrefab) : HintDanger;
         HintDanger.gameObject.SetActive(false);
@@ -713,7 +711,7 @@ public class MovementManager : MonoBehaviour
 
             Movement.AddMainForceInDirection(lastCheckpointMainDir);
 
-            foreach(GhostEnemy enemy in FindObjectsOfType<GhostEnemy>())
+            foreach (GhostEnemy enemy in FindObjectsOfType<GhostEnemy>())
             {
                 enemy.RestartEnemy();
             }

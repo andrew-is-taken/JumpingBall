@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,24 +10,26 @@ public class LotterySpin : MonoBehaviour
     private float spinPositionEnd; // end position of spin
     private float t; // time for lerp
 
-    public float result; // the frame with prize
-    public int droppedItemId; // id of prize
+    [Header("Result")]
+    private float result; // the frame with prize
+    private int droppedItemId; // id of prize
+    [SerializeField] private Image resultSprite; // sprite of result item
+    [SerializeField] private TMP_Text resultText; // text of result amount
 
-    public int[] numberForItem; // chance to get rarest drop from lottery
-    public int amountOfCells; // amount of items in spin session
+    [Header("Lottery settings")]
+    [SerializeField] private int[] numberForItem; // chances (int numbers) to get item from lottery
+    [SerializeField] private int amountOfCells; // amount of items in spin session
+    [SerializeField] private AnimationCurve timeCurve; // curve of roulette interpolation
 
-    public RectTransform roulette; // holder of content of lottery
-    public AnimationCurve timeCurve; // curve of roulette interpolation
+    [Header("Item settings")]
+    [SerializeField] private Image slot; // prefab of new item in roulette
+    [SerializeField] private List<Sprite> items; // all items' sprites
+    [SerializeField] private List<int> itemsCrystallAmount; // amount of crystalls for player
 
-    public Image Slot; // prefab of new item in roulette
-    public List<Sprite> Items; // all items' sprites
-    public List<int> ItemsCrystallAmount; // amount of crystalls for player
-
-    public GameObject startPanel; // lottery's start screen
-    public GameObject resultPanel; // lottery's end screen
-
-    public Image resultSprite; // sprite of result item
-    public TMP_Text resultText; // text of result amount
+    [Header("Lottery ui")]
+    [SerializeField] private RectTransform roulette; // holder of content of lottery
+    [SerializeField] private GameObject startPanel; // lottery's start screen
+    [SerializeField] private GameObject resultPanel; // lottery's end screen
 
     private void OnEnable()
     {
@@ -78,11 +79,11 @@ public class LotterySpin : MonoBehaviour
     {
         spinning = false;
         resultPanel.SetActive(true);
-        resultSprite.sprite = Items[droppedItemId];
+        resultSprite.sprite = items[droppedItemId];
         if(droppedItemId > 2) // if player got money, not skin
         {
             FindObjectOfType<MenuMoneyManager>().updateMoney(FindObjectOfType<LevelManager>().saveData.crystalls);
-            resultText.text = ItemsCrystallAmount[droppedItemId] + " <sprite anim=0,5,8>";
+            resultText.text = itemsCrystallAmount[droppedItemId] + " <sprite anim=0,5,8>";
         }
         else
         {
@@ -122,7 +123,7 @@ public class LotterySpin : MonoBehaviour
         }
         else
         {
-            levelManager.saveData.crystalls += ItemsCrystallAmount[droppedItemId];
+            levelManager.saveData.crystalls += itemsCrystallAmount[droppedItemId];
         }
         levelManager.SaveDataToFile();
     }
@@ -142,7 +143,7 @@ public class LotterySpin : MonoBehaviour
         // create new items
         for (int i = 0; i < droppedItem + 5; i++)
         {
-            Image newSlot = Instantiate(Slot, roulette);
+            Image newSlot = Instantiate(slot, roulette);
             int generatedNumber;
             if (i == droppedItem)
             {
@@ -156,9 +157,9 @@ public class LotterySpin : MonoBehaviour
             }
             else
             {
-                generatedNumber = Random.Range(0, Items.Count);
+                generatedNumber = Random.Range(0, items.Count);
             }
-            newSlot.sprite = Items[generatedNumber];
+            newSlot.sprite = items[generatedNumber];
         }
     }
 

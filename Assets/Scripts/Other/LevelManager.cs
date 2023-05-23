@@ -5,26 +5,35 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
+    [Header("Data")]
     public SaveData saveData; // where data is stored
-    public PlayerSkin[] Skins; // all player skins
+    private MovementManager player; // player
 
-    public int equippedSkin; // currently active skin
-    public int difficulty; // level difficulty
-    public int RealLevel; // level number in game
-    public int LevelInList; // level number in lists
-    public int[] MoneyForLevel; // money for each level
+    [HideInInspector] public int equippedSkin; // currently active skin
+    private PlayerSkin[] Skins; // all player skins
 
+    [HideInInspector] public int difficulty; // level difficulty
+    private int RealLevel; // level number in game
+    private int LevelInList; // level number in lists
+    [SerializeField] private int[] MoneyForLevel; // money for each level
+
+    #region Canvas panels
+    [Header("Canvas panels")]
     [SerializeField] private GameObject EndLevelScreen; // screen after finish
     [SerializeField] private GameObject DeathScreen; // screen after death
     [SerializeField] private GameObject PauseScreen; // pause screen
     [SerializeField] private GameObject TapToStartPanel; // start of level screen
     [SerializeField] private GameObject GameCanvas; // canvas for levels
+    #endregion
 
+    #region Settings
+    [Header("Settings")]
     [SerializeField] private Slider AudioSlider; // audio slider in settings
     [SerializeField] private Toggle MusicToggle; // music toggle in settings
+    #endregion
 
+    [Header("Other")]
     [SerializeField] private EndLevelMoneyManager EndLevelMoney; // money manager
-    private MovementManager player;
 
     private Coroutine lastCoroutine; // last saved coroutine
 

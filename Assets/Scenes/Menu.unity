@@ -2725,7 +2725,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Menu: {fileID: 2021657997}
-  moneyShop: {fileID: 1473847005}
 --- !u!114 &295271630
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10914,7 +10913,6 @@ MonoBehaviour:
   shopItemsPrice: 00000000e8030000e8030000e8030000e8030000e8030000e8030000e8030000e8030000e8030000e8030000e8030000e8030000e8030000e8030000
   confirmationPanel: {fileID: 1811322492}
   confirmationPriceText: {fileID: 1073897882}
-  confirmationText: {fileID: 1492055458}
   buySkinButton: {fileID: 1866247207}
   notEnoughMoneyPanel: {fileID: 252041247}
   notEnoughMoneyPriceText: {fileID: 1303375800}
@@ -12787,7 +12785,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Menu: {fileID: 0}
-  moneyShop: {fileID: 0}
 --- !u!114 &1303375799
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14829,7 +14826,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Menu: {fileID: 0}
-  moneyShop: {fileID: 0}
 --- !u!114 &1412016032
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15887,11 +15883,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90b3bc413d465af49b5f2f0119b3dbea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  result: 0
-  droppedItemId: 0
+  resultSprite: {fileID: 1012444930}
+  resultText: {fileID: 1534883794}
   numberForItem: 000000000200000005000000090000000c00000010000000140000001e0000003200000064000000c80000002c01000090010000f401000058020000bc0200002003000084030000e8030000
   amountOfCells: 15
-  roulette: {fileID: 476970737}
   timeCurve:
     serializedVersion: 2
     m_Curve:
@@ -15916,8 +15911,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  Slot: {fileID: 581037874699153943, guid: b5c5c7d910e0dc74fa68fc4eab84cfb1, type: 3}
-  Items:
+  slot: {fileID: 581037874699153943, guid: b5c5c7d910e0dc74fa68fc4eab84cfb1, type: 3}
+  items:
   - {fileID: 21300000, guid: 98a98a3591cb610459e35e4679a26b30, type: 3}
   - {fileID: 21300000, guid: 4b644b66228893245adf41127a4c05bc, type: 3}
   - {fileID: 21300000, guid: f0ae575970d346647898ead4819f63ea, type: 3}
@@ -15936,11 +15931,10 @@ MonoBehaviour:
   - {fileID: -1669326535, guid: cc27a1d46e69f5245a1b1d108533c59a, type: 3}
   - {fileID: -1669326535, guid: cc27a1d46e69f5245a1b1d108533c59a, type: 3}
   - {fileID: -1669326535, guid: cc27a1d46e69f5245a1b1d108533c59a, type: 3}
-  ItemsCrystallAmount: 000000000000000000000000204e00001027000088130000d0070000e803000020030000f4010000c2010000900100005e0100002c010000fa000000c80000009600000064000000
+  itemsCrystallAmount: 000000000000000000000000204e00001027000088130000d0070000e803000020030000f4010000c2010000900100005e0100002c010000fa000000c80000009600000064000000
+  roulette: {fileID: 476970737}
   startPanel: {fileID: 2031309584}
   resultPanel: {fileID: 1683379112}
-  resultSprite: {fileID: 1012444930}
-  resultText: {fileID: 1534883794}
 --- !u!1 &1534883792
 GameObject:
   m_ObjectHideFlags: 0
@@ -19379,7 +19373,6 @@ MonoBehaviour:
   mediumColor: {r: 1, g: 0.8784314, b: 0, a: 1}
   hardColor: {r: 1, g: 0.11764706, b: 0, a: 1}
   LotteryPanel: {fileID: 1906543159}
-  DifficultyPanel: {fileID: 862279731}
 --- !u!114 &2021657996
 MonoBehaviour:
   m_ObjectHideFlags: 0
