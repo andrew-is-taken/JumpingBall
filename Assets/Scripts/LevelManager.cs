@@ -14,16 +14,16 @@ public class LevelManager : MonoBehaviour
     public int LevelInList; // level number in lists
     public int[] MoneyForLevel; // money for each level
 
-    public GameObject EndLevelScreen; // screen after finish
-    public GameObject DeathScreen; // screen after death
-    public GameObject PauseScreen; // pause screen
-    public GameObject TapToStartPanel; // start of level screen
-    public GameObject GameCanvas; // canvas for levels
+    [SerializeField] private GameObject EndLevelScreen; // screen after finish
+    [SerializeField] private GameObject DeathScreen; // screen after death
+    [SerializeField] private GameObject PauseScreen; // pause screen
+    [SerializeField] private GameObject TapToStartPanel; // start of level screen
+    [SerializeField] private GameObject GameCanvas; // canvas for levels
 
-    public Slider AudioSlider; // audio slider in settings
-    public Toggle MusicToggle; // music toggle in settings
+    [SerializeField] private Slider AudioSlider; // audio slider in settings
+    [SerializeField] private Toggle MusicToggle; // music toggle in settings
 
-    public EndLevelMoneyManager EndLevelMoney; // money manager
+    [SerializeField] private EndLevelMoneyManager EndLevelMoney; // money manager
     private MovementManager player;
 
     private Coroutine lastCoroutine; // last saved coroutine

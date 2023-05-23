@@ -5,10 +5,10 @@ using TMPro;
 
 public class EndLevelMoneyManager : MonoBehaviour
 {
-    public int result; // total result
+    private int result; // total result
 
-    [HideInInspector] public string currentResult; // current result for lerp
-    [HideInInspector] public string oldResult; // old result for lerp
+    private string currentResult; // current result for lerp
+    private string oldResult; // old result for lerp
 
     private TMP_Text resultMoney; // ui text after level end
     private float t; // time for lerp

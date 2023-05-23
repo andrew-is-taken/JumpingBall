@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
@@ -9,7 +8,7 @@ public class DisappearingPlatform : MonoBehaviour
     public bool visibleBeforeInvisible; // if we start with visible platform
     public float visiblePeriod = 1f; // time when platform is visible
     public float invisiblePeriod = 1f; // time when platform is invisible
-    public float delayTime;
+    public float delayTime; // time before platform starts to disappear
 
     void Start()
     {
@@ -19,12 +18,20 @@ public class DisappearingPlatform : MonoBehaviour
             GetComponent<Animator>().enabled = false;
     }
 
+    /// <summary>
+    /// Delays the first disappearing on delayTime.
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator Delay()
     {
         yield return new WaitForSeconds(delayTime);
         StartCoroutine(Disappear());
     }
 
+    /// <summary>
+    /// Plays the animation and makes platforms disappear after time.
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator Disappear()
     {
         if (visibleBeforeInvisible)

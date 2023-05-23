@@ -5,9 +5,7 @@ using TMPro;
 
 public class DebugTimer : MonoBehaviour
 {
-    private float timeFromStart;
-    private float min;
-    private float sec;
+    private float timeFromStart; // time from start to current frame
 
     private void Start()
     {
@@ -20,13 +18,17 @@ public class DebugTimer : MonoBehaviour
         UpdateText();
     }
 
+    /// <summary>
+    /// Updates the timer every frame.
+    /// </summary>
     private void UpdateTimer()
     {
         timeFromStart += Time.deltaTime;
-        min = Mathf.FloorToInt(timeFromStart / 60f);
-        sec = Mathf.FloorToInt(timeFromStart % 60f);
     }
 
+    /// <summary>
+    /// Updates the text on ui.
+    /// </summary>
     private void UpdateText()
     {
         GetComponent<TMP_Text>().text = timeFromStart.ToString();

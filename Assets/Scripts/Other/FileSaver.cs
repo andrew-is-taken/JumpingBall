@@ -7,7 +7,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 public class FileSaver : MonoBehaviour
 {
     public SaveData saveData; // where data is stored
-    public string path; // path for saving the file
+    private string path; // path for saving the file
 
     private FileStream dataStream; // stream to the file path
     private BinaryFormatter converter = new BinaryFormatter(); // formatter for encrypting

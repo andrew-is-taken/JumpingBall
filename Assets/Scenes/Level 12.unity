@@ -5864,6 +5864,10 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3301509969744461459, guid: 86fbf27caf6dc2f4ab81cae35440b492, type: 3}
+      propertyPath: mMovement.canJump
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3301509969744461459, guid: 86fbf27caf6dc2f4ab81cae35440b492, type: 3}
       propertyPath: Movement.startDirection.x
       value: 0
       objectReference: {fileID: 0}

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FinishMultiplierText : MonoBehaviour
 {
-    public float xOffset; // offset where the text will be placed after rotation
+    [SerializeField] private float xOffset; // offset where the text will be placed after rotation
 
     void Start()
     {

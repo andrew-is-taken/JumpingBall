@@ -4,8 +4,8 @@ using UnityEngine.UI;
 public class DisplayLevelNumber : MonoBehaviour
 {
     private LevelManager levelManager; // manager
-    public int levelNumber; // this button number
 
+    public int levelNumber; // this button number
     public Image Lock; // loch image
     public Image[] Stars; // difficulty stars
     public Color[] StarsColors; // colors for difficulty stars
