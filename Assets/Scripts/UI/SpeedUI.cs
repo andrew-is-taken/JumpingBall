@@ -22,10 +22,12 @@ public class SpeedUI : MonoBehaviour
         Player.SetSpeed(Player.GetSpeed() + additionalSpeed);
         if (Player.movingHorizontally)
         {
+            HorizontalSpeed.transform.localScale = new Vector3(Player.Movement.mainDirection.x, 1, 1);
             StartCoroutine(fading(HorizontalSpeed));
         }
         else
         {
+            HorizontalSpeed.transform.localScale = new Vector3(Player.Movement.mainDirection.y, 1, 1);
             StartCoroutine(fading(VerticalSpeed));
         }
     }

@@ -4,7 +4,7 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     private MovementManager movementManager; // movement manager
-    private MovementManager.MovementController controller; // movement controller
+    private MovementController controller; // movement controller
     private Transform mainCamera; // main camera
 
     #region Rotation

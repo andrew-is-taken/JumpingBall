@@ -415,9 +415,9 @@ MonoBehaviour:
     waitingToChangeDirection: 0
   <rotating>k__BackingField: 0
   <DeathParticles>k__BackingField: {fileID: 629974259476688486, guid: 541be4857267b2e488042e1f38658e1d, type: 3}
-  <HintVectorPrefab>k__BackingField: {fileID: 1327922213573749414, guid: 6df93abdabdff9e40ac58b091f2e4231, type: 3}
-  <HintDangerPrefab>k__BackingField: {fileID: 8849683467199586234, guid: 7359e7a210c13fb48bc59e41faca83e2, type: 3}
-  <ProjectionPrefab>k__BackingField: {fileID: 4193031899653907302, guid: 82026605eb728b14c91b3d64fb908787, type: 3}
+  HintVectorPrefab: {fileID: 1327922213573749414, guid: 6df93abdabdff9e40ac58b091f2e4231, type: 3}
+  HintDangerPrefab: {fileID: 8849683467199586234, guid: 7359e7a210c13fb48bc59e41faca83e2, type: 3}
+  ProjectionPrefab: {fileID: 4193031899653907302, guid: 82026605eb728b14c91b3d64fb908787, type: 3}
 --- !u!114 &315916239277596835
 MonoBehaviour:
   m_ObjectHideFlags: 0
