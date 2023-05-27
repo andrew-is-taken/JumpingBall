@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using System.Collections;
 
 public class MovementManager : MonoBehaviour
 {
@@ -92,7 +93,7 @@ public class MovementManager : MonoBehaviour
         {
             Movement.Start(m_Rigidbody, GetComponent<AudioSource>(), GetComponentsInChildren<AudioSource>()[1]); // initial player setup
 
-            defineDifficulty(); // set difficulty
+            DefineDifficulty(); // set difficulty
             HintVisible(false); // hide hints at the start
 
             SetCheckpoint(transform.position, Movement.startDirection, Movement.speed); // first checkpoint
@@ -115,7 +116,7 @@ public class MovementManager : MonoBehaviour
     {
         if (collision.transform.tag == "Enemy") // when player collides with enemy
         {
-            Death();
+            StartCoroutine(Death());
         }
         else // when player collides with ground
         {
@@ -129,7 +130,10 @@ public class MovementManager : MonoBehaviour
             else
             {
                 if (!rotating)
+                {
                     Movement.canJump = true; //  player can jump if not in the rotation element
+                    Movement.PlayLandingSound();
+                }
             }
             AddRotation(); // spinning player
         }
@@ -143,15 +147,15 @@ public class MovementManager : MonoBehaviour
             Movement.ResetSpeedOnRotation(); // recalculate speed if in rotation element
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        //if (finished && mMovement.canJump)
-        //{
-        //    //print("HERE");
-        //    //mMovement.AddForceInAdditionalDirection();
-        //}
-        ClearRotation(); // stop player rotation after jump
-    }
+    //private void OnCollisionExit2D(Collision2D collision)
+    //{
+    //    //if (finished && mMovement.canJump)
+    //    //{
+    //    //    //print("HERE");
+    //    //    //mMovement.AddForceInAdditionalDirection();
+    //    //}
+    //    //ClearRotation(); // stop player rotation after jump
+    //}
 
     /// <summary>
     /// Called when user touches the screen to jump.
@@ -159,6 +163,7 @@ public class MovementManager : MonoBehaviour
     public void TapOnScreen()
     {
         Movement.ChangeDirection(); // player jumps
+        ClearRotation();
         hintVectorPos = Movement.hintVectorPositionAndRot(HintVector); // updating vector
         HintVisible(false); // disabling hints
     }
@@ -247,15 +252,16 @@ public class MovementManager : MonoBehaviour
             if (finished) // if player crossed the finish line
                 Finish();
             else
-                Death();
+                StartCoroutine(Death());
         }
     }
 
     /// <summary>
     /// Death of player.
     /// </summary>
-    private void Death()
+    private IEnumerator Death()
     {
+        yield return new WaitForEndOfFrame();
         GetComponentInChildren<TrailRenderer>().emitting = false;
         GameObject fx = Instantiate(DeathParticles, transform.position, Quaternion.Euler(0, -90, 0)); // spawn the effect
         fx.GetComponent<AudioSource>().volume = GetComponent<AudioSource>().volume; // set the volume
@@ -276,7 +282,7 @@ public class MovementManager : MonoBehaviour
     /// <summary>
     /// Sets the difficulty of the level.
     /// </summary>
-    private void defineDifficulty()
+    private void DefineDifficulty()
     {
         hintVectorPos = Movement.hintVectorPositionAndRot(HintVector); // initial position of vector
         switch (levelManager.difficulty)
@@ -337,6 +343,7 @@ public class MovementManager : MonoBehaviour
         Movement.AddMainForceInDirection(newDirection); // push player
         hintVectorPos = Movement.hintVectorPositionAndRot(HintVector); // update vector position
 
+        AddRotation();
         HintVisible(true);
     }
 
@@ -383,9 +390,9 @@ public class MovementManager : MonoBehaviour
     {
         float speed = Movement.speed;
         if (movingHorizontally)
-            m_Rigidbody.angularVelocity = speed * (Movement.additionalDirection.y == 1 ? 100 : -100);
+            m_Rigidbody.angularVelocity = speed * Movement.mainDirection.x * (Movement.additionalDirection.y == 1 ? 100 : -100);
         else
-            m_Rigidbody.angularVelocity = speed * (Movement.additionalDirection.x == 1 ? -100 : 100);
+            m_Rigidbody.angularVelocity = speed * Movement.mainDirection.y * (Movement.additionalDirection.x == 1 ? -100 : 100);
     }
 
     /// <summary>

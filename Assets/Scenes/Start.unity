@@ -521,6 +521,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1576081120}
+    - target: {fileID: 303359346699504164, guid: a47b3d4e4d8634b4bbdd1b62ca9e3ec4, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 303359346699504166, guid: a47b3d4e4d8634b4bbdd1b62ca9e3ec4, type: 3}
       propertyPath: m_Color.a
       value: 0
@@ -838,7 +842,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[3].time
-      value: 1
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[4].time
@@ -1046,11 +1050,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[3].dieColor.b
-      value: 1
+      value: 0.7254902
+      objectReference: {fileID: 0}
+    - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
+      propertyPath: Skins.Array.data[3].dieColor.g
+      value: 0.24705884
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[3].dieColor.r
-      value: 0.89230394
+      value: 0.39607847
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[4].dieColor.a
@@ -1234,7 +1242,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[0].color.atime1
-      value: 65535
+      value: 32768
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[0].color.ctime1
@@ -1282,11 +1290,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[1].color.ctime1
-      value: 65535
+      value: 26214
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[1].color.ctime2
-      value: 65535
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[1].color.key0.a
@@ -1326,27 +1334,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[1].color.key2.b
-      value: 0.12156863
-      objectReference: {fileID: 0}
-    - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
-      propertyPath: Skins.Array.data[1].color.key2.g
-      value: 0.12156863
-      objectReference: {fileID: 0}
-    - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
-      propertyPath: Skins.Array.data[1].color.key2.r
-      value: 0.12156862
-      objectReference: {fileID: 0}
-    - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
-      propertyPath: Skins.Array.data[2].color.atime1
-      value: 65535
-      objectReference: {fileID: 0}
-    - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
-      propertyPath: Skins.Array.data[2].color.atime2
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
+      propertyPath: Skins.Array.data[1].color.key2.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
+      propertyPath: Skins.Array.data[1].color.key2.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
+      propertyPath: Skins.Array.data[2].color.atime1
+      value: 18311
+      objectReference: {fileID: 0}
+    - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
+      propertyPath: Skins.Array.data[2].color.atime2
+      value: 32768
+      objectReference: {fileID: 0}
+    - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[2].color.ctime1
-      value: 22937
+      value: 17348
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[2].color.ctime2
@@ -1370,7 +1378,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[2].color.key1.a
-      value: 0.78431374
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[2].color.key1.b
@@ -1398,35 +1406,39 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[3].color.atime1
-      value: 65535
+      value: 7132
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[3].color.atime2
-      value: 65535
+      value: 11372
+      objectReference: {fileID: 0}
+    - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
+      propertyPath: Skins.Array.data[3].color.atime3
+      value: 29876
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[3].color.ctime1
-      value: 65535
+      value: 30840
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[3].color.ctime2
-      value: 65535
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[3].color.key0.a
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[3].color.key0.b
-      value: 0
+      value: 0.6320754
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[3].color.key0.g
-      value: 0
+      value: 0.1470867
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[3].color.key0.r
-      value: 1
+      value: 0.29306513
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[3].color.key1.a
@@ -1434,15 +1446,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[3].color.key1.b
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[3].color.key1.g
-      value: 0
+      value: 0.55345905
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[3].color.key1.r
-      value: 1
+      value: 0.70160174
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[3].color.key2.a
@@ -1450,39 +1462,43 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[3].color.key2.b
-      value: 0.12156863
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[3].color.key2.g
-      value: 0.12156863
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[3].color.key2.r
-      value: 0.12156862
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[4].color.atime0
-      value: 4433
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[4].color.atime1
-      value: 65535
+      value: 8481
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[4].color.atime2
-      value: 0
+      value: 18697
+      objectReference: {fileID: 0}
+    - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
+      propertyPath: Skins.Array.data[4].color.atime3
+      value: 24479
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[4].color.ctime0
-      value: 12722
+      value: 5204
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[4].color.ctime1
-      value: 29298
+      value: 12529
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[4].color.ctime2
-      value: 0
+      value: 14071
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[4].color.key0.a
@@ -1506,35 +1522,35 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[4].color.key1.b
-      value: 0.9843138
+      value: 0.227451
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[4].color.key1.g
-      value: 0.26666668
+      value: 0.48627454
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[4].color.key1.r
-      value: 0.09019608
+      value: 0.8235295
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[4].color.key2.a
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[4].color.key2.b
-      value: 0
+      value: 0.9843138
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[4].color.key2.g
-      value: 0
+      value: 0.26666668
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[4].color.key2.r
-      value: 0
+      value: 0.09019608
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[4].color.m_Mode
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[5].color.atime1
@@ -1554,7 +1570,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[5].color.ctime2
-      value: 65535
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[5].color.key0.a
@@ -1590,27 +1606,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[5].color.key2.b
-      value: 0.12156863
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[5].color.key2.g
-      value: 0.12156863
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[5].color.key2.r
-      value: 0.12156862
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[6].color.atime1
+      value: 26021
+      objectReference: {fileID: 0}
+    - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
+      propertyPath: Skins.Array.data[6].color.atime2
       value: 65535
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[6].color.ctime1
-      value: 65535
+      value: 25829
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[6].color.ctime2
-      value: 65535
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[6].color.ctime3
@@ -1658,15 +1678,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[6].color.key2.b
-      value: 0.12156863
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[6].color.key2.g
-      value: 0.12156863
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[6].color.key2.r
-      value: 0.12156862
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[6].color.key3.b
@@ -1706,15 +1726,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[7].color.atime1
-      value: 65535
+      value: 18697
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[7].color.atime2
-      value: 0
+      value: 25829
+      objectReference: {fileID: 0}
+    - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
+      propertyPath: Skins.Array.data[7].color.ctime0
+      value: 6168
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[7].color.ctime1
-      value: 65535
+      value: 19275
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[7].color.ctime2
@@ -1738,7 +1762,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[7].color.key1.a
-      value: 1
+      value: 0.654902
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[7].color.key1.b
@@ -1838,19 +1862,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[9].color.atime1
-      value: 65535
+      value: 20624
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[9].color.atime2
-      value: 0
+      value: 23901
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[9].color.ctime1
-      value: 39321
+      value: 20432
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[9].color.ctime2
-      value: 65535
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[9].color.key0.a
@@ -1870,7 +1894,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[9].color.key1.a
-      value: 1
+      value: 0.88235295
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[9].color.key1.b
@@ -1890,23 +1914,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[9].color.key2.b
-      value: 0.12156863
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[9].color.key2.g
-      value: 0.12156863
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[9].color.key2.r
-      value: 0.12156862
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[10].color.atime1
-      value: 18504
+      value: 19853
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[10].color.atime2
-      value: 0
+      value: 26600
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[10].color.ctime1
@@ -1914,7 +1938,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[10].color.ctime2
-      value: 65535
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[10].color.key0.a
@@ -1934,7 +1958,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[10].color.key1.a
-      value: 0
+      value: 0.78431374
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[10].color.key1.b
@@ -1954,15 +1978,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[10].color.key2.b
-      value: 0.12156863
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[10].color.key2.g
-      value: 0.12156863
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[10].color.key2.r
-      value: 0.12156862
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[11].color.atime1
@@ -1970,15 +1994,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[11].color.atime2
-      value: 65535
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[11].color.ctime1
-      value: 65535
+      value: 6361
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[11].color.ctime2
-      value: 65535
+      value: 29684
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[11].color.key0.a
@@ -1990,35 +2014,39 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[11].color.key1.b
-      value: 1
+      value: 0.003921569
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[11].color.key1.g
-      value: 1
+      value: 0.003921569
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[11].color.key1.r
-      value: 1
+      value: 0.003921569
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[11].color.key2.a
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[11].color.key2.b
-      value: 0.12156863
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[11].color.key2.g
-      value: 0.12156863
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[11].color.key2.r
-      value: 0.12156862
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[12].color.atime1
-      value: 65535
+      value: 26214
+      objectReference: {fileID: 0}
+    - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
+      propertyPath: Skins.Array.data[12].color.atime2
+      value: 28720
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[12].color.ctime1
@@ -2122,6 +2150,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[13].color.atime1
+      value: 22552
+      objectReference: {fileID: 0}
+    - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
+      propertyPath: Skins.Array.data[13].color.atime2
+      value: 31033
+      objectReference: {fileID: 0}
+    - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
+      propertyPath: Skins.Array.data[13].color.atime3
       value: 65535
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
@@ -2130,7 +2166,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[13].color.ctime2
-      value: 65535
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[13].color.key0.a
@@ -2149,6 +2185,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
+      propertyPath: Skins.Array.data[13].color.key1.a
+      value: 0.4627451
+      objectReference: {fileID: 0}
+    - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[13].color.key1.b
       value: 0.03137255
       objectReference: {fileID: 0}
@@ -2161,16 +2201,20 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
+      propertyPath: Skins.Array.data[13].color.key2.a
+      value: 0.026470602
+      objectReference: {fileID: 0}
+    - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[13].color.key2.b
-      value: 0.12156863
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[13].color.key2.g
-      value: 0.12156863
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[13].color.key2.r
-      value: 0.12156862
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[14].color.atime1
@@ -2178,7 +2222,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[14].color.atime2
-      value: 65535
+      value: 20817
+      objectReference: {fileID: 0}
+    - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
+      propertyPath: Skins.Array.data[14].color.atime3
+      value: 25250
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[14].color.ctime1
@@ -2186,7 +2234,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[14].color.ctime2
-      value: 65535
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[14].color.key0.b
@@ -2222,15 +2270,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[14].color.key2.b
-      value: 0.12156863
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[14].color.key2.g
-      value: 0.12156863
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[14].color.key2.r
-      value: 0.12156862
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: saveData.boughtSkins.Array.data[1]
@@ -2241,7 +2289,31 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
+      propertyPath: Skins.Array.data[0].color.m_ColorSpace
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
+      propertyPath: Skins.Array.data[1].color.m_ColorSpace
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
+      propertyPath: Skins.Array.data[2].color.m_ColorSpace
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
+      propertyPath: Skins.Array.data[3].color.m_ColorSpace
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[4].color.m_ColorSpace
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
+      propertyPath: Skins.Array.data[5].color.m_ColorSpace
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
+      propertyPath: Skins.Array.data[6].color.m_ColorSpace
       value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
@@ -2250,6 +2322,30 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[8].color.m_ColorSpace
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
+      propertyPath: Skins.Array.data[9].color.m_ColorSpace
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
+      propertyPath: Skins.Array.data[10].color.m_ColorSpace
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
+      propertyPath: Skins.Array.data[11].color.m_ColorSpace
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
+      propertyPath: Skins.Array.data[12].color.m_ColorSpace
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
+      propertyPath: Skins.Array.data[13].color.m_ColorSpace
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
+      propertyPath: Skins.Array.data[14].color.m_ColorSpace
       value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
@@ -2270,7 +2366,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[2].color.m_NumAlphaKeys
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[2].color.m_NumColorKeys
@@ -2278,7 +2374,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[3].color.m_NumAlphaKeys
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[3].color.m_NumColorKeys
@@ -2286,11 +2382,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[4].color.m_NumAlphaKeys
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[4].color.m_NumColorKeys
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[5].color.m_NumAlphaKeys
@@ -2302,7 +2398,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[6].color.m_NumAlphaKeys
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[6].color.m_NumColorKeys
@@ -2310,7 +2406,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[7].color.m_NumAlphaKeys
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[7].color.m_NumColorKeys
@@ -2326,7 +2422,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[9].color.m_NumAlphaKeys
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[9].color.m_NumColorKeys
@@ -2334,7 +2430,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[10].color.m_NumAlphaKeys
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[10].color.m_NumColorKeys
@@ -2346,11 +2442,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[11].color.m_NumColorKeys
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[12].color.m_NumAlphaKeys
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[12].color.m_NumColorKeys
@@ -2358,7 +2454,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[13].color.m_NumAlphaKeys
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[13].color.m_NumColorKeys
@@ -2366,7 +2462,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[14].color.m_NumAlphaKeys
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[14].color.m_NumColorKeys

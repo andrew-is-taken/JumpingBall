@@ -6215,7 +6215,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1605971271488904901, guid: 63c05f708c594b24499f7173730042e4, type: 3}
       propertyPath: hasCheckpoint
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1605971271488904901, guid: 63c05f708c594b24499f7173730042e4, type: 3}
       propertyPath: newDirection.x

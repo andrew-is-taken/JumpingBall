@@ -123,7 +123,7 @@ TrailRenderer:
       ctime6: 0
       ctime7: 0
       atime0: 0
-      atime1: 65535
+      atime1: 32768
       atime2: 0
       atime3: 0
       atime4: 0
@@ -131,7 +131,7 @@ TrailRenderer:
       atime6: 0
       atime7: 0
       m_Mode: 0
-      m_ColorSpace: -1
+      m_ColorSpace: 0
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
     numCornerVertices: 0
@@ -411,6 +411,9 @@ MonoBehaviour:
     startDirection: {x: -1, y: 0, z: 0}
     mainDirection: {x: 0, y: 0, z: 0}
     additionalDirection: {x: 1, y: 0, z: 0}
+    jumpSound: {fileID: 8300000, guid: 4e5f9f80ca6f7b049a39884a3dd8f484, type: 3}
+    landSound: {fileID: 8300000, guid: 0fbaa8a21b493e24d90299d0234090f6, type: 3}
+    movingHorizontally: 0
     canJump: 0
     waitingToChangeDirection: 0
   <rotating>k__BackingField: 0

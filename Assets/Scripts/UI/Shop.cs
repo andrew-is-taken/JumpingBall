@@ -5,7 +5,7 @@ using TMPro;
 
 public class Shop : MonoBehaviour
 {
-    private Animator MenuAnim; // animator with menu ui
+    [SerializeField] private Animator MenuAnim; // animator with menu ui
 
     private LevelManager levelManager; // manager
     private List<int> boughtSkins; // list of purchased skins
@@ -31,7 +31,6 @@ public class Shop : MonoBehaviour
         if(levelManager == null)
             levelManager = FindObjectOfType<LevelManager>();
         boughtSkins = levelManager.saveData.boughtSkins;
-        MenuAnim = Menu.instance.GetComponent<Animator>();
     }
 
     private void Start()

@@ -28,6 +28,7 @@ public class SpeedBonus : MonoBehaviour
     IEnumerator spawnTrails()
     {
         GetComponent<AudioSource>().PlayOneShot(speedBonus > 0 ? speedUp : slowDown);
+        GetComponent<AudioSource>().pitch = Random.Range(0.8f, 1.2f);
         FindObjectOfType<SpeedUI>().AddSpeed(speedBonus);
         InnerPart.SetActive(false);
         yield return new WaitForSeconds(.5f);

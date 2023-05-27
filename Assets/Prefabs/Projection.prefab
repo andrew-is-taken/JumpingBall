@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4193031899653907302}
   - component: {fileID: 1941873053074128136}
+  - component: {fileID: -8037444322590502008}
   m_Layer: 0
   m_Name: Projection
   m_TagString: Untagged
@@ -84,3 +85,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-8037444322590502008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2135753196051179202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3585ffd7222a54d4fb8c58825d903008, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  atlas: {fileID: 4343727234628468602, guid: 0490b034f7908834f98c16a2ba2b8f1c, type: 2}
+  spriteName: Circle

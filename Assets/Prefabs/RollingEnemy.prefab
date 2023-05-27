@@ -182,6 +182,7 @@ GameObject:
   - component: {fileID: 3936341132096621020}
   - component: {fileID: 7712472354799233302}
   - component: {fileID: 1535712771056915238}
+  - component: {fileID: 7798035472102841684}
   m_Layer: 0
   m_Name: RollingEnemy
   m_TagString: Enemy
@@ -204,7 +205,7 @@ Transform:
   - {fileID: 1459265673861389742}
   - {fileID: 3596889257996760075}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1179261946567772494
 SpriteRenderer:
@@ -356,3 +357,17 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &7798035472102841684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8663653409091811606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3585ffd7222a54d4fb8c58825d903008, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  atlas: {fileID: 4343727234628468602, guid: 0490b034f7908834f98c16a2ba2b8f1c, type: 2}
+  spriteName: Circle

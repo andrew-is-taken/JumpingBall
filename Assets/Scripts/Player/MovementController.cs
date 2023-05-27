@@ -9,6 +9,8 @@ public class MovementController
     public Vector3 startDirection; // direction of player when level starts
     [HideInInspector] public Vector3 mainDirection; // main direction of player movement
     [HideInInspector] public Vector3 additionalDirection = new Vector3(1, 0, 0); // additional direction of player movement
+    [SerializeField] private AudioClip jumpSound; // audio clip of jump
+    [SerializeField] private AudioClip landSound; // audio clip of landing
 
     [HideInInspector] public bool movingHorizontally; // if player is currently moving horizontally
 
@@ -54,7 +56,7 @@ public class MovementController
             canJump = false; // player shouldn't jump once again while in the air
             RecalculateAdditionalDirectionOnJump();
             trailSound.Pause();
-            m_AudioSource.Play(); // playing the audio of jump
+            m_AudioSource.PlayOneShot(jumpSound); // playing the audio of jump
             m_Rigidbody.AddForce(additionalDirection * speed, ForceMode2D.Impulse); // adding force to new additional direction
         }
     }
@@ -285,6 +287,14 @@ public class MovementController
     {
         if (!trailSound.isPlaying)
             trailSound.Play();
+    }
+
+    /// <summary>
+    /// Plays landing sound when player collides with ground.
+    /// </summary>
+    public void PlayLandingSound()
+    {
+        m_AudioSource.PlayOneShot(landSound);
     }
 
     public void SetMovingHorizontally()

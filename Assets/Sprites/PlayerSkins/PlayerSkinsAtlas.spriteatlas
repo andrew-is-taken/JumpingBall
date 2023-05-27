@@ -1,0 +1,116 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: PlayerSkinsAtlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: Android
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 47
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 1
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: cf3e2a0644a798743a63fbdaae453621, type: 3}
+    - {fileID: 2800000, guid: f5cdf4c569c4da0458c4efe7fd682b31, type: 3}
+    - {fileID: 2800000, guid: cb1ca664922e18840b963cc4282de1e7, type: 3}
+    - {fileID: 2800000, guid: 220831bb3aec9c04da348b2062830a9c, type: 3}
+    - {fileID: 2800000, guid: 43277bb3501f1894b869f776e86f5ab5, type: 3}
+    - {fileID: 2800000, guid: 79a557b99e0f1ec4d8048931e1011110, type: 3}
+    - {fileID: 2800000, guid: 58382c41a6e26c44c8861ece0605c50b, type: 3}
+    - {fileID: 2800000, guid: c5dbe1e7e576fdf44b64fedd36c1cb87, type: 3}
+    - {fileID: 2800000, guid: ab1a659fcee5dcc409fd41b77dc61009, type: 3}
+    - {fileID: 2800000, guid: 54a9f522c0357424fa24d42c3eeba2db, type: 3}
+    - {fileID: 2800000, guid: fcd5cb59f98511644b56b93ae79ba1b6, type: 3}
+    - {fileID: 2800000, guid: 3806800742108124db70b02e51bdaa76, type: 3}
+    - {fileID: 2800000, guid: 1a099f7e31362534e865bd92a63658fb, type: 3}
+    - {fileID: 2800000, guid: 5f73b1327200201478e4221f4f37c75e, type: 3}
+    - {fileID: 2800000, guid: 6277d5f118a92964ebbf689637bde481, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+    packedSpriteRenderDataKeys:
+    - 58382c41a6e26c44c8861ece0605c50b: 21300000
+    - 6277d5f118a92964ebbf689637bde481: 21300000
+    - 54a9f522c0357424fa24d42c3eeba2db: 21300000
+    - 5f73b1327200201478e4221f4f37c75e: 21300000
+    - 43277bb3501f1894b869f776e86f5ab5: 21300000
+    - cb1ca664922e18840b963cc4282de1e7: 21300000
+    - f5cdf4c569c4da0458c4efe7fd682b31: 21300000
+    - cf3e2a0644a798743a63fbdaae453621: 21300000
+    - 3806800742108124db70b02e51bdaa76: 21300000
+    - c5dbe1e7e576fdf44b64fedd36c1cb87: 21300000
+    - fcd5cb59f98511644b56b93ae79ba1b6: 21300000
+    - 79a557b99e0f1ec4d8048931e1011110: 21300000
+    - 220831bb3aec9c04da348b2062830a9c: 21300000
+    - 1a099f7e31362534e865bd92a63658fb: 21300000
+    - ab1a659fcee5dcc409fd41b77dc61009: 21300000
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 58382c41a6e26c44c8861ece0605c50b, type: 3}
+  - {fileID: 21300000, guid: 6277d5f118a92964ebbf689637bde481, type: 3}
+  - {fileID: 21300000, guid: 54a9f522c0357424fa24d42c3eeba2db, type: 3}
+  - {fileID: 21300000, guid: 5f73b1327200201478e4221f4f37c75e, type: 3}
+  - {fileID: 21300000, guid: 43277bb3501f1894b869f776e86f5ab5, type: 3}
+  - {fileID: 21300000, guid: cb1ca664922e18840b963cc4282de1e7, type: 3}
+  - {fileID: 21300000, guid: f5cdf4c569c4da0458c4efe7fd682b31, type: 3}
+  - {fileID: 21300000, guid: cf3e2a0644a798743a63fbdaae453621, type: 3}
+  - {fileID: 21300000, guid: 3806800742108124db70b02e51bdaa76, type: 3}
+  - {fileID: 21300000, guid: c5dbe1e7e576fdf44b64fedd36c1cb87, type: 3}
+  - {fileID: 21300000, guid: fcd5cb59f98511644b56b93ae79ba1b6, type: 3}
+  - {fileID: 21300000, guid: 79a557b99e0f1ec4d8048931e1011110, type: 3}
+  - {fileID: 21300000, guid: 220831bb3aec9c04da348b2062830a9c, type: 3}
+  - {fileID: 21300000, guid: 1a099f7e31362534e865bd92a63658fb, type: 3}
+  - {fileID: 21300000, guid: ab1a659fcee5dcc409fd41b77dc61009, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Lemon
+  - Tire
+  - SomeCube
+  - Tandem
+  - Gradient
+  - Candy
+  - Cactus
+  - 8Ball
+  - SteeringWheel
+  - Ninja
+  - Spiral
+  - InYan
+  - Default
+  - Syriken
+  - Rainbow
+  m_RenderDataMap: {}
+  m_Tag: PlayerSkinsAtlas
+  m_IsVariant: 0

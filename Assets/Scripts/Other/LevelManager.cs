@@ -440,6 +440,21 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+    public void UnlockAllLevelsInSaveData()
+    {
+        saveData.lastLevel = 1;
+        saveData.lastLevelDifficulty = -1;
+        for (int i = 0; i < saveData.levelsDone.Count; i++)
+        {
+            for (int j = 0; j < saveData.levelsDone[i].Count; j++)
+            {
+                saveData.levelsDone[i][j] = true;
+            }
+        }
+        SaveDataToFile();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
     /// <summary>
     /// <para>Debug. Called from SyncronizeLevels().</para>
     /// Removes bought skins from memory.

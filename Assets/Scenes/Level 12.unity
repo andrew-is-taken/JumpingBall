@@ -2501,7 +2501,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: RollingEnemy_2
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1956076871783683911, guid: 1809d6a9ff1167b4b84eb4282fb87675, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -3018,7 +3019,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4196339277188005776, guid: 1809d6a9ff1167b4b84eb4282fb87675, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 53.494
+      value: 54.29
       objectReference: {fileID: 0}
     - target: {fileID: 4196339277188005776, guid: 1809d6a9ff1167b4b84eb4282fb87675, type: 3}
       propertyPath: m_LocalPosition.z
