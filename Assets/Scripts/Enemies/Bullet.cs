@@ -3,6 +3,12 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [HideInInspector] public float speed;
+    [SerializeField] private float lifetime = 3f;
+
+    private void Start()
+    {
+        Destroy(gameObject, lifetime);
+    }
 
     private void FixedUpdate()
     {

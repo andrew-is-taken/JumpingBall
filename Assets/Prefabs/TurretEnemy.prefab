@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7132980912109472460
 Transform:
   m_ObjectHideFlags: 0
@@ -298,7 +298,7 @@ GameObject:
   - component: {fileID: 1461192348347333854}
   - component: {fileID: 3321942934838202612}
   m_Layer: 0
-  m_Name: TurretEnemyTest
+  m_Name: TurretEnemy
   m_TagString: Turret
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -393,6 +393,7 @@ MonoBehaviour:
   bulletSpeed: 10
   shotSound: {fileID: 8300000, guid: a78ab9fc2eb3e664fa69304230d9c67f, type: 3}
   minDistance: 5
+  maxDistance: 20
   timeToAim: 2
   timeBetweenShots: 5
   brokenSprite: {fileID: 21300000, guid: 210230396f6452946976c88c59406a16, type: 3}
@@ -400,6 +401,7 @@ MonoBehaviour:
   deathSound: {fileID: 8300000, guid: 3e0278636bda6d24fa2a1939873e31f2, type: 3}
   laser: {fileID: 557343695861249984}
   laserStart: {fileID: 8763720465878799357}
+  bulletsPool: []
 --- !u!61 &1461192348347333854
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -1,7 +1,8 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class Turret : MonoBehaviour
+public class Turret : MonoBehaviour, ILevelObject
 {
     [Header("Shot")]
     [SerializeField] private Transform Gun;
@@ -28,21 +29,31 @@ public class Turret : MonoBehaviour
     [SerializeField] private Transform laserStart;
 
     private Transform player;
+
     private bool broken;
     private bool readyToShoot;
     private bool aiming;
     private bool playerInSight;
+
     private AudioSource soundSource;
+    public List<GameObject> bulletsPool;
     private Coroutine lastCorotine;
 
-    private void Start()
+    private void Awake()
+    {
+        soundSource = GetComponent<AudioSource>();
+        laser.SetPosition(0, laserStart.position);
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+    }
+
+    private void OnEnable()
     {
         broken = false;
         readyToShoot = true;
-        player = MovementManager.instance.transform;
-        soundSource = GetComponent<AudioSource>();
-        laser.SetPosition(0, laserStart.position);
         laser.gameObject.SetActive(false);
+        foreach(GameObject bullet in bulletsPool)
+            Destroy(bullet);
+        bulletsPool.Clear();
     }
 
     private void Update()
@@ -105,10 +116,18 @@ public class Turret : MonoBehaviour
             laser.gameObject.SetActive(false);
             var lastBullet = Instantiate(bullet, bulletSpawn.position, bulletSpawn.rotation);
             lastBullet.GetComponent<Bullet>().speed = bulletSpeed;
+            bulletsPool.Add(lastBullet);
             soundSource.PlayOneShot(shotSound);
         }
         yield return new WaitForSeconds(timeBetweenShots);
         if (!broken)
             readyToShoot = true;
+    }
+
+    public void restartObject()
+    {
+        enabled = true;
+        gameObject.SetActive(false);
+        gameObject.SetActive(true);
     }
 }

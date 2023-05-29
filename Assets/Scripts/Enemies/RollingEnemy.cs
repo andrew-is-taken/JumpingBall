@@ -1,13 +1,20 @@
 using System.Collections;
 using UnityEngine;
 
-public class RollingEnemy : MonoBehaviour
+public class RollingEnemy : MonoBehaviour, ILevelObject
 {
     [SerializeField] private Vector2 rollingDirection;
     [SerializeField] private float speed;
     [SerializeField] private float delay;
 
-    private void Start()
+    private Vector3 startPosition;
+
+    private void Awake()
+    {
+        startPosition = transform.position;
+    }
+
+    private void OnEnable()
     {
         StartCoroutine(Delay());
     }
@@ -26,6 +33,8 @@ public class RollingEnemy : MonoBehaviour
     /// <returns></returns>
     private IEnumerator Delay()
     {
+        transform.position = startPosition;
+        GetComponent<Animator>().enabled = false;
         yield return new WaitForSeconds(delay);
         AddForce();
     }
@@ -45,5 +54,12 @@ public class RollingEnemy : MonoBehaviour
     {
         GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         GetComponent<Animator>().enabled = true;
+    }
+
+    public void restartObject()
+    {
+        enabled = true;
+        gameObject.SetActive(false);
+        gameObject.SetActive(true);
     }
 }

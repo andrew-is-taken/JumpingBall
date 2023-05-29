@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
-public class DisappearingPlatform : MonoBehaviour
+public class DisappearingPlatform : MonoBehaviour, ILevelObject
 {
     public bool disappearing = false; // if the platform can become invisible
     public bool visibleBeforeInvisible; // if we start with visible platform
@@ -10,7 +10,7 @@ public class DisappearingPlatform : MonoBehaviour
     public float invisiblePeriod = 1f; // time when platform is invisible
     public float delayTime; // time before platform starts to disappear
 
-    void Start()
+    private void OnEnable()
     {
         if(disappearing)
             StartCoroutine(Delay());
@@ -49,5 +49,12 @@ public class DisappearingPlatform : MonoBehaviour
             yield return new WaitForSeconds(visiblePeriod);
         }
         StartCoroutine(Disappear());
+    }
+
+    public void restartObject()
+    {
+        enabled = true;
+        gameObject.SetActive(false);
+        gameObject.SetActive(true);
     }
 }

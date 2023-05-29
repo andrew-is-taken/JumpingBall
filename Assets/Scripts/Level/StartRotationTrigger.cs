@@ -11,6 +11,9 @@ public class StartRotationTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Parent.StartOfRotation();
+        if(collision.transform.tag == "Player")
+            Parent.StartOfRotation();
+        else
+            collision.gameObject.SetActive(false);
     }
 }

@@ -38,10 +38,11 @@ public class MovementManager : MonoBehaviour
     #endregion
 
     #region Last checkpoint
+    private Rotation lastCheckpoint; // the last rotation element with chechpoint
     private Vector2 lastCheckpointPos; // position of last checkpoint
-    private Vector2 lastCheckpointMainDir; // main direction on last checkpoint
-    private Vector2 lastCheckpointAddDir; // additional direction on last checkpoint
-    private float lastCheckpointSpeed; // speed on last checkpoint
+    //private Vector2 lastCheckpointMainDir; // main direction on last checkpoint
+    //private Vector2 lastCheckpointAddDir; // additional direction on last checkpoint
+    //private float lastCheckpointSpeed; // speed on last checkpoint
     private bool lastCheckpointWasStart; // speed on last checkpoint
     private bool passedOnlyStart; // to solve the problem when player jumps in rotation from wrong side and crosses only start of rotation
     #endregion
@@ -67,7 +68,7 @@ public class MovementManager : MonoBehaviour
 
         Movement.mainDirection = Movement.startDirection;
         movingHorizontally = Movement.mainDirection.y == 0; // whether player starts to move horizontally
-        SetInitialCameraCoordinateAndDirection();
+        SetInitialCameraCoordinateAndDirection(movingHorizontally ? transform.position.y : transform.position.x);
     }
 
     private void InstantiateHints()
@@ -96,7 +97,7 @@ public class MovementManager : MonoBehaviour
             DefineDifficulty(); // set difficulty
             HintVisible(false); // hide hints at the start
 
-            SetCheckpoint(transform.position, Movement.startDirection, Movement.speed); // first checkpoint
+            SetCheckpoint(null, transform.position, Movement.startDirection, Movement.startDirection, Movement.speed); // first checkpoint
             startOfLevel = false; // level started
         }
     }
@@ -411,14 +412,15 @@ public class MovementManager : MonoBehaviour
     /// <param name="additionalDir"></param>
     /// <param name="speed"></param>
     /// <param name="inverted"></param>
-    public void SetCheckpoint(Vector2 position, Vector2 mainDir, float speed)
+    public void SetCheckpoint(Rotation last, Vector2 position, Vector2 mainDir, Vector2 addDir, float speed)
     {
         if (!startOfLevel)
             lastCheckpointWasStart = false;
+        lastCheckpoint = last;
         lastCheckpointPos = position;
-        lastCheckpointMainDir = mainDir;
-        lastCheckpointAddDir = mainDir;
-        lastCheckpointSpeed = speed;
+        //lastCheckpointMainDir = mainDir;
+        //lastCheckpointAddDir = addDir;
+        //lastCheckpointSpeed = speed;
     }
 
     /// <summary>
@@ -429,21 +431,34 @@ public class MovementManager : MonoBehaviour
         if (!lastCheckpointWasStart)
         {
             gameObject.SetActive(true);
+            gameEnded = false;
             GetComponentInChildren<TrailRenderer>().emitting = false;
             levelManager.PrepareMainUI();
 
             transform.position = lastCheckpointPos;
-            Movement.mainDirection = lastCheckpointMainDir;
-            Movement.additionalDirection = lastCheckpointAddDir;
-            Movement.speed = lastCheckpointSpeed;
+            Movement.mainDirection = lastCheckpoint.newDirection;
+            Movement.additionalDirection = Vector3.zero;
+            //Movement.additionalDirection = lastCheckpointAddDir;
+            Movement.speed = lastCheckpoint.newSpeed;
             Movement.SetMovingHorizontally();
-            Movement.RecalculateAdditionalDirectionOnRotation(false);
+            if (movingHorizontally)
+                Movement.additionalDirection.y = lastCheckpointPos.y >= lastCheckpoint.transform.position.y ? 1 : -1;
+            else
+                Movement.additionalDirection.x = lastCheckpointPos.x >= lastCheckpoint.transform.position.x ? 1 : -1;
+            //Movement.RecalculateAdditionalDirectionOnRotation(false);
+            lastCheckpoint.TurnOnFollowingPart();
+            //transform.position = lastCheckpointPos;
+            //Movement.mainDirection = lastCheckpointMainDir;
+            //Movement.additionalDirection = lastCheckpointAddDir;
+            //Movement.speed = lastCheckpointSpeed;
+            //Movement.SetMovingHorizontally();
+            //Movement.RecalculateAdditionalDirectionOnRotation(false);
             hintVectorPos = Movement.hintVectorPositionAndRot(HintVector); // calculate position of vector
 
             movingHorizontally = Movement.movingHorizontally; // whether player starts to move horizontally
-            SetInitialCameraCoordinateAndDirection();
+            SetInitialCameraCoordinateAndDirection(movingHorizontally ? lastCheckpoint.transform.position.y : lastCheckpoint.transform.position.x);
 
-            Movement.AddMainForceInDirection(lastCheckpointMainDir);
+            Movement.AddMainForceInDirection(Movement.mainDirection);
 
             foreach (GhostEnemy enemy in FindObjectsOfType<GhostEnemy>())
             {
@@ -461,10 +476,10 @@ public class MovementManager : MonoBehaviour
     /// <summary>
     /// Resets the coordinate and direction of camera controller.
     /// </summary>
-    private void SetInitialCameraCoordinateAndDirection()
+    private void SetInitialCameraCoordinateAndDirection(float coordinate)
     {
         cameraController.SetMainMovementDirection(movingHorizontally ? Movement.mainDirection.x : Movement.mainDirection.y); // main direction at the start
-        cameraController.SetMainMovementCoordinate(movingHorizontally ? transform.position.y : transform.position.x); // main coordinate at the start
+        cameraController.SetMainMovementCoordinate(coordinate); // main coordinate at the start
     }
 
     /// <summary>
@@ -475,6 +490,10 @@ public class MovementManager : MonoBehaviour
         finished = true;
     }
 
+    /// <summary>
+    /// Sets the bonus.
+    /// </summary>
+    /// <param name="bonus"></param>
     public void SetEndLevelBonus(float bonus)
     {
         endLevelBonus = bonus;

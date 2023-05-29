@@ -5,10 +5,10 @@ public class DisplayLevelNumber : MonoBehaviour
 {
     private LevelManager levelManager; // manager
 
-    public int levelNumber; // this button number
-    public Image Lock; // loch image
-    public Image[] Stars; // difficulty stars
-    public Color[] StarsColors; // colors for difficulty stars
+    private int levelNumber; // this button number
+    [SerializeField] private Image Lock; // loch image
+    [SerializeField] private Image[] Stars; // difficulty stars
+    [SerializeField] private Color[] StarsColors; // colors for difficulty stars
 
     void Start()
     {

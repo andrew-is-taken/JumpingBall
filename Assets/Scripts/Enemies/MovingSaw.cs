@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class MovingSaw : MonoBehaviour
+public class MovingSaw : MonoBehaviour, ILevelObject
 {
     [SerializeField] private float speed = 1f; // speed of saw
     [SerializeField] private float startPositionX; // position of saw on start from -.6 to .6
@@ -12,10 +12,17 @@ public class MovingSaw : MonoBehaviour
 
     private bool waiting;
     private float wait; // time waiting
+    private bool defaultMovingUp; // if the saw is moving up
 
-    private void Start()
+    private void Awake()
     {
         child = GetComponentInChildren<Animator>().transform;
+        defaultMovingUp = movingUp;
+    }
+
+    private void OnEnable()
+    {
+        movingUp = defaultMovingUp;
         child.localPosition = new Vector3 (startPositionX, 0, 0);
         t = (startPositionX + 0.6f) / 1.2f;
         if (!movingUp)
@@ -73,5 +80,12 @@ public class MovingSaw : MonoBehaviour
                 t = 0f;
             }
         }
+    }
+
+    public void restartObject()
+    {
+        enabled = true;
+        gameObject.SetActive(false);
+        gameObject.SetActive(true);
     }
 }

@@ -11,6 +11,12 @@ public class EndRotationTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Parent.EndOfRotation(transform.position);
+        if (collision.transform.tag == "Player")
+        {
+            GetComponent<BoxCollider2D>().enabled = false;
+            Parent.EndOfRotation(transform.position);
+        }
+        else
+            collision.gameObject.SetActive(false);
     }
 }
