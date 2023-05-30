@@ -540,7 +540,15 @@ PrefabInstance:
     - target: {fileID: 303359346726143349, guid: a47b3d4e4d8634b4bbdd1b62ca9e3ec4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1576081120}
+      objectReference: {fileID: 1899603065582651563}
+    - target: {fileID: 303359346726143349, guid: a47b3d4e4d8634b4bbdd1b62ca9e3ec4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: TapOnScreen
+      objectReference: {fileID: 0}
+    - target: {fileID: 303359346726143349, guid: a47b3d4e4d8634b4bbdd1b62ca9e3ec4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UserInput, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 303359346759731800, guid: a47b3d4e4d8634b4bbdd1b62ca9e3ec4, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -2521,9 +2529,20 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1899603064465989236, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
-      insertIndex: -1
+      insertIndex: 6
       addedObject: {fileID: 1850244768}
     - targetCorrespondingSourceObject: {fileID: 1899603064465989236, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
-      insertIndex: -1
+      insertIndex: 7
       addedObject: {fileID: 1850244774}
   m_SourcePrefab: {fileID: 100100000, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
+--- !u!114 &1899603065582651563 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1557485912008817314, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
+  m_PrefabInstance: {fileID: 1899603065582651562}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1850244764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06fa02409ef85d948b02d6a6f42ae2a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

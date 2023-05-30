@@ -5,9 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
-    [Header("Data")]
-    public SaveData saveData; // where data is stored
     private MovementManager player; // player
+    private DataManager dataManager;
 
     [Header("Skins")]
     [HideInInspector] public int equippedSkin; // currently active skin
@@ -41,8 +40,10 @@ public class LevelManager : MonoBehaviour
 
     private void Awake()
     {
+        dataManager = GetComponent<DataManager>();
+
         SetQuality();
-        GetComponent<FileSaver>().readFile();
+        GetComponent<FileSaver>().ReadFile();
 
         int amount = FindObjectsOfType<LevelManager>().Length; // calculate all levelManagers in scene
         if (amount == 1)
@@ -72,45 +73,13 @@ public class LevelManager : MonoBehaviour
     /// </summary>
     private void SyncronizeLevels()
     {
-        //ClearBoughtSkinsFromSaveData();
-        //ClearLevelsDoneFromSaveData();
-        //SaveDataToFile();
-        //PrintLevelsFromSaveData();
+#if UNITY_EDITOR
+        GetComponent<DebugLevelData>().SyncLevels();
+#endif
 
         int a = SceneManager.sceneCountInBuildSettings - 2; // scene count minus Start and Menu scenes
-        if (saveData.levelsDone != null)
-        {
-            if (saveData.levelsDone.Count < a)
-            {
-                saveData.AddNewLevelsToList(a);
-                SaveDataToFile();
-            }
-        }
-        else
-        {
-            saveData.AddFirstLineOfLevels();
+        if(dataManager.CheckForNewLevels(a))
             SyncronizeLevels();
-        }
-    }
-
-    /// <summary>
-    /// Syncs the current data with the data saved in memory.
-    /// </summary>
-    /// <param name="loadedSaveData"></param>
-    public void setSaveData(SaveData loadedSaveData)
-    {
-        saveData = loadedSaveData;
-        equippedSkin = saveData.equippedSkin;
-        GetComponent<AudioSource>().enabled = saveData.musikEnabled;
-        SetAllAudiosToValue();
-    }
-
-    /// <summary>
-    /// Writes data to file.
-    /// </summary>
-    public void SaveDataToFile()
-    {
-        GetComponent<FileSaver>().SaveFile(saveData);
     }
 
     /// <summary>
@@ -127,7 +96,7 @@ public class LevelManager : MonoBehaviour
         if (scene.name == "Menu")
         {
             GameCanvas.SetActive(false); // disable game canvas in menu
-            FindObjectOfType<MenuMoneyManager>().updateMoney(saveData.crystalls); // update money text in menu
+            FindObjectOfType<MenuMoneyManager>().updateMoney(dataManager.saveData.crystalls); // update money text in menu
         }
         else if (scene.name == "Start")
         {
@@ -138,8 +107,8 @@ public class LevelManager : MonoBehaviour
             StartOfLevel();
         }
 
-        SetAllAudiosToValue();
-        GetComponent<AudioSource>().enabled = saveData.musikEnabled; // enable music
+        SetAllAudiosToSavedValue();
+        dataManager.SwitchAudioSource(); // enable music
 
         //EndLevelMoney.gameObject.SetActive(false);
     }
@@ -151,6 +120,7 @@ public class LevelManager : MonoBehaviour
     {
         GameCanvas.SetActive(true);
         player = MovementManager.instance;
+        GetComponent<UserInput>().UpdatePlayerInstance(player);
 
         RealLevel = int.Parse(SceneManager.GetActiveScene().name.Remove(0, 5)); // get level number
         LevelInList = RealLevel - 1;
@@ -159,9 +129,7 @@ public class LevelManager : MonoBehaviour
         PrepareMainUI();
 
         if (lastCoroutine != null)
-        {
             StopCoroutine(lastCoroutine);
-        }
     }
 
     /// <summary>
@@ -199,22 +167,14 @@ public class LevelManager : MonoBehaviour
     }
 
     /// <summary>
-    /// When user touches the screen.
-    /// </summary>
-    public void TouchScreenTap()
-    {
-        player.TapOnScreen();
-    }
-
-    /// <summary>
     /// Stops the game.
     /// </summary>
     public void Pause()
     {
         pausePlayerAudio();
 
-        AudioSlider.value = saveData.volume;
-        MusicToggle.isOn = saveData.musikEnabled;
+        AudioSlider.value = dataManager.saveData.volume;
+        MusicToggle.isOn = dataManager.saveData.musikEnabled;
         PauseScreen.SetActive(true);
         Time.timeScale = 0f;
     }
@@ -225,7 +185,7 @@ public class LevelManager : MonoBehaviour
     public void Continue()
     {
         continuePlayerAudio();
-        setDataToSettingsAndSave();
+        setDataToSettingsValuesAndSave();
 
         TapToStartPanel.SetActive(true);
         PauseScreen.SetActive(false);
@@ -237,22 +197,20 @@ public class LevelManager : MonoBehaviour
     public void RestartLevel(bool fromSettings)
     {
         if (fromSettings)
-            setDataToSettingsAndSave();
+            setDataToSettingsValuesAndSave();
 
         Time.timeScale = 1f;
-        PrepareMainUI();
+        //PrepareMainUI();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     /// <summary>
     /// Saves the settings to file.
     /// </summary>
-    private void setDataToSettingsAndSave()
+    private void setDataToSettingsValuesAndSave()
     {
-        saveData.volume = AudioSlider.value;
-        saveData.musikEnabled = MusicToggle.isOn;
-        SaveDataToFile();
-        SetAllAudiosToValue();
+        dataManager.SaveDataFromSettings(AudioSlider.value, MusicToggle.isOn);
+        SetAllAudiosToSavedValue();
     }
 
     /// <summary>
@@ -274,12 +232,13 @@ public class LevelManager : MonoBehaviour
     /// <summary>
     /// Sets all audios' volume in the scene to the desired. 
     /// </summary>
-    private void SetAllAudiosToValue()
+    public void SetAllAudiosToSavedValue()
     {
         AudioSource[] audios = FindObjectsOfType<AudioSource>();
+        float vol = dataManager.saveData.volume;
         foreach (AudioSource audio in audios)
         {
-            audio.volume = saveData.volume;
+            audio.volume = vol;
         }
     }
 
@@ -289,7 +248,6 @@ public class LevelManager : MonoBehaviour
     public void StartFromTap()
     {
         Time.timeScale = 1f;
-        //player = MovementManager.instance;
         TapToStartPanel.SetActive(false);
         player.StartFromTap();
     }
@@ -326,8 +284,7 @@ public class LevelManager : MonoBehaviour
     {
         int money = CalculateMoneyAfterFinish(multiplier);
 
-        WriteLevelDataAfterFinish(money);
-        SaveDataToFile();
+        dataManager.WriteLevelDataAfterFinish(money, LevelInList, RealLevel, difficulty);
 
         lastCoroutine = StartCoroutine(StopTimeOnLevelEnd(money));
     }
@@ -340,18 +297,6 @@ public class LevelManager : MonoBehaviour
     private int CalculateMoneyAfterFinish(float multiplier)
     {
         return (int)(MoneyForLevel[LevelInList] * (difficulty + 1) * 0.5f * multiplier);
-    }
-
-    /// <summary>
-    /// Writes values to saveData after level.
-    /// </summary>
-    /// <param name="money"></param>
-    private void WriteLevelDataAfterFinish(int money)
-    {
-        saveData.levelsDone[LevelInList][difficulty] = true;
-        saveData.crystalls += money;
-        saveData.lastLevel = RealLevel;
-        saveData.lastLevelDifficulty = difficulty;
     }
 
     /// <summary>
@@ -406,62 +351,6 @@ public class LevelManager : MonoBehaviour
     public void OpenLottery()
     {
         FindObjectOfType<Menu>().OpenLottery();
-    }
-
-    /// <summary>
-    /// <para>Debug. Called from SyncronizeLevels().</para>
-    /// Prints saved levels and bool if they are finished.
-    /// </summary>
-    private void PrintLevelsFromSaveData()
-    {
-        for (int i = 0; i < saveData.levelsDone.Count; i++)
-        {
-            for (int j = 0; j < saveData.levelsDone[i].Count; j++)
-            {
-                print("Level " + i + " with difficulty " + j + " has value " + saveData.levelsDone[i][j]);
-            }
-        }
-    }
-
-    /// <summary>
-    /// <para>Debug. Called from SyncronizeLevels().</para>
-    /// Removes saved levels from memory and sets default values.
-    /// </summary>
-    private void ClearLevelsDoneFromSaveData()
-    {
-        saveData.lastLevel = 1;
-        saveData.lastLevelDifficulty = -1;
-        for (int i = 0; i < saveData.levelsDone.Count; i++)
-        {
-            for (int j = 0; j < saveData.levelsDone[i].Count; j++)
-            {
-                saveData.levelsDone[i][j] = false;
-            }
-        }
-    }
-
-    public void UnlockAllLevelsInSaveData()
-    {
-        saveData.lastLevel = 1;
-        saveData.lastLevelDifficulty = -1;
-        for (int i = 0; i < saveData.levelsDone.Count; i++)
-        {
-            for (int j = 0; j < saveData.levelsDone[i].Count; j++)
-            {
-                saveData.levelsDone[i][j] = true;
-            }
-        }
-        SaveDataToFile();
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
-
-    /// <summary>
-    /// <para>Debug. Called from SyncronizeLevels().</para>
-    /// Removes bought skins from memory.
-    /// </summary>
-    private void ClearBoughtSkinsFromSaveData()
-    {
-        saveData.ClearBoughtSkins();
     }
 
     /// <summary>

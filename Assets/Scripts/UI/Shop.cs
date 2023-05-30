@@ -7,7 +7,8 @@ public class Shop : MonoBehaviour
 {
     [SerializeField] private Animator MenuAnim; // animator with menu ui
 
-    private LevelManager levelManager; // manager
+    private LevelManager levelManager; // level manager
+    private DataManager dataManager; // data manager
     private List<int> boughtSkins; // list of purchased skins
 
     [Header("Items")]
@@ -30,7 +31,7 @@ public class Shop : MonoBehaviour
     {
         if(levelManager == null)
             levelManager = FindObjectOfType<LevelManager>();
-        boughtSkins = levelManager.saveData.boughtSkins;
+        boughtSkins = dataManager.saveData.boughtSkins;
     }
 
     private void Start()
@@ -57,8 +58,8 @@ public class Shop : MonoBehaviour
     /// </summary>
     public void CloseShop()
     {
-        levelManager.saveData.equippedSkin = levelManager.equippedSkin;
-        levelManager.SaveDataToFile();
+        dataManager.saveData.equippedSkin = levelManager.equippedSkin;
+        dataManager.SaveDataToFile();
         MenuAnim.SetBool("OpenShop", false);
     }
     
@@ -95,7 +96,7 @@ public class Shop : MonoBehaviour
     public void ClickedOnLockedSkin(int id)
     {
         currentId = id;
-        if (levelManager.saveData.crystalls > shopItemsPrice[id])
+        if (dataManager.saveData.crystalls > shopItemsPrice[id])
             OpenConfirmationPan();
         else
             OpenNotEnoughMoneyPan();
@@ -117,7 +118,7 @@ public class Shop : MonoBehaviour
     {
         notEnoughMoneyPanel.SetActive(true);
         notEnoughMoneyPriceText.text = "Price: " + shopItemsPrice[currentId] + " <sprite anim=0,5,8>";
-        alertText.text = (shopItemsPrice[currentId] - levelManager.saveData.crystalls) + " <sprite anim=0,5,8>";
+        alertText.text = (shopItemsPrice[currentId] - dataManager.saveData.crystalls) + " <sprite anim=0,5,8>";
     }
 
     /// <summary>
@@ -133,13 +134,10 @@ public class Shop : MonoBehaviour
     /// </summary>
     public void ConfirmSkinBuy()
     {
-        levelManager.saveData.crystalls -= shopItemsPrice[currentId];
-        levelManager.saveData.boughtSkins.Add(currentId);
-        levelManager.saveData.equippedSkin = currentId;
+        dataManager.ConfirmSkinBuy(shopItemsPrice[currentId], currentId);
         EquipSelectedSkin(currentId);
-        levelManager.SaveDataToFile();
 
-        FindObjectOfType<MenuMoneyManager>().updateMoney(levelManager.saveData.crystalls);
+        FindObjectOfType<MenuMoneyManager>().updateMoney(dataManager.saveData.crystalls);
         shopItems[currentId].UnlockItem();
         shopItems[levelManager.equippedSkin].ChangeItemState(true);
         confirmationPanel.SetActive(false);

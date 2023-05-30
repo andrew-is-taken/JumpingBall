@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class DisplayLevelNumber : MonoBehaviour
 {
-    private LevelManager levelManager; // manager
+    private DataManager dataManager; // manager
 
     private int levelNumber; // this button number
     [SerializeField] private Image Lock; // loch image
@@ -12,7 +12,7 @@ public class DisplayLevelNumber : MonoBehaviour
 
     void Start()
     {
-        levelManager = FindObjectOfType<LevelManager>();
+        dataManager = FindObjectOfType<DataManager>();
 
         UpdateText();
         UpdateLockVisibility();
@@ -27,8 +27,8 @@ public class DisplayLevelNumber : MonoBehaviour
     {
         if(levelNumber != 1)
         {
-            if (levelManager.saveData.levelsDone[levelNumber-2][0] 
-                || levelManager.saveData.levelsDone[levelNumber-2][1] || levelManager.saveData.levelsDone[levelNumber-2][2])
+            if (dataManager.saveData.levelsDone[levelNumber-2][0] 
+                || dataManager.saveData.levelsDone[levelNumber-2][1] || dataManager.saveData.levelsDone[levelNumber-2][2])
             {
                 FindObjectOfType<Menu>().SelectLevel(levelNumber);
             }
@@ -55,8 +55,8 @@ public class DisplayLevelNumber : MonoBehaviour
     {
         if (levelNumber != 1)
         {
-            if (levelManager.saveData.levelsDone[levelNumber - 2][0]
-                || levelManager.saveData.levelsDone[levelNumber - 2][1] || levelManager.saveData.levelsDone[levelNumber - 2][2])
+            if (dataManager.saveData.levelsDone[levelNumber - 2][0]
+                || dataManager.saveData.levelsDone[levelNumber - 2][1] || dataManager.saveData.levelsDone[levelNumber - 2][2])
             {
                 Lock.gameObject.SetActive(false);
                 PaintStars();
@@ -84,7 +84,7 @@ public class DisplayLevelNumber : MonoBehaviour
     {
         for(int i = 0; i < 3; i++)
         {
-            if (levelManager.saveData.levelsDone[levelNumber-1][i])
+            if (dataManager.saveData.levelsDone[levelNumber-1][i])
                 Stars[i].color = StarsColors[i];
         }
     }

@@ -30,7 +30,7 @@ public class FileSaver : MonoBehaviour
     /// <summary>
     /// Reades the data from file.
     /// </summary>
-    public void readFile()
+    public void ReadFile()
     {
         path = Application.persistentDataPath + "/data.xd";
         if (File.Exists(path))
@@ -41,16 +41,16 @@ public class FileSaver : MonoBehaviour
         }
         else
         {
-            setDefaultParameters();
+            SetDefaultParameters();
             SaveFile(saveData);
         }
-        GetComponent<LevelManager>().setSaveData(saveData);
+        GetComponent<DataManager>().RestoreSaveData(saveData);
     }
 
     /// <summary>
     /// Restarts the data parameters to default.
     /// </summary>
-    private void setDefaultParameters()
+    private void SetDefaultParameters()
     {
         saveData.volume = 0.7f;
         saveData.lastLevel = 0;

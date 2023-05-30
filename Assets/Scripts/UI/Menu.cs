@@ -72,10 +72,10 @@ public class Menu : MonoBehaviour
     /// </summary>
     private void CalculateNextLevel()
     {
-        LevelManager levelManager = FindObjectOfType<LevelManager>();
+        DataManager dataManager = FindObjectOfType<DataManager>();
 
-        nextLevel = levelManager.saveData.lastLevel;
-        nextDifficulty = levelManager.saveData.lastLevelDifficulty;
+        nextLevel = dataManager.saveData.lastLevel;
+        nextDifficulty = dataManager.saveData.lastLevelDifficulty;
 
         if(nextLevel != 0)
         {

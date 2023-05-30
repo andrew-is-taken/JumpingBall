@@ -10,8 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 1899603064465989195}
   - component: {fileID: 1899603064465989194}
-  - component: {fileID: 1899603064465989237}
+  - component: {fileID: 6876671579742275624}
+  - component: {fileID: 1557485912008817314}
   - component: {fileID: 1148672097783157149}
+  - component: {fileID: 8265047482872748288}
+  - component: {fileID: 1899603064465989237}
   m_Layer: 0
   m_Name: LevelManager
   m_TagString: Untagged
@@ -46,11 +49,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8eb6020f42cfad4ca7cdbaa3d51121a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  saveData:
-    volume: 0
-    musikEnabled: 0
+  equippedSkin: 0
+  Skins: []
   difficulty: 0
-  Level: 0
   MoneyForLevel: 64000000
   EndLevelScreen: {fileID: 0}
   DeathScreen: {fileID: 0}
@@ -60,6 +61,74 @@ MonoBehaviour:
   AudioSlider: {fileID: 0}
   MusicToggle: {fileID: 0}
   EndLevelMoney: {fileID: 0}
+--- !u!114 &6876671579742275624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1899603064465989236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a2bf33e25d2de341aad9ddd73aea098, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  saveData:
+    crystalls: 0
+    equippedSkin: 0
+    volume: 0
+    musikEnabled: 0
+    lastLevel: 1
+    lastLevelDifficulty: -1
+    boughtSkins: 00000000
+--- !u!114 &1557485912008817314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1899603064465989236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06fa02409ef85d948b02d6a6f42ae2a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1148672097783157149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1899603064465989236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22e848b0528ec3e4fb1f82483958124d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  saveData:
+    crystalls: 0
+    equippedSkin: 0
+    volume: 0
+    musikEnabled: 0
+    lastLevel: 1
+    lastLevelDifficulty: -1
+    boughtSkins: 00000000
+--- !u!114 &8265047482872748288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1899603064465989236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf2464b334936704ab23e1dbf23da219, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unlockAllLevels: 0
+  printLevelsData: 0
+  clearLevelsData: 0
+  clearSkinsData: 0
 --- !u!82 &1899603064465989237
 AudioSource:
   m_ObjectHideFlags: 0
@@ -156,19 +225,3 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &1148672097783157149
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1899603064465989236}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22e848b0528ec3e4fb1f82483958124d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  saveData:
-    volume: 0
-    musikEnabled: 0
-  path: 

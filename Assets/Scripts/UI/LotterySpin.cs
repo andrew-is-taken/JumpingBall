@@ -82,7 +82,7 @@ public class LotterySpin : MonoBehaviour
         resultSprite.sprite = items[droppedItemId];
         if(droppedItemId > 2) // if player got money, not skin
         {
-            FindObjectOfType<MenuMoneyManager>().updateMoney(FindObjectOfType<LevelManager>().saveData.crystalls);
+            FindObjectOfType<MenuMoneyManager>().updateMoney(FindObjectOfType<DataManager>().saveData.crystalls);
             resultText.text = itemsCrystallAmount[droppedItemId] + " <sprite anim=0,5,8>";
         }
         else
@@ -96,36 +96,36 @@ public class LotterySpin : MonoBehaviour
     /// </summary>
     private void GivePrize()
     {
-        LevelManager levelManager = FindObjectOfType<LevelManager>();
+        DataManager dataManager = FindObjectOfType<DataManager>();
         if (droppedItemId < 3)
         {
             switch (droppedItemId)
             {
                 case 0:
-                    if (levelManager.saveData.boughtSkins.Contains(13))
-                        levelManager.saveData.crystalls += 20000;
+                    if (dataManager.saveData.boughtSkins.Contains(13))
+                        dataManager.saveData.crystalls += 20000;
                     else
-                        levelManager.saveData.boughtSkins.Add(13);
+                        dataManager.saveData.boughtSkins.Add(13);
                     break;
                 case 1:
-                    if (levelManager.saveData.boughtSkins.Contains(12))
-                        levelManager.saveData.crystalls += 10000;
+                    if (dataManager.saveData.boughtSkins.Contains(12))
+                        dataManager.saveData.crystalls += 10000;
                     else
-                        levelManager.saveData.boughtSkins.Add(12);
+                        dataManager.saveData.boughtSkins.Add(12);
                     break;
                 case 2:
-                    if (levelManager.saveData.boughtSkins.Contains(8))
-                        levelManager.saveData.crystalls += 5000;
+                    if (dataManager.saveData.boughtSkins.Contains(8))
+                        dataManager.saveData.crystalls += 5000;
                     else
-                        levelManager.saveData.boughtSkins.Add(8);
+                        dataManager.saveData.boughtSkins.Add(8);
                     break;
             }
         }
         else
         {
-            levelManager.saveData.crystalls += itemsCrystallAmount[droppedItemId];
+            dataManager.saveData.crystalls += itemsCrystallAmount[droppedItemId];
         }
-        levelManager.SaveDataToFile();
+        dataManager.SaveDataToFile();
     }
 
     /// <summary>
