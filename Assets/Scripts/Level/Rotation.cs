@@ -5,6 +5,7 @@ public class Rotation : MonoBehaviour
 {
     private MovementManager player; // player
     [SerializeField] private GameObject[] FollowingPart;
+    [SerializeField] private GameObject[] PreviousPart;
 
     [Header("New parameters")]
     public float newSpeed; // new speed for player's movement
@@ -33,6 +34,7 @@ public class Rotation : MonoBehaviour
         if (newSpeed > 0)
             player.SetSpeed(newSpeed);
         player.SetMovementDirection(newDirection, newMainMovementCoordinate, inverted);
+        TurnOffPreviousPart();
     }
 
     /// <summary>
@@ -40,23 +42,34 @@ public class Rotation : MonoBehaviour
     /// </summary>
     public void EndOfRotation(Vector3 pos)
     {
-        TurnOnFollowingPart();
         player.AddForceInDirection(newDirection);
         if (hasCheckpoint)
         {
             StartCoroutine(setCheckpoint());
             player.SetCheckpoint(this, player.transform.position, newDirection, player.Movement.additionalDirection, newSpeed);
         }
+        TurnOnFollowingPart();
     }
 
     /// <summary>
-    /// Turns on tthe scripts on the following part of the level to sync with player's position.
+    /// Turns on the scripts on the following part of the level to sync with player's position.
     /// </summary>
     public void TurnOnFollowingPart()
     {
         foreach(var part in FollowingPart)
         {
             part.GetComponent<ILevelObject>().restartObject();
+        }
+    }
+
+    /// <summary>
+    /// Turns off the scripts on the previous part of the level to remove unnecessary behaviour.
+    /// </summary>
+    private void TurnOffPreviousPart()
+    {
+        foreach (var part in PreviousPart)
+        {
+            part.GetComponent<ILevelObject>().turnOffObject();
         }
     }
 

@@ -3,7 +3,7 @@ using UnityEngine;
 public class MovingSaw : MonoBehaviour, ILevelObject
 {
     [SerializeField] private float speed = 1f; // speed of saw
-    [SerializeField] private float startPositionX; // position of saw on start from -.6 to .6
+    [Range(-.6f, .6f)][SerializeField] private float startPositionX; // position of saw on start from -.6 to .6
     [SerializeField] private bool movingUp; // if the saw is moving up
     [SerializeField] private bool hasPauseOnEnd; // if the saw needs to stop a fter movement
 
@@ -12,17 +12,16 @@ public class MovingSaw : MonoBehaviour, ILevelObject
 
     private bool waiting;
     private float wait; // time waiting
-    private bool defaultMovingUp; // if the saw is moving up
+    private bool currMovingUp; // if the saw is moving up
 
     private void Awake()
     {
         child = GetComponentInChildren<Animator>().transform;
-        defaultMovingUp = movingUp;
     }
 
     private void OnEnable()
     {
-        movingUp = defaultMovingUp;
+        currMovingUp = movingUp;
         child.localPosition = new Vector3 (startPositionX, 0, 0);
         t = (startPositionX + 0.6f) / 1.2f;
         if (!movingUp)
@@ -61,14 +60,14 @@ public class MovingSaw : MonoBehaviour, ILevelObject
                 if (wait >= 0.5f)
                 {
                     waiting = false;
-                    movingUp = !movingUp;
+                    currMovingUp = !currMovingUp;
                     t = 0f;
                 }
             }
         }
         else
         {
-            if (movingUp)
+            if (currMovingUp)
                 child.localPosition = new Vector3(Mathf.Lerp(-0.6f, 0.6f, t), 0, 0);
             else
                 child.localPosition = new Vector3(Mathf.Lerp(0.6f, -0.6f, t), 0, 0);
@@ -76,7 +75,7 @@ public class MovingSaw : MonoBehaviour, ILevelObject
             t += Time.deltaTime * speed;
             if (t >= 1f)
             {
-                movingUp = !movingUp;
+                currMovingUp = !currMovingUp;
                 t = 0f;
             }
         }
@@ -87,5 +86,10 @@ public class MovingSaw : MonoBehaviour, ILevelObject
         enabled = true;
         gameObject.SetActive(false);
         gameObject.SetActive(true);
+    }
+
+    public void turnOffObject()
+    {
+        enabled = false;
     }
 }

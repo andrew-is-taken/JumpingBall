@@ -57,4 +57,9 @@ public class DisappearingPlatform : MonoBehaviour, ILevelObject
         gameObject.SetActive(false);
         gameObject.SetActive(true);
     }
+
+    public void turnOffObject()
+    {
+        enabled = false;
+    }
 }

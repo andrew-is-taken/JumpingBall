@@ -47,21 +47,29 @@ SpriteAtlas:
     - {fileID: 2800000, guid: 196d6fe71ba45e14e988ad1f7a27d721, type: 3}
     - {fileID: 2800000, guid: 55c25df52d99fc84ba43e3480c03e789, type: 3}
     - {fileID: 2800000, guid: 7bc6166c2fbdbcc48b83bf838e2fb584, type: 3}
+    - {fileID: 2800000, guid: 77e59d2cc0a44a44c99af25b0a56fddf, type: 3}
+    - {fileID: 2800000, guid: b3e4506815a7a914ab62de7325b6c6f9, type: 3}
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
     packedSpriteRenderDataKeys:
     - 55c25df52d99fc84ba43e3480c03e789: 21300000
     - 196d6fe71ba45e14e988ad1f7a27d721: 21300000
+    - b3e4506815a7a914ab62de7325b6c6f9: 21300000
+    - 77e59d2cc0a44a44c99af25b0a56fddf: 21300000
     - 7bc6166c2fbdbcc48b83bf838e2fb584: 21300000
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 21300000, guid: 55c25df52d99fc84ba43e3480c03e789, type: 3}
   - {fileID: 21300000, guid: 196d6fe71ba45e14e988ad1f7a27d721, type: 3}
+  - {fileID: 21300000, guid: b3e4506815a7a914ab62de7325b6c6f9, type: 3}
+  - {fileID: 21300000, guid: 77e59d2cc0a44a44c99af25b0a56fddf, type: 3}
   - {fileID: 21300000, guid: 7bc6166c2fbdbcc48b83bf838e2fb584, type: 3}
   m_PackedSpriteNamesToIndex:
   - Arrow
   - Attention
+  - TurretGun
+  - TurretEnemy
   - Circle
   m_RenderDataMap: {}
   m_Tag: InGameSprites

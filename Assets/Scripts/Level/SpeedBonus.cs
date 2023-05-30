@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class SpeedBonus : MonoBehaviour
+public class SpeedBonus : MonoBehaviour, ILevelObject
 {
     [SerializeField] private bool emitTrails = false; // if trails spawn after the player picks up bonus
     [SerializeField] private float speedBonus = -1f; // bonus to player's speed
@@ -13,19 +13,34 @@ public class SpeedBonus : MonoBehaviour
     [SerializeField] private AudioClip speedUp; // sound when player accelerates
     [SerializeField] private AudioClip slowDown; // sound when player slows down
 
+    private void OnEnable()
+    {
+        InnerPart.SetActive(true);
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Player")
-        {
-            StartCoroutine(spawnTrails());
-        }
+            StartCoroutine(ChangeSpeed());
+    }
+
+    public void restartObject()
+    {
+        enabled = true;
+        gameObject.SetActive(false);
+        gameObject.SetActive(true);
+    }
+
+    public void turnOffObject()
+    {
+        enabled = false;
     }
 
     /// <summary>
     /// Spawns trails that follow player.
     /// </summary>
     /// <returns></returns>
-    IEnumerator spawnTrails()
+    IEnumerator ChangeSpeed()
     {
         GetComponent<AudioSource>().PlayOneShot(speedBonus > 0 ? speedUp : slowDown);
         GetComponent<AudioSource>().pitch = Random.Range(0.8f, 1.2f);

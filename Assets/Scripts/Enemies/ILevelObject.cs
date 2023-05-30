@@ -4,4 +4,9 @@ public interface ILevelObject
     /// Restarts the object to default state to sync with player.
     /// </summary>
     void restartObject();
+
+    /// <summary>
+    /// Turns off the unnecessary objects for optimization.
+    /// </summary>
+    void turnOffObject();
 }

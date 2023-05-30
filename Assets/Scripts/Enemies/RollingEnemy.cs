@@ -62,4 +62,10 @@ public class RollingEnemy : MonoBehaviour, ILevelObject
         gameObject.SetActive(false);
         gameObject.SetActive(true);
     }
+
+    public void turnOffObject()
+    {
+        GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        enabled = false;
+    }
 }

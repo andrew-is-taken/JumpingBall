@@ -31,9 +31,9 @@ public class Turret : MonoBehaviour, ILevelObject
     private Transform player;
 
     private bool broken;
-    private bool readyToShoot;
-    private bool aiming;
-    private bool playerInSight;
+    public bool readyToShoot;
+    public bool aiming;
+    public bool playerInSight;
 
     private AudioSource soundSource;
     public List<GameObject> bulletsPool;
@@ -58,27 +58,27 @@ public class Turret : MonoBehaviour, ILevelObject
 
     private void Update()
     {
-        if (!broken && readyToShoot)
+        if (!broken)
         {
             RaycastHit2D hit = Physics2D.Linecast(laserStart.position, player.position);
             float dist = Vector2.Distance(transform.position, player.position);
             playerInSight = !hit && dist > minDistance && dist < maxDistance;
 
-            if (playerInSight)
-            {
-                lastCorotine = StartCoroutine(SpawnBullet());
-                if (!laser.gameObject.activeSelf)
-                    laser.gameObject.SetActive(true);
-            }
-            else
-                if(lastCorotine != null)
-                    StopCoroutine(lastCorotine);
-        }
+            if (playerInSight && readyToShoot)
+                lastCorotine = StartCoroutine(StartAiming());
+            //else
+            //{
+            //    if (lastCorotine != null)
+            //        StopCoroutine(lastCorotine);
+            //}
 
-        if (aiming)
-        {
-            Gun.LookAt(player);
-            laser.SetPosition(1, player.position);
+            if (aiming)
+            {
+                Gun.LookAt(player);
+                laser.SetPosition(1, player.position);
+                if (!playerInSight)
+                    StopAiming();
+            }
         }
     }
 
@@ -86,6 +86,19 @@ public class Turret : MonoBehaviour, ILevelObject
     {
         if (collision.transform.tag == "Player")
             Death();
+    }
+
+    /// <summary>
+    /// Sets default state of the turret when player isn't in sight.
+    /// </summary>
+    private void StopAiming()
+    {
+        readyToShoot = true;
+        aiming = false;
+        if (laser.gameObject.activeSelf)
+            laser.gameObject.SetActive(false);
+        if (lastCorotine != null)
+            StopCoroutine(lastCorotine);
     }
 
     /// <summary>
@@ -105,10 +118,12 @@ public class Turret : MonoBehaviour, ILevelObject
     /// Spawns bullet in the player's direction.
     /// </summary>
     /// <returns></returns>
-    private IEnumerator SpawnBullet()
+    private IEnumerator StartAiming()
     {
         readyToShoot = false;
         aiming = true;
+        if (!laser.gameObject.activeSelf)
+            laser.gameObject.SetActive(true);
         yield return new WaitForSeconds(timeToAim);
         aiming = false;
         if (!broken)
@@ -129,5 +144,10 @@ public class Turret : MonoBehaviour, ILevelObject
         enabled = true;
         gameObject.SetActive(false);
         gameObject.SetActive(true);
+    }
+
+    public void turnOffObject()
+    {
+        enabled = false;
     }
 }
