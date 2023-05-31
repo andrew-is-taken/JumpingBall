@@ -22,9 +22,7 @@ public class RollingEnemy : MonoBehaviour, ILevelObject
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.transform.tag == "Enemy")
-        {
             Death();
-        }
     }
 
     /// <summary>
@@ -34,7 +32,7 @@ public class RollingEnemy : MonoBehaviour, ILevelObject
     private IEnumerator Delay()
     {
         transform.position = startPosition;
-        GetComponent<Animator>().enabled = false;
+        GetComponent<Animator>().SetBool("Die", false);
         yield return new WaitForSeconds(delay);
         AddForce();
     }
@@ -53,7 +51,7 @@ public class RollingEnemy : MonoBehaviour, ILevelObject
     private void Death()
     {
         GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-        GetComponent<Animator>().enabled = true;
+        GetComponent<Animator>().SetBool("Die", true);
     }
 
     public void restartObject()

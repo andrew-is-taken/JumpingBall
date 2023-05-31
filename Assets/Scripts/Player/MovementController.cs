@@ -8,7 +8,7 @@ public class MovementController
 
     public Vector3 startDirection; // direction of player when level starts
     [HideInInspector] public Vector3 mainDirection; // main direction of player movement
-    public Vector3 additionalDirection = new Vector3(1, 0, 0); // additional direction of player movement
+    [HideInInspector] public Vector3 additionalDirection = new Vector3(1, 0, 0); // additional direction of player movement
     [SerializeField] private AudioClip jumpSound; // audio clip of jump
     [SerializeField] private AudioClip landSound; // audio clip of landing
 

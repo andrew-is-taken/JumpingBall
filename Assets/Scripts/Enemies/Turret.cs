@@ -31,9 +31,9 @@ public class Turret : MonoBehaviour, ILevelObject
     private Transform player;
 
     private bool broken;
-    public bool readyToShoot;
-    public bool aiming;
-    public bool playerInSight;
+    private bool readyToShoot;
+    private bool aiming;
+    private bool playerInSight;
 
     private AudioSource soundSource;
     public List<GameObject> bulletsPool;
