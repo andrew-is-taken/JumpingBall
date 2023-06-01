@@ -269,6 +269,25 @@ public class MovementController
                 }
             }
         }
+        else
+        {
+            if (movingHorizontally)
+            {
+                if (Mathf.Abs(m_Rigidbody.velocity.x) != speed || m_Rigidbody.velocity.y != 0) // if speed is different
+                {
+                    m_Rigidbody.velocity = Vector2.zero; // clear velocity
+                    m_Rigidbody.AddForce((mainDirection + additionalDirection) * speed, ForceMode2D.Impulse); // add right force
+                }
+            }
+            else
+            {
+                if (Mathf.Abs(m_Rigidbody.velocity.y) != speed || m_Rigidbody.velocity.x != 0) // if speed is different
+                {
+                    m_Rigidbody.velocity = Vector2.zero; // clear velocity
+                    m_Rigidbody.AddForce((mainDirection + additionalDirection) * speed, ForceMode2D.Impulse); // add right force
+                }
+            }
+        }
     }
 
     public void ResetSpeedOnRotation()
