@@ -10,7 +10,7 @@ public class Turret : MonoBehaviour, ILevelObject
     [SerializeField] private Transform bulletSpawn;
     [SerializeField] private float bulletSpeed;
     [SerializeField] private AudioClip shotSound;
-    [Tooltip("Minimal distance to be able to shoot player, recommended > 3")]
+    [Tooltip("Minimal distance to be able to shoot player")]
     [SerializeField] private float minDistance = 5f;
     [Tooltip("Maximal distance to see player")]
     [SerializeField] private float maxDistance = 20f;
@@ -62,7 +62,7 @@ public class Turret : MonoBehaviour, ILevelObject
         {
             RaycastHit2D hit = Physics2D.Linecast(laserStart.position, player.position);
             float dist = Vector2.Distance(transform.position, player.position);
-            playerInSight = !hit && dist > minDistance && dist < maxDistance;
+            playerInSight = !hit && dist > minDistance && dist < maxDistance && player.gameObject.activeSelf;
 
             if (playerInSight && readyToShoot)
                 lastCorotine = StartCoroutine(StartAiming());
