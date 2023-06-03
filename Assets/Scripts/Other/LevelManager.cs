@@ -17,6 +17,8 @@ public class LevelManager : MonoBehaviour
     private int RealLevel; // level number in game
     private int LevelInList; // level number in lists
     [SerializeField] private int[] MoneyForLevel; // money for each level
+    private int lastAddedMoney;
+    private int deathsInARow;
 
     #region Canvas panels
     [Header("Canvas panels")]
@@ -25,6 +27,9 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private GameObject PauseScreen; // pause screen
     [SerializeField] private GameObject TapToStartPanel; // start of level screen
     [SerializeField] private GameObject GameCanvas; // canvas for levels
+    [SerializeField] private Button EndLevelNextButton; // button to get x2 money for level
+    [SerializeField] private Button EndLevelMenuButton; // button to get x2 money for level
+    [SerializeField] private Button EndLevelX2Button; // button to get x2 money for level
     #endregion
 
     #region Settings
@@ -273,7 +278,16 @@ public class LevelManager : MonoBehaviour
     /// </summary>
     public void Death()
     {
+        deathsInARow += 1;
         DeathScreen.SetActive(true);
+
+        if (deathsInARow >= 5)
+            GetComponent<Interstitial>().ShowAd();
+    }
+
+    public void ClearDeaths()
+    {
+        deathsInARow = 0;
     }
 
     /// <summary>
@@ -282,11 +296,11 @@ public class LevelManager : MonoBehaviour
     /// <param name="multiplier"></param>
     public void Finish(float multiplier)
     {
-        int money = CalculateMoneyAfterFinish(multiplier);
+        lastAddedMoney = CalculateMoneyAfterFinish(multiplier);
 
-        dataManager.WriteLevelDataAfterFinish(money, LevelInList, RealLevel, difficulty);
+        dataManager.WriteLevelDataAfterFinish(lastAddedMoney, LevelInList, RealLevel, difficulty);
 
-        lastCoroutine = StartCoroutine(StopTimeOnLevelEnd(money));
+        lastCoroutine = StartCoroutine(OnLevelEnd(lastAddedMoney));
     }
 
     /// <summary>
@@ -354,15 +368,46 @@ public class LevelManager : MonoBehaviour
     }
 
     /// <summary>
+    /// Multiplies the basic reward for level after watching ad.
+    /// </summary>
+    public void DoubleRewardAfterLevel()
+    {
+        EndLevelX2Button.interactable = false;
+        EndLevelMoney.gotNewResult(lastAddedMoney * 2, lastAddedMoney);
+        EndLevelScreen.GetComponent<Animator>().Play("Money", -1, 0f);
+
+        dataManager.WriteLevelDataAfterFinish(lastAddedMoney, LevelInList, RealLevel, difficulty);
+    }
+
+    /// <summary>
     /// Sets the timeScale to 0 after level end.
     /// </summary>
     /// <param name="money"></param>
     /// <returns></returns>
-    IEnumerator StopTimeOnLevelEnd(int money)
+    IEnumerator OnLevelEnd(int money)
     {
         EndLevelScreen.SetActive(true);
-        EndLevelMoney.gotNewResult(money);
+        EndLevelMoney.gotNewResult(money, 0);
+
+        InteractableEndLevelButtons(false);
+        EndLevelX2Button.transition = Selectable.Transition.None;
+
         yield return new WaitForSeconds(2.5f);
-        player.gameObject.SetActive(false);
+
+        InteractableEndLevelButtons(true);
+        EndLevelX2Button.transition = Selectable.Transition.ColorTint;
+
+        if (player != null)  player.gameObject.SetActive(false);
+    }
+
+    /// <summary>
+    /// Changes the interactable value of buttons on level end.
+    /// </summary>
+    /// <param name="i"></param>
+    private void InteractableEndLevelButtons(bool i)
+    {
+        EndLevelNextButton.interactable = i;
+        EndLevelMenuButton.interactable = i;
+        EndLevelX2Button.interactable = i;
     }
 }

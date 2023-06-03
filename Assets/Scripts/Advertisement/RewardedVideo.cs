@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class RewardedVideo : MonoBehaviour
@@ -20,7 +18,7 @@ public class RewardedVideo : MonoBehaviour
     /// Show the selected ad to the user.
     /// </summary>
     /// <param name="AdName">Placement name.</param>
-    public void ShowAd(string AdName)
+    public void ShowAd(IAdButton button, string AdName)
     {
         Debug.Log("Showing: " + AdName);
         if (IronSource.Agent.isRewardedVideoAvailable())
@@ -29,7 +27,8 @@ public class RewardedVideo : MonoBehaviour
         }
         else
         {
-            Debug.Log("NOT AVAILABLE AD");
+            Debug.Log("NOT AVAILABLE REWARDED AD");
+            button.OnAdUnavailable();
         }
     }
 
@@ -67,6 +66,7 @@ public class RewardedVideo : MonoBehaviour
                 break;
             case "ExtraCrystalls":
                 Debug.Log("X2 crystalls for finished level");
+                GetComponent<LevelManager>().DoubleRewardAfterLevel();
                 break;
         }
     }

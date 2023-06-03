@@ -5,8 +5,9 @@ public class EndLevelMoneyManager : MonoBehaviour
 {
     private int result; // total result
 
-    private string currentResult; // current result for lerp
-    private string oldResult; // old result for lerp
+    [SerializeField] private int lerpFrom;
+    [SerializeField] private string currentResult; // current result for lerp
+    [SerializeField] private string oldResult; // old result for lerp
 
     private TMP_Text resultMoney; // ui text after level end
     private float t; // time for lerp
@@ -27,16 +28,19 @@ public class EndLevelMoneyManager : MonoBehaviour
     private void LerpMoney()
     {
         t += Time.deltaTime;
-        currentResult = ((int)Mathf.Lerp(0f, result, t)).ToString();
-        if (oldResult == "0" || oldResult == null)
+        if (t <= 1.1f)
         {
-            oldResult = currentResult;
-            resultMoney.text = currentResult + " <sprite anim=0,5,8>";
-        }
-        else
-        {
-            resultMoney.text = resultMoney.text.Replace(oldResult + " ", currentResult + " ");
-            oldResult = currentResult;
+            currentResult = ((int)Mathf.Lerp(lerpFrom, result, t)).ToString();
+            if (oldResult == lerpFrom.ToString() || oldResult == null)
+            {
+                oldResult = currentResult;
+                resultMoney.text = currentResult + " <sprite anim=0,5,8>";
+            }
+            else
+            {
+                resultMoney.text = resultMoney.text.Replace(oldResult + " ", currentResult + " ");
+                oldResult = currentResult;
+            }
         }
     }
 
@@ -44,12 +48,13 @@ public class EndLevelMoneyManager : MonoBehaviour
     /// Resets the result values and starts the lerp of money.
     /// </summary>
     /// <param name="res"></param>
-    public void gotNewResult(int res)
+    public void gotNewResult(int res, int lerpStart)
     {
         t = 0f;
         result = res;
-        oldResult = "0";
-        currentResult = "0";
+        lerpFrom = lerpStart;
+        oldResult = lerpFrom.ToString();
+        currentResult = oldResult;
         GetComponent<TMP_Text>().text = "0 <sprite anim=0,5,8>";
     }
 }
