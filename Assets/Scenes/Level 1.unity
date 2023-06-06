@@ -478,6 +478,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Speed
       objectReference: {fileID: 0}
+    - target: {fileID: 662970238605144365, guid: fefcda4ccba3c78459b14d7c8e1eb233, type: 3}
+      propertyPath: speedBonus
+      value: -2
+      objectReference: {fileID: 0}
     - target: {fileID: 6603381774893863771, guid: fefcda4ccba3c78459b14d7c8e1eb233, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -680,7 +684,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 1, g: 1, b: 1, a: 0}
+  m_BackGroundColor: {r: 1, g: 1, b: 1, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -1414,7 +1418,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1605971271488904901, guid: 63c05f708c594b24499f7173730042e4, type: 3}
       propertyPath: newSpeed
-      value: 5
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1605971271488904901, guid: 63c05f708c594b24499f7173730042e4, type: 3}
       propertyPath: newDirection.x

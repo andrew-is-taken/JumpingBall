@@ -183,7 +183,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.85882354, g: 0.85882354, b: 0.85882354, a: 0}
+  m_BackGroundColor: {r: 1, g: 1, b: 1, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -614,6 +614,10 @@ PrefabInstance:
       propertyPath: m_fontColor32.rgba
       value: 2039583
       objectReference: {fileID: 0}
+    - target: {fileID: 1370996432961340386, guid: a47b3d4e4d8634b4bbdd1b62ca9e3ec4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1524280740119526449, guid: a47b3d4e4d8634b4bbdd1b62ca9e3ec4, type: 3}
       propertyPath: m_fontColor.a
       value: 0
@@ -893,7 +897,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: MoneyForLevel.Array.size
-      value: 12
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[0].time
@@ -905,11 +909,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[2].time
-      value: 0.2
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[3].time
-      value: 0.3
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[4].time
@@ -966,11 +970,11 @@ PrefabInstance:
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[2].sprite
       value: 
-      objectReference: {fileID: 21300000, guid: c5dbe1e7e576fdf44b64fedd36c1cb87, type: 3}
+      objectReference: {fileID: 21300000, guid: 6277d5f118a92964ebbf689637bde481, type: 3}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[3].sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 6277d5f118a92964ebbf689637bde481, type: 3}
+      objectReference: {fileID: 21300000, guid: c5dbe1e7e576fdf44b64fedd36c1cb87, type: 3}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[4].sprite
       value: 
@@ -997,23 +1001,23 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 43277bb3501f1894b869f776e86f5ab5, type: 3}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: MoneyForLevel.Array.data[0]
-      value: 100
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: MoneyForLevel.Array.data[1]
-      value: 100
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: MoneyForLevel.Array.data[2]
-      value: 100
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: MoneyForLevel.Array.data[3]
-      value: 100
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: MoneyForLevel.Array.data[4]
-      value: 100
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: MoneyForLevel.Array.data[5]
@@ -1021,19 +1025,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: MoneyForLevel.Array.data[6]
-      value: 100
+      value: 110
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: MoneyForLevel.Array.data[7]
-      value: 100
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: MoneyForLevel.Array.data[8]
-      value: 100
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: MoneyForLevel.Array.data[9]
-      value: 100
+      value: 250
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[10].sprite
@@ -1057,11 +1061,43 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 3806800742108124db70b02e51bdaa76, type: 3}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: MoneyForLevel.Array.data[10]
-      value: 100
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: MoneyForLevel.Array.data[11]
-      value: 100
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
+      propertyPath: MoneyForLevel.Array.data[12]
+      value: 350
+      objectReference: {fileID: 0}
+    - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
+      propertyPath: MoneyForLevel.Array.data[13]
+      value: 450
+      objectReference: {fileID: 0}
+    - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
+      propertyPath: MoneyForLevel.Array.data[14]
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
+      propertyPath: MoneyForLevel.Array.data[15]
+      value: 550
+      objectReference: {fileID: 0}
+    - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
+      propertyPath: MoneyForLevel.Array.data[16]
+      value: 600
+      objectReference: {fileID: 0}
+    - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
+      propertyPath: MoneyForLevel.Array.data[17]
+      value: 700
+      objectReference: {fileID: 0}
+    - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
+      propertyPath: MoneyForLevel.Array.data[18]
+      value: 800
+      objectReference: {fileID: 0}
+    - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
+      propertyPath: MoneyForLevel.Array.data[19]
+      value: 800
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[0].dieColor.a
@@ -1101,15 +1137,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[2].dieColor.b
-      value: 0.12156863
+      value: 0.7254902
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[2].dieColor.g
-      value: 0.12156863
+      value: 0.24705884
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[2].dieColor.r
-      value: 0.12156863
+      value: 0.39607847
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[3].dieColor.a
@@ -1117,15 +1153,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[3].dieColor.b
-      value: 0.7254902
+      value: 0.12156863
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[3].dieColor.g
-      value: 0.24705884
+      value: 0.12156863
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[3].dieColor.r
-      value: 0.39607847
+      value: 0.12156863
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[4].dieColor.a
@@ -1413,35 +1449,39 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[2].color.atime1
-      value: 18311
+      value: 7132
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[2].color.atime2
-      value: 32768
+      value: 11372
+      objectReference: {fileID: 0}
+    - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
+      propertyPath: Skins.Array.data[2].color.atime3
+      value: 29876
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[2].color.ctime1
-      value: 17348
+      value: 30840
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[2].color.ctime2
-      value: 65535
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[2].color.key0.a
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[2].color.key0.b
-      value: 0
+      value: 0.6320754
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[2].color.key0.g
-      value: 0
+      value: 0.1470867
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[2].color.key0.r
-      value: 1
+      value: 0.29306513
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[2].color.key1.a
@@ -1449,63 +1489,67 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[2].color.key1.b
-      value: 0.12156863
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[2].color.key1.g
-      value: 0.12156863
+      value: 0.55345905
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[2].color.key1.r
-      value: 0.12156863
+      value: 0.70160174
+      objectReference: {fileID: 0}
+    - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
+      propertyPath: Skins.Array.data[2].color.key2.a
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[2].color.key2.b
-      value: 0.12156863
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[2].color.key2.g
-      value: 0.12156863
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[2].color.key2.r
-      value: 0.12156862
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[3].color.atime1
-      value: 7132
+      value: 18311
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[3].color.atime2
-      value: 11372
+      value: 32768
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[3].color.atime3
-      value: 29876
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[3].color.ctime1
-      value: 30840
+      value: 17348
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[3].color.ctime2
-      value: 0
+      value: 65535
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[3].color.key0.a
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[3].color.key0.b
-      value: 0.6320754
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[3].color.key0.g
-      value: 0.1470867
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[3].color.key0.r
-      value: 0.29306513
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[3].color.key1.a
@@ -1513,31 +1557,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[3].color.key1.b
-      value: 1
+      value: 0.12156863
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[3].color.key1.g
-      value: 0.55345905
+      value: 0.12156863
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[3].color.key1.r
-      value: 0.70160174
+      value: 0.12156863
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[3].color.key2.a
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[3].color.key2.b
-      value: 0
+      value: 0.12156863
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[3].color.key2.g
-      value: 0
+      value: 0.12156863
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[3].color.key2.r
-      value: 0
+      value: 0.12156862
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[4].color.atime0
@@ -2433,19 +2477,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[2].color.m_NumAlphaKeys
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
-      propertyPath: Skins.Array.data[2].color.m_NumColorKeys
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
-      propertyPath: Skins.Array.data[3].color.m_NumAlphaKeys
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
-      propertyPath: Skins.Array.data[3].color.m_NumColorKeys
+      propertyPath: Skins.Array.data[2].color.m_NumColorKeys
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
+      propertyPath: Skins.Array.data[3].color.m_NumAlphaKeys
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
+      propertyPath: Skins.Array.data[3].color.m_NumColorKeys
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1899603064465989194, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: Skins.Array.data[4].color.m_NumAlphaKeys
@@ -2582,6 +2626,18 @@ PrefabInstance:
     - target: {fileID: 1899603064465989236, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
       propertyPath: m_Name
       value: Manager
+      objectReference: {fileID: 0}
+    - target: {fileID: 8265047482872748288, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
+      propertyPath: clearSkinsData
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8265047482872748288, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
+      propertyPath: clearLevelsData
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8265047482872748288, guid: f4405d9c80be5b64d859f9ca133f7f76, type: 3}
+      propertyPath: unlockAllLevels
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

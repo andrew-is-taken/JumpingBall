@@ -4,24 +4,20 @@ using UnityEngine.SceneManagement;
 public class DebugLevelData : MonoBehaviour
 {
     private DataManager dataManager;
-    public bool unlockAllLevels;
     public bool printLevelsData;
     public bool clearLevelsData;
     public bool clearSkinsData;
 
-#if UNITY_EDITOR
     private void Awake()
     {
         dataManager = GetComponent<DataManager>();
     }
-#endif
 
     /// <summary>
     /// Called from level manager.
     /// </summary>
-    public void SyncLevels()
+    public void DebugLevels()
     {
-        if (unlockAllLevels) UnlockAllLevelsInSaveData();
         if (printLevelsData) PrintLevelsFromSaveData();
         if (clearLevelsData) ClearLevelsDoneFromSaveData();
         if (clearSkinsData) ClearBoughtSkinsFromSaveData();
@@ -62,7 +58,7 @@ public class DebugLevelData : MonoBehaviour
     /// <summary>
     /// Unlocks all levels for testing.
     /// </summary>
-    private void UnlockAllLevelsInSaveData()
+    public void UnlockAllLevelsInSaveData()
     {
         dataManager.saveData.lastLevel = 1;
         dataManager.saveData.lastLevelDifficulty = -1;

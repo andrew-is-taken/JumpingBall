@@ -1118,7 +1118,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 1, g: 1, b: 1, a: 0}
+  m_BackGroundColor: {r: 1, g: 1, b: 1, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -1904,6 +1904,11 @@ PrefabInstance:
 --- !u!4 &869921564 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6603381774893863771, guid: fefcda4ccba3c78459b14d7c8e1eb233, type: 3}
+  m_PrefabInstance: {fileID: 869921563}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &869921565 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 545622133317576455, guid: fefcda4ccba3c78459b14d7c8e1eb233, type: 3}
   m_PrefabInstance: {fileID: 869921563}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &903491494
@@ -5387,6 +5392,14 @@ PrefabInstance:
       propertyPath: newDirection.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1605971271488904901, guid: 63c05f708c594b24499f7173730042e4, type: 3}
+      propertyPath: FollowingPart.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1605971271488904901, guid: 63c05f708c594b24499f7173730042e4, type: 3}
+      propertyPath: FollowingPart.Array.data[0]
+      value: 
+      objectReference: {fileID: 869921565}
     - target: {fileID: 1605971271488904926, guid: 63c05f708c594b24499f7173730042e4, type: 3}
       propertyPath: m_Name
       value: Rotator

@@ -31,6 +31,8 @@ public class Shop : MonoBehaviour
     {
         if(levelManager == null)
             levelManager = FindObjectOfType<LevelManager>();
+
+        dataManager = levelManager.GetComponent<DataManager>();
         boughtSkins = dataManager.saveData.boughtSkins;
     }
 
@@ -41,7 +43,7 @@ public class Shop : MonoBehaviour
 
         for(int i = 0; i < boughtSkins.Count; i++)
         {
-            shopItems[i].UnlockItem();
+            shopItems[boughtSkins[i]].UnlockItem();
         }
     }
 

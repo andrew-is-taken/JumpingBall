@@ -1754,7 +1754,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 1, g: 1, b: 1, a: 0}
+  m_BackGroundColor: {r: 1, g: 1, b: 1, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -2588,6 +2588,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a32e32f4b55b5fd488a8431ba3a86c6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PreviousPart: []
 --- !u!1 &789905483
 GameObject:
   m_ObjectHideFlags: 0
@@ -3236,10 +3237,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 222cd765d46c16545b7a654973ade030, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  emitTrails: 0
   speedBonus: 1
   InnerPart: {fileID: 965510316}
   Trail: {fileID: 4802082741438591607, guid: 57cfe163d00f4474c8162f0931612c54, type: 3}
   trailSpawn: {fileID: 912026034}
+  speedUp: {fileID: 0}
+  slowDown: {fileID: 0}
 --- !u!82 &1066422647
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5994,7 +5998,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3209933604236362984, guid: 63c05f708c594b24499f7173730042e4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 63c05f708c594b24499f7173730042e4, type: 3}
 --- !u!1001 &3301509968912824800
 PrefabInstance:

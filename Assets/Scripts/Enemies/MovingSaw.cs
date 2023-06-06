@@ -42,7 +42,7 @@ public class MovingSaw : MonoBehaviour, ILevelObject
         {
             if (!waiting)
             {
-                if (movingUp)
+                if (currMovingUp)
                     child.localPosition = new Vector3(Mathf.Lerp(-0.6f, 0.6f, t), 0, 0);
                 else
                     child.localPosition = new Vector3(Mathf.Lerp(0.6f, -0.6f, t), 0, 0);

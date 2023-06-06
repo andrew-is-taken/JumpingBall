@@ -32,7 +32,6 @@ public class ShopItem : MonoBehaviour
             }
             else
             {
-                print("Locked");
                 shop.ClickedOnLockedSkin(id);
             }
         }

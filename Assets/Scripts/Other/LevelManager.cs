@@ -78,10 +78,6 @@ public class LevelManager : MonoBehaviour
     /// </summary>
     private void SyncronizeLevels()
     {
-#if UNITY_EDITOR
-        GetComponent<DebugLevelData>().SyncLevels();
-#endif
-
         int a = SceneManager.sceneCountInBuildSettings - 2; // scene count minus Start and Menu scenes
         if(dataManager.CheckForNewLevels(a))
             SyncronizeLevels();
@@ -94,9 +90,8 @@ public class LevelManager : MonoBehaviour
     /// <param name="mode"></param>
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-#if UNITY_EDITOR
-        Debug.Log("OnSceneLoaded: " + scene.name);
-#endif
+        if (Debug.isDebugBuild)
+            Debug.Log("OnSceneLoaded: " + scene.name);
 
         if (scene.name == "Menu")
         {
@@ -105,6 +100,9 @@ public class LevelManager : MonoBehaviour
         }
         else if (scene.name == "Start")
         {
+            if (Debug.isDebugBuild)
+                GetComponent<DebugLevelData>().DebugLevels();
+
             GoToMenu();
         }
         else
@@ -281,10 +279,13 @@ public class LevelManager : MonoBehaviour
         deathsInARow += 1;
         DeathScreen.SetActive(true);
 
-        if (deathsInARow >= 5)
+        if (deathsInARow >= 10)
             GetComponent<Interstitial>().ShowAd();
     }
 
+    /// <summary>
+    /// Clears the death in a row variable.
+    /// </summary>
     public void ClearDeaths()
     {
         deathsInARow = 0;
@@ -310,7 +311,16 @@ public class LevelManager : MonoBehaviour
     /// <returns></returns>
     private int CalculateMoneyAfterFinish(float multiplier)
     {
-        return (int)(MoneyForLevel[LevelInList] * (difficulty + 1) * 0.5f * multiplier);
+        switch (difficulty)
+        {
+            case 0:
+                return (int)(MoneyForLevel[LevelInList] * 0.4f * multiplier);
+            case 1:
+                return (int)(MoneyForLevel[LevelInList] * multiplier);
+            case 2:
+                return (int)(MoneyForLevel[LevelInList] * 2 * multiplier);
+        }
+        return 0;
     }
 
     /// <summary>
