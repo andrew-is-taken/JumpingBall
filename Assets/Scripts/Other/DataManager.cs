@@ -4,12 +4,6 @@ public class DataManager : MonoBehaviour
 {
     [Header("Data")]
     public SaveData saveData; // where data is stored
-    private LevelManager levelManager;
-
-    private void Awake()
-    {
-        levelManager = GetComponent<LevelManager>();
-    }
 
     /// <summary>
     /// Syncs the current data with the data saved in memory.
@@ -96,5 +90,22 @@ public class DataManager : MonoBehaviour
         saveData.boughtSkins.Add(skinId);
         saveData.equippedSkin = skinId;
         SaveDataToFile();
+    }
+
+    /// <summary>
+    /// Updates money text in menu.
+    /// </summary>
+    public void UpdateMoney()
+    {
+        FindObjectOfType<MenuMoneyManager>().updateMoney(saveData.crystalls);
+    }
+
+    /// <summary>
+    /// If we need to show interstitial ad to the player.
+    /// </summary>
+    /// <returns></returns>
+    public bool hasAds()
+    {
+        return !saveData.noAds;
     }
 }

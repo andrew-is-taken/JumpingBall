@@ -96,7 +96,7 @@ public class LevelManager : MonoBehaviour
         if (scene.name == "Menu")
         {
             GameCanvas.SetActive(false); // disable game canvas in menu
-            FindObjectOfType<MenuMoneyManager>().updateMoney(dataManager.saveData.crystalls); // update money text in menu
+            dataManager.UpdateMoney();
         }
         else if (scene.name == "Start")
         {

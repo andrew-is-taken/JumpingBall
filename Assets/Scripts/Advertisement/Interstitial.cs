@@ -2,8 +2,12 @@ using UnityEngine;
 
 public class Interstitial : MonoBehaviour
 {
+    private DataManager dataManager;
+
     void Start()
     {
+        dataManager = GetComponent<DataManager>();
+
         //Add AdInfo Interstitial Events
         IronSourceInterstitialEvents.onAdReadyEvent += InterstitialOnAdReadyEvent;
         IronSourceInterstitialEvents.onAdLoadFailedEvent += InterstitialOnAdLoadFailed;
@@ -22,14 +26,17 @@ public class Interstitial : MonoBehaviour
     /// <param name="AdName">Placement name.</param>
     public void ShowAd()
     {
-        if (IronSource.Agent.isInterstitialReady())
+        if (dataManager.hasAds())
         {
-            IronSource.Agent.showInterstitial();
-        }
-        else
-        {
-            Debug.Log("NOT AVAILABLE INTERSTITIAL AD");
-            IronSource.Agent.loadInterstitial();
+            if (IronSource.Agent.isInterstitialReady())
+            {
+                IronSource.Agent.showInterstitial();
+            }
+            else
+            {
+                Debug.Log("NOT AVAILABLE INTERSTITIAL AD");
+                IronSource.Agent.loadInterstitial();
+            }
         }
     }
 

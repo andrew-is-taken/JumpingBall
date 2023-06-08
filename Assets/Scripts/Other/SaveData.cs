@@ -8,6 +8,8 @@ public class SaveData
     public int crystalls; // player's money
     public int equippedSkin; // equipped skin id
 
+    public bool noAds; // if player purchased no ads
+
     public float volume; // volume of game sounds
     public bool musikEnabled; // if the music is enabled
 

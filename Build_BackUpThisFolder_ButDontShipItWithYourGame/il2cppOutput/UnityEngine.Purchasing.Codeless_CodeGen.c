@@ -1,0 +1,215 @@
+﻿#include "pch-c.h"
+#ifndef _MSC_VER
+# include <alloca.h>
+#else
+# include <malloc.h>
+#endif
+
+
+#include "codegen/il2cpp-codegen-metadata.h"
+
+
+
+
+
+extern void EmbeddedAttribute__ctor_m46A614E98F04CB80502FD297F9757355E53774E5 (void);
+extern void NullableAttribute__ctor_m0DC5C8213CA404A32F8262BF51D2835D70486F0D (void);
+extern void NullableAttribute__ctor_m8E36D9AA6A73FB368F06971AB5A670C3BE434529 (void);
+extern void NullableContextAttribute__ctor_m6F2D20720F9E08C76F1FC710437457CFF88C08E2 (void);
+extern void UnitySourceGeneratedAssemblyMonoScriptTypes_v1_Get_m0871798A10C11000A6E990CBC20AA81351AF186E (void);
+extern void UnitySourceGeneratedAssemblyMonoScriptTypes_v1__ctor_mAC28FB1F7552CE39CB3D5CA896DB48CC173524AA (void);
+extern void CodelessIAPStoreListener_InitializeCodelessPurchasingOnLoad_m64B7C4CF6551F46E8907855AC9013692E9554156 (void);
+extern void CodelessIAPStoreListener_InitializePurchasing_mCF45C105FEC2A08E6FF4B5402C9D35FC4B934924 (void);
+extern void CodelessIAPStoreListener__ctor_mA5E552B229398B582F0763C918361C242266DF83 (void);
+extern void CodelessIAPStoreListener_get_Instance_m92C15A2A1CAD8AE78D531F0D262217A278DA34C7 (void);
+extern void CodelessIAPStoreListener_CreateCodelessIAPStoreListenerInstance_mA61F66E56BB5995AE49618294685C2FB6CA46E81 (void);
+extern void CodelessIAPStoreListener_AutoInitializeUnityGamingServicesIfEnabled_mB4B900E915059B9BA915BEAC5EC03E6840315704 (void);
+extern void CodelessIAPStoreListener_ShouldAutoInitUgs_m4A72BB4B09F2D9ECD0C45D14E0092716EE2D0E12 (void);
+extern void CodelessIAPStoreListener_get_StoreController_mB4F7CBF619276AE46435245CAFF6492B3086E92A (void);
+extern void CodelessIAPStoreListener_HasProductInCatalog_mED87E130232EA1AEDD68657851EDBF1B5D28B910 (void);
+extern void CodelessIAPStoreListener_GetProduct_m8537652E27E1984D7E1872478EAFE968B0ECBA44 (void);
+extern void CodelessIAPStoreListener_AddButton_mFD5CD8B448B4F7D9DAC6744EEE2B2C5A690CCAD6 (void);
+extern void CodelessIAPStoreListener_RemoveButton_m01159DC9A0279A7A34C387BDABC1A34A3441ACCA (void);
+extern void CodelessIAPStoreListener_AddListener_m8618E1B4D47E5615C5404610A2E0AE86B2B9314F (void);
+extern void CodelessIAPStoreListener_RemoveListener_m7BDA66843A5BFC0D9F243E4260307DEDC8465DEE (void);
+extern void CodelessIAPStoreListener_InitiatePurchase_m71FAF4BDF2D42168897C526EBF45393D0928A0E1 (void);
+extern void CodelessIAPStoreListener_OnInitialized_mFCF299043501CBD9E024830051E2B1C70454018D (void);
+extern void CodelessIAPStoreListener_OnInitializeFailed_mF3133BD50AF6487E74332C611BC80A9F82331680 (void);
+extern void CodelessIAPStoreListener_OnInitializeFailed_mF4ECA55ED8AB9F82D292D007C6ABF4B54C23C5AB (void);
+extern void CodelessIAPStoreListener_ProcessPurchase_mF53C66277C4E76EB7674A8DA1E327C012335480F (void);
+extern void CodelessIAPStoreListener_OnPurchaseFailed_m5339F261B8F2899CFDD16B016A9EDCED986D314E (void);
+extern void U3CCreateCodelessIAPStoreListenerInstanceU3Ed__16_MoveNext_mA8745BF31014C60BF9C2744F8AFE2240690CD48F (void);
+extern void U3CCreateCodelessIAPStoreListenerInstanceU3Ed__16_SetStateMachine_mFD1A71A09A2D24239238FA7F713666AFD930FDB1 (void);
+extern void IAPButton_Start_m989675B1B09A93E5600B93D39755E99B891E6B60 (void);
+extern void IAPButton_OnEnable_mB176296ECE7775724C6EB321DBD913BC090BE506 (void);
+extern void IAPButton_OnDisable_m390D571F92EEC6F8EEC17964ACFCA49A484E1E74 (void);
+extern void IAPButton_PurchaseProduct_m23E2C90E3E7DF715DD1BF39D411F59C1CBE84687 (void);
+extern void IAPButton_Restore_mD680231EBD8C6879B89B8A1D9A24F307D1872FFB (void);
+extern void IAPButton_OnTransactionsRestored_m1381C2D3A8539A4453C2C43A6495C33DDB554777 (void);
+extern void IAPButton_ProcessPurchase_mD212CBE19D46A924EC90697F15396C633ADAF0C6 (void);
+extern void IAPButton_OnPurchaseFailed_m7BE05E293755252902BA4324CDB78D675FE0022C (void);
+extern void IAPButton_UpdateText_m04AEC40D91B24D2D200C991B6208C0E965A97177 (void);
+extern void IAPButton__ctor_m7FF90E40B9EC40C472BA938C9E4B39F2DF9251F8 (void);
+extern void OnTransactionsRestoredEvent__ctor_m3585DEF4C23F6522BA5BF4F9D88B2F34004D12C0 (void);
+extern void OnPurchaseCompletedEvent__ctor_m3722A46B9CE493A7F870ABB77FE8E02EFB2621F9 (void);
+extern void OnPurchaseFailedEvent__ctor_m9162EA5C1CB1982B330C77EB4A6DB2832A16DBA7 (void);
+extern void IAPConfigurationHelper_PopulateConfigurationBuilder_mD34A2B0F961D54F4EA938F83BCA253150874C46F (void);
+extern void IAPListener_OnEnable_m7F4F6367344A82D98491B63D69D58DAB5E6EDBB7 (void);
+extern void IAPListener_OnDisable_m29581FE2217B6EF64DA0E2064A587C1EE682F41A (void);
+extern void IAPListener_ProcessPurchase_m1DF81E92FEA6213A11660DFE3B3E414D960D0A50 (void);
+extern void IAPListener_OnPurchaseFailed_mB361558BB603975A6B5F07BD9F64D432BBD83550 (void);
+extern void IAPListener__ctor_mDB47B51F3D8DF897A8B87EFFE1881762E15B4B9F (void);
+extern void OnPurchaseCompletedEvent__ctor_m5104B4349DEB0909DC168A5B164E10351909CD69 (void);
+extern void OnPurchaseFailedEvent__ctor_mC3846DC202004ACC32A0BF89B4BEC0244896A732 (void);
+static Il2CppMethodPointer s_methodPointers[51] = 
+{
+	EmbeddedAttribute__ctor_m46A614E98F04CB80502FD297F9757355E53774E5,
+	NullableAttribute__ctor_m0DC5C8213CA404A32F8262BF51D2835D70486F0D,
+	NullableAttribute__ctor_m8E36D9AA6A73FB368F06971AB5A670C3BE434529,
+	NullableContextAttribute__ctor_m6F2D20720F9E08C76F1FC710437457CFF88C08E2,
+	UnitySourceGeneratedAssemblyMonoScriptTypes_v1_Get_m0871798A10C11000A6E990CBC20AA81351AF186E,
+	UnitySourceGeneratedAssemblyMonoScriptTypes_v1__ctor_mAC28FB1F7552CE39CB3D5CA896DB48CC173524AA,
+	CodelessIAPStoreListener_InitializeCodelessPurchasingOnLoad_m64B7C4CF6551F46E8907855AC9013692E9554156,
+	CodelessIAPStoreListener_InitializePurchasing_mCF45C105FEC2A08E6FF4B5402C9D35FC4B934924,
+	NULL,
+	NULL,
+	CodelessIAPStoreListener__ctor_mA5E552B229398B582F0763C918361C242266DF83,
+	CodelessIAPStoreListener_get_Instance_m92C15A2A1CAD8AE78D531F0D262217A278DA34C7,
+	CodelessIAPStoreListener_CreateCodelessIAPStoreListenerInstance_mA61F66E56BB5995AE49618294685C2FB6CA46E81,
+	CodelessIAPStoreListener_AutoInitializeUnityGamingServicesIfEnabled_mB4B900E915059B9BA915BEAC5EC03E6840315704,
+	CodelessIAPStoreListener_ShouldAutoInitUgs_m4A72BB4B09F2D9ECD0C45D14E0092716EE2D0E12,
+	CodelessIAPStoreListener_get_StoreController_mB4F7CBF619276AE46435245CAFF6492B3086E92A,
+	CodelessIAPStoreListener_HasProductInCatalog_mED87E130232EA1AEDD68657851EDBF1B5D28B910,
+	CodelessIAPStoreListener_GetProduct_m8537652E27E1984D7E1872478EAFE968B0ECBA44,
+	CodelessIAPStoreListener_AddButton_mFD5CD8B448B4F7D9DAC6744EEE2B2C5A690CCAD6,
+	CodelessIAPStoreListener_RemoveButton_m01159DC9A0279A7A34C387BDABC1A34A3441ACCA,
+	CodelessIAPStoreListener_AddListener_m8618E1B4D47E5615C5404610A2E0AE86B2B9314F,
+	CodelessIAPStoreListener_RemoveListener_m7BDA66843A5BFC0D9F243E4260307DEDC8465DEE,
+	CodelessIAPStoreListener_InitiatePurchase_m71FAF4BDF2D42168897C526EBF45393D0928A0E1,
+	CodelessIAPStoreListener_OnInitialized_mFCF299043501CBD9E024830051E2B1C70454018D,
+	CodelessIAPStoreListener_OnInitializeFailed_mF3133BD50AF6487E74332C611BC80A9F82331680,
+	CodelessIAPStoreListener_OnInitializeFailed_mF4ECA55ED8AB9F82D292D007C6ABF4B54C23C5AB,
+	CodelessIAPStoreListener_ProcessPurchase_mF53C66277C4E76EB7674A8DA1E327C012335480F,
+	CodelessIAPStoreListener_OnPurchaseFailed_m5339F261B8F2899CFDD16B016A9EDCED986D314E,
+	U3CCreateCodelessIAPStoreListenerInstanceU3Ed__16_MoveNext_mA8745BF31014C60BF9C2744F8AFE2240690CD48F,
+	U3CCreateCodelessIAPStoreListenerInstanceU3Ed__16_SetStateMachine_mFD1A71A09A2D24239238FA7F713666AFD930FDB1,
+	IAPButton_Start_m989675B1B09A93E5600B93D39755E99B891E6B60,
+	IAPButton_OnEnable_mB176296ECE7775724C6EB321DBD913BC090BE506,
+	IAPButton_OnDisable_m390D571F92EEC6F8EEC17964ACFCA49A484E1E74,
+	IAPButton_PurchaseProduct_m23E2C90E3E7DF715DD1BF39D411F59C1CBE84687,
+	IAPButton_Restore_mD680231EBD8C6879B89B8A1D9A24F307D1872FFB,
+	IAPButton_OnTransactionsRestored_m1381C2D3A8539A4453C2C43A6495C33DDB554777,
+	IAPButton_ProcessPurchase_mD212CBE19D46A924EC90697F15396C633ADAF0C6,
+	IAPButton_OnPurchaseFailed_m7BE05E293755252902BA4324CDB78D675FE0022C,
+	IAPButton_UpdateText_m04AEC40D91B24D2D200C991B6208C0E965A97177,
+	IAPButton__ctor_m7FF90E40B9EC40C472BA938C9E4B39F2DF9251F8,
+	OnTransactionsRestoredEvent__ctor_m3585DEF4C23F6522BA5BF4F9D88B2F34004D12C0,
+	OnPurchaseCompletedEvent__ctor_m3722A46B9CE493A7F870ABB77FE8E02EFB2621F9,
+	OnPurchaseFailedEvent__ctor_m9162EA5C1CB1982B330C77EB4A6DB2832A16DBA7,
+	IAPConfigurationHelper_PopulateConfigurationBuilder_mD34A2B0F961D54F4EA938F83BCA253150874C46F,
+	IAPListener_OnEnable_m7F4F6367344A82D98491B63D69D58DAB5E6EDBB7,
+	IAPListener_OnDisable_m29581FE2217B6EF64DA0E2064A587C1EE682F41A,
+	IAPListener_ProcessPurchase_m1DF81E92FEA6213A11660DFE3B3E414D960D0A50,
+	IAPListener_OnPurchaseFailed_mB361558BB603975A6B5F07BD9F64D432BBD83550,
+	IAPListener__ctor_mDB47B51F3D8DF897A8B87EFFE1881762E15B4B9F,
+	OnPurchaseCompletedEvent__ctor_m5104B4349DEB0909DC168A5B164E10351909CD69,
+	OnPurchaseFailedEvent__ctor_mC3846DC202004ACC32A0BF89B4BEC0244896A732,
+};
+extern void U3CCreateCodelessIAPStoreListenerInstanceU3Ed__16_MoveNext_mA8745BF31014C60BF9C2744F8AFE2240690CD48F_AdjustorThunk (void);
+extern void U3CCreateCodelessIAPStoreListenerInstanceU3Ed__16_SetStateMachine_mFD1A71A09A2D24239238FA7F713666AFD930FDB1_AdjustorThunk (void);
+static Il2CppTokenAdjustorThunkPair s_adjustorThunks[2] = 
+{
+	{ 0x0600001D, U3CCreateCodelessIAPStoreListenerInstanceU3Ed__16_MoveNext_mA8745BF31014C60BF9C2744F8AFE2240690CD48F_AdjustorThunk },
+	{ 0x0600001E, U3CCreateCodelessIAPStoreListenerInstanceU3Ed__16_SetStateMachine_mFD1A71A09A2D24239238FA7F713666AFD930FDB1_AdjustorThunk },
+};
+static const int32_t s_InvokerIndices[51] = 
+{
+	7902,
+	6181,
+	6293,
+	6181,
+	13771,
+	7902,
+	13741,
+	13741,
+	0,
+	0,
+	7902,
+	13693,
+	13741,
+	13693,
+	13667,
+	7756,
+	4537,
+	5622,
+	6293,
+	6293,
+	6293,
+	6293,
+	6293,
+	3504,
+	6257,
+	3240,
+	5319,
+	3497,
+	7902,
+	6293,
+	7902,
+	7902,
+	7902,
+	7902,
+	7902,
+	2892,
+	5319,
+	3497,
+	7902,
+	7902,
+	7902,
+	7902,
+	7902,
+	11277,
+	7902,
+	7902,
+	5319,
+	3497,
+	7902,
+	7902,
+	7902,
+};
+static const Il2CppTokenRangePair s_rgctxIndices[2] = 
+{
+	{ 0x06000009, { 0, 2 } },
+	{ 0x0600000A, { 2, 2 } },
+};
+extern const uint32_t g_rgctx_ConfigurationBuilder_Configure_TisT_t754D293E51F083D39F4C8BA0BA1429B24319B4BC_m42C35A92E0C3297E4827DF29888EF9DFB9DBA264;
+extern const uint32_t g_rgctx_T_t754D293E51F083D39F4C8BA0BA1429B24319B4BC;
+extern const uint32_t g_rgctx_IExtensionProvider_GetExtension_TisT_t8ADDB1D4430724FEF364044D7B2F28A476ED09BC_mF31E0B28CA19A9815477621153359DB53A3CE3B8;
+extern const uint32_t g_rgctx_T_t8ADDB1D4430724FEF364044D7B2F28A476ED09BC;
+static const Il2CppRGCTXDefinition s_rgctxValues[4] = 
+{
+	{ (Il2CppRGCTXDataType)3, (const void *)&g_rgctx_ConfigurationBuilder_Configure_TisT_t754D293E51F083D39F4C8BA0BA1429B24319B4BC_m42C35A92E0C3297E4827DF29888EF9DFB9DBA264 },
+	{ (Il2CppRGCTXDataType)2, (const void *)&g_rgctx_T_t754D293E51F083D39F4C8BA0BA1429B24319B4BC },
+	{ (Il2CppRGCTXDataType)3, (const void *)&g_rgctx_IExtensionProvider_GetExtension_TisT_t8ADDB1D4430724FEF364044D7B2F28A476ED09BC_mF31E0B28CA19A9815477621153359DB53A3CE3B8 },
+	{ (Il2CppRGCTXDataType)2, (const void *)&g_rgctx_T_t8ADDB1D4430724FEF364044D7B2F28A476ED09BC },
+};
+IL2CPP_EXTERN_C const Il2CppCodeGenModule g_UnityEngine_Purchasing_Codeless_CodeGenModule;
+const Il2CppCodeGenModule g_UnityEngine_Purchasing_Codeless_CodeGenModule = 
+{
+	"UnityEngine.Purchasing.Codeless.dll",
+	51,
+	s_methodPointers,
+	2,
+	s_adjustorThunks,
+	s_InvokerIndices,
+	0,
+	NULL,
+	2,
+	s_rgctxIndices,
+	4,
+	s_rgctxValues,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+};

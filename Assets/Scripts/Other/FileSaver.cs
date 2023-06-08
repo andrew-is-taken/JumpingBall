@@ -52,9 +52,12 @@ public class FileSaver : MonoBehaviour
     /// </summary>
     private void SetDefaultParameters()
     {
+        saveData.crystalls = 100;
+        saveData.noAds = false;
         saveData.volume = 0.7f;
         saveData.lastLevel = 0;
         saveData.lastLevelDifficulty = -1;
+        saveData.equippedSkin = 0;
         saveData.musikEnabled = true;
         saveData.AddFirstLineOfLevels();
         saveData.ClearBoughtSkins();
