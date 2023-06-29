@@ -130,8 +130,8 @@ IL2CPP_EXTERN_C RuntimeClass* String_t_il2cpp_TypeInfo_var;
 IL2CPP_EXTERN_C RuntimeClass* UInt16_tF4C148C876015C212FD72652D0B6ED8CC247A455_il2cpp_TypeInfo_var;
 IL2CPP_EXTERN_C RuntimeClass* UInt32_t1833D51FFA667B18A5AA4B8D34DE284F8495D29B_il2cpp_TypeInfo_var;
 IL2CPP_EXTERN_C RuntimeClass* UInt64_t8F12534CC8FC4B5860F2A2CD1EE79D322E7A41AF_il2cpp_TypeInfo_var;
-IL2CPP_EXTERN_C RuntimeField* U3CPrivateImplementationDetailsU3E_t485C76DCE4DC10B1237D1F9CBDD9FF91BEAB884D____0B4EC7D423A7125C262791368B63A0A8DB3B0640BC83BF666E28E3510A37B0CD_0_FieldInfo_var;
-IL2CPP_EXTERN_C RuntimeField* U3CPrivateImplementationDetailsU3E_t485C76DCE4DC10B1237D1F9CBDD9FF91BEAB884D____675AE83A23601FAC01228C141233F49DF24E8FBC2FAB7A4751D1A2C9445B3CA2_1_FieldInfo_var;
+IL2CPP_EXTERN_C RuntimeField* U3CPrivateImplementationDetailsU3E_t485C76DCE4DC10B1237D1F9CBDD9FF91BEAB884D____675AE83A23601FAC01228C141233F49DF24E8FBC2FAB7A4751D1A2C9445B3CA2_0_FieldInfo_var;
+IL2CPP_EXTERN_C RuntimeField* U3CPrivateImplementationDetailsU3E_t485C76DCE4DC10B1237D1F9CBDD9FF91BEAB884D____E0048D09AE41E7FD6CE574968932DEC30240873B985A344F58D543E488A1726C_1_FieldInfo_var;
 IL2CPP_EXTERN_C RuntimeField* U3CPrivateImplementationDetailsU3E_t485C76DCE4DC10B1237D1F9CBDD9FF91BEAB884D____F642F9B52A17FCAEDFF8B008B645A49C9B6C1C229ACA7ABC830E359B614ABCD2_2_FieldInfo_var;
 IL2CPP_EXTERN_C String_t* _stringLiteral2C3D4826D5236B3C9A914C5CE2E3D8CEA48AC7CE;
 IL2CPP_EXTERN_C String_t* _stringLiteral5962E944D7340CE47999BF097B4AFD70C1501FB9;
@@ -692,8 +692,8 @@ struct TextReader_tB8D43017CB6BE1633E5A86D64E7757366507C1F7_StaticFields
 };
 struct U3CPrivateImplementationDetailsU3E_t485C76DCE4DC10B1237D1F9CBDD9FF91BEAB884D_StaticFields
 {
-	__StaticArrayInitTypeSizeU3D257_t3BD1CF0DA9DDE25A033E3CB5B247CDB2DE85B868 ___0B4EC7D423A7125C262791368B63A0A8DB3B0640BC83BF666E28E3510A37B0CD_0;
-	__StaticArrayInitTypeSizeU3D360_t996A4FCF3AF59E7B49A2EC188B47F9647A575A27 ___675AE83A23601FAC01228C141233F49DF24E8FBC2FAB7A4751D1A2C9445B3CA2_1;
+	__StaticArrayInitTypeSizeU3D360_t996A4FCF3AF59E7B49A2EC188B47F9647A575A27 ___675AE83A23601FAC01228C141233F49DF24E8FBC2FAB7A4751D1A2C9445B3CA2_0;
+	__StaticArrayInitTypeSizeU3D257_t3BD1CF0DA9DDE25A033E3CB5B247CDB2DE85B868 ___E0048D09AE41E7FD6CE574968932DEC30240873B985A344F58D543E488A1726C_1;
 	int64_t ___F642F9B52A17FCAEDFF8B008B645A49C9B6C1C229ACA7ABC830E359B614ABCD2_2;
 };
 #ifdef __clang__
@@ -1011,8 +1011,8 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR MonoScriptData_t9C5D932FA3C8B9AB1C4BCFACB69A7
 	if (!s_Il2CppMethodInitialized)
 	{
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&ByteU5BU5D_tA6237BF417AE52AD70CFB4EF24A7A82613DF9031_il2cpp_TypeInfo_var);
-		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&U3CPrivateImplementationDetailsU3E_t485C76DCE4DC10B1237D1F9CBDD9FF91BEAB884D____0B4EC7D423A7125C262791368B63A0A8DB3B0640BC83BF666E28E3510A37B0CD_0_FieldInfo_var);
-		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&U3CPrivateImplementationDetailsU3E_t485C76DCE4DC10B1237D1F9CBDD9FF91BEAB884D____675AE83A23601FAC01228C141233F49DF24E8FBC2FAB7A4751D1A2C9445B3CA2_1_FieldInfo_var);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&U3CPrivateImplementationDetailsU3E_t485C76DCE4DC10B1237D1F9CBDD9FF91BEAB884D____675AE83A23601FAC01228C141233F49DF24E8FBC2FAB7A4751D1A2C9445B3CA2_0_FieldInfo_var);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&U3CPrivateImplementationDetailsU3E_t485C76DCE4DC10B1237D1F9CBDD9FF91BEAB884D____E0048D09AE41E7FD6CE574968932DEC30240873B985A344F58D543E488A1726C_1_FieldInfo_var);
 		s_Il2CppMethodInitialized = true;
 	}
 	MonoScriptData_t9C5D932FA3C8B9AB1C4BCFACB69A7200E4FC125A V_0;
@@ -1021,13 +1021,13 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR MonoScriptData_t9C5D932FA3C8B9AB1C4BCFACB69A7
 		il2cpp_codegen_initobj((&V_0), sizeof(MonoScriptData_t9C5D932FA3C8B9AB1C4BCFACB69A7200E4FC125A));
 		ByteU5BU5D_tA6237BF417AE52AD70CFB4EF24A7A82613DF9031* L_0 = (ByteU5BU5D_tA6237BF417AE52AD70CFB4EF24A7A82613DF9031*)(ByteU5BU5D_tA6237BF417AE52AD70CFB4EF24A7A82613DF9031*)SZArrayNew(ByteU5BU5D_tA6237BF417AE52AD70CFB4EF24A7A82613DF9031_il2cpp_TypeInfo_var, (uint32_t)((int32_t)257));
 		ByteU5BU5D_tA6237BF417AE52AD70CFB4EF24A7A82613DF9031* L_1 = L_0;
-		RuntimeFieldHandle_t6E4C45B6D2EA12FC99185805A7E77527899B25C5 L_2 = { reinterpret_cast<intptr_t> (U3CPrivateImplementationDetailsU3E_t485C76DCE4DC10B1237D1F9CBDD9FF91BEAB884D____0B4EC7D423A7125C262791368B63A0A8DB3B0640BC83BF666E28E3510A37B0CD_0_FieldInfo_var) };
+		RuntimeFieldHandle_t6E4C45B6D2EA12FC99185805A7E77527899B25C5 L_2 = { reinterpret_cast<intptr_t> (U3CPrivateImplementationDetailsU3E_t485C76DCE4DC10B1237D1F9CBDD9FF91BEAB884D____E0048D09AE41E7FD6CE574968932DEC30240873B985A344F58D543E488A1726C_1_FieldInfo_var) };
 		RuntimeHelpers_InitializeArray_m751372AA3F24FBF6DA9B9D687CBFA2DE436CAB9B((RuntimeArray*)L_1, L_2, NULL);
 		(&V_0)->___FilePathsData_0 = L_1;
 		Il2CppCodeGenWriteBarrier((void**)(&(&V_0)->___FilePathsData_0), (void*)L_1);
 		ByteU5BU5D_tA6237BF417AE52AD70CFB4EF24A7A82613DF9031* L_3 = (ByteU5BU5D_tA6237BF417AE52AD70CFB4EF24A7A82613DF9031*)(ByteU5BU5D_tA6237BF417AE52AD70CFB4EF24A7A82613DF9031*)SZArrayNew(ByteU5BU5D_tA6237BF417AE52AD70CFB4EF24A7A82613DF9031_il2cpp_TypeInfo_var, (uint32_t)((int32_t)360));
 		ByteU5BU5D_tA6237BF417AE52AD70CFB4EF24A7A82613DF9031* L_4 = L_3;
-		RuntimeFieldHandle_t6E4C45B6D2EA12FC99185805A7E77527899B25C5 L_5 = { reinterpret_cast<intptr_t> (U3CPrivateImplementationDetailsU3E_t485C76DCE4DC10B1237D1F9CBDD9FF91BEAB884D____675AE83A23601FAC01228C141233F49DF24E8FBC2FAB7A4751D1A2C9445B3CA2_1_FieldInfo_var) };
+		RuntimeFieldHandle_t6E4C45B6D2EA12FC99185805A7E77527899B25C5 L_5 = { reinterpret_cast<intptr_t> (U3CPrivateImplementationDetailsU3E_t485C76DCE4DC10B1237D1F9CBDD9FF91BEAB884D____675AE83A23601FAC01228C141233F49DF24E8FBC2FAB7A4751D1A2C9445B3CA2_0_FieldInfo_var) };
 		RuntimeHelpers_InitializeArray_m751372AA3F24FBF6DA9B9D687CBFA2DE436CAB9B((RuntimeArray*)L_4, L_5, NULL);
 		(&V_0)->___TypesData_1 = L_4;
 		Il2CppCodeGenWriteBarrier((void**)(&(&V_0)->___TypesData_1), (void*)L_4);
@@ -1135,31 +1135,31 @@ IL2CPP_EXTERN_C void MonoScriptData_t9C5D932FA3C8B9AB1C4BCFACB69A7200E4FC125A_ma
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-void UnityPurchasingCallback_Invoke_m0F05D96994D5D9CF3F9DAE457764FA18E55CFCE0_Multicast(UnityPurchasingCallback_tFC58410D7A50DD05CC7430C76C7E0277A213757D* __this, String_t* ___0_subject, String_t* ___1_payload, String_t* ___2_receipt, String_t* ___3_transactionId, String_t* ___4_originalTransactionId, const RuntimeMethod* method)
+void UnityPurchasingCallback_Invoke_mE6A42E5FA4CA666A5D1ACBFBF1D010E2BA72801A_Multicast(UnityPurchasingCallback_tFC58410D7A50DD05CC7430C76C7E0277A213757D* __this, String_t* ___0_subject, String_t* ___1_payload, String_t* ___2_receipt, String_t* ___3_transactionId, String_t* ___4_originalTransactionId, bool ___5_isRestored, const RuntimeMethod* method)
 {
 	il2cpp_array_size_t length = __this->___delegates_13->max_length;
 	Delegate_t** delegatesToInvoke = reinterpret_cast<Delegate_t**>(__this->___delegates_13->GetAddressAtUnchecked(0));
 	for (il2cpp_array_size_t i = 0; i < length; i++)
 	{
 		UnityPurchasingCallback_tFC58410D7A50DD05CC7430C76C7E0277A213757D* currentDelegate = reinterpret_cast<UnityPurchasingCallback_tFC58410D7A50DD05CC7430C76C7E0277A213757D*>(delegatesToInvoke[i]);
-		typedef void (*FunctionPointerType) (RuntimeObject*, String_t*, String_t*, String_t*, String_t*, String_t*, const RuntimeMethod*);
-		((FunctionPointerType)currentDelegate->___invoke_impl_1)((Il2CppObject*)currentDelegate->___method_code_6, ___0_subject, ___1_payload, ___2_receipt, ___3_transactionId, ___4_originalTransactionId, reinterpret_cast<RuntimeMethod*>(currentDelegate->___method_3));
+		typedef void (*FunctionPointerType) (RuntimeObject*, String_t*, String_t*, String_t*, String_t*, String_t*, bool, const RuntimeMethod*);
+		((FunctionPointerType)currentDelegate->___invoke_impl_1)((Il2CppObject*)currentDelegate->___method_code_6, ___0_subject, ___1_payload, ___2_receipt, ___3_transactionId, ___4_originalTransactionId, ___5_isRestored, reinterpret_cast<RuntimeMethod*>(currentDelegate->___method_3));
 	}
 }
-void UnityPurchasingCallback_Invoke_m0F05D96994D5D9CF3F9DAE457764FA18E55CFCE0_OpenInst(UnityPurchasingCallback_tFC58410D7A50DD05CC7430C76C7E0277A213757D* __this, String_t* ___0_subject, String_t* ___1_payload, String_t* ___2_receipt, String_t* ___3_transactionId, String_t* ___4_originalTransactionId, const RuntimeMethod* method)
+void UnityPurchasingCallback_Invoke_mE6A42E5FA4CA666A5D1ACBFBF1D010E2BA72801A_OpenInst(UnityPurchasingCallback_tFC58410D7A50DD05CC7430C76C7E0277A213757D* __this, String_t* ___0_subject, String_t* ___1_payload, String_t* ___2_receipt, String_t* ___3_transactionId, String_t* ___4_originalTransactionId, bool ___5_isRestored, const RuntimeMethod* method)
 {
 	NullCheck(___0_subject);
-	typedef void (*FunctionPointerType) (String_t*, String_t*, String_t*, String_t*, String_t*, const RuntimeMethod*);
-	((FunctionPointerType)__this->___method_ptr_0)(___0_subject, ___1_payload, ___2_receipt, ___3_transactionId, ___4_originalTransactionId, method);
+	typedef void (*FunctionPointerType) (String_t*, String_t*, String_t*, String_t*, String_t*, bool, const RuntimeMethod*);
+	((FunctionPointerType)__this->___method_ptr_0)(___0_subject, ___1_payload, ___2_receipt, ___3_transactionId, ___4_originalTransactionId, ___5_isRestored, method);
 }
-void UnityPurchasingCallback_Invoke_m0F05D96994D5D9CF3F9DAE457764FA18E55CFCE0_OpenStatic(UnityPurchasingCallback_tFC58410D7A50DD05CC7430C76C7E0277A213757D* __this, String_t* ___0_subject, String_t* ___1_payload, String_t* ___2_receipt, String_t* ___3_transactionId, String_t* ___4_originalTransactionId, const RuntimeMethod* method)
+void UnityPurchasingCallback_Invoke_mE6A42E5FA4CA666A5D1ACBFBF1D010E2BA72801A_OpenStatic(UnityPurchasingCallback_tFC58410D7A50DD05CC7430C76C7E0277A213757D* __this, String_t* ___0_subject, String_t* ___1_payload, String_t* ___2_receipt, String_t* ___3_transactionId, String_t* ___4_originalTransactionId, bool ___5_isRestored, const RuntimeMethod* method)
 {
-	typedef void (*FunctionPointerType) (String_t*, String_t*, String_t*, String_t*, String_t*, const RuntimeMethod*);
-	((FunctionPointerType)__this->___method_ptr_0)(___0_subject, ___1_payload, ___2_receipt, ___3_transactionId, ___4_originalTransactionId, method);
+	typedef void (*FunctionPointerType) (String_t*, String_t*, String_t*, String_t*, String_t*, bool, const RuntimeMethod*);
+	((FunctionPointerType)__this->___method_ptr_0)(___0_subject, ___1_payload, ___2_receipt, ___3_transactionId, ___4_originalTransactionId, ___5_isRestored, method);
 }
-IL2CPP_EXTERN_C  void DelegatePInvokeWrapper_UnityPurchasingCallback_tFC58410D7A50DD05CC7430C76C7E0277A213757D (UnityPurchasingCallback_tFC58410D7A50DD05CC7430C76C7E0277A213757D* __this, String_t* ___0_subject, String_t* ___1_payload, String_t* ___2_receipt, String_t* ___3_transactionId, String_t* ___4_originalTransactionId, const RuntimeMethod* method)
+IL2CPP_EXTERN_C  void DelegatePInvokeWrapper_UnityPurchasingCallback_tFC58410D7A50DD05CC7430C76C7E0277A213757D (UnityPurchasingCallback_tFC58410D7A50DD05CC7430C76C7E0277A213757D* __this, String_t* ___0_subject, String_t* ___1_payload, String_t* ___2_receipt, String_t* ___3_transactionId, String_t* ___4_originalTransactionId, bool ___5_isRestored, const RuntimeMethod* method)
 {
-	typedef void (DEFAULT_CALL *PInvokeFunc)(char*, char*, char*, char*, char*);
+	typedef void (DEFAULT_CALL *PInvokeFunc)(char*, char*, char*, char*, char*, int32_t);
 	PInvokeFunc il2cppPInvokeFunc = reinterpret_cast<PInvokeFunc>(il2cpp_codegen_get_reverse_pinvoke_function_ptr(__this));
 	char* ____0_subject_marshaled = NULL;
 	____0_subject_marshaled = il2cpp_codegen_marshal_string(___0_subject);
@@ -1176,7 +1176,7 @@ IL2CPP_EXTERN_C  void DelegatePInvokeWrapper_UnityPurchasingCallback_tFC58410D7A
 	char* ____4_originalTransactionId_marshaled = NULL;
 	____4_originalTransactionId_marshaled = il2cpp_codegen_marshal_string(___4_originalTransactionId);
 
-	il2cppPInvokeFunc(____0_subject_marshaled, ____1_payload_marshaled, ____2_receipt_marshaled, ____3_transactionId_marshaled, ____4_originalTransactionId_marshaled);
+	il2cppPInvokeFunc(____0_subject_marshaled, ____1_payload_marshaled, ____2_receipt_marshaled, ____3_transactionId_marshaled, ____4_originalTransactionId_marshaled, static_cast<int32_t>(___5_isRestored));
 
 	il2cpp_codegen_marshal_free(____0_subject_marshaled);
 	____0_subject_marshaled = NULL;
@@ -1204,9 +1204,9 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void UnityPurchasingCallback__ctor_mF6C91FDD1
 	__this->___method_code_6 = (intptr_t)__this;
 	if (MethodIsStatic((RuntimeMethod*)___1_method))
 	{
-		bool isOpen = parameterCount == 5;
+		bool isOpen = parameterCount == 6;
 		if (isOpen)
-			__this->___invoke_impl_1 = (intptr_t)&UnityPurchasingCallback_Invoke_m0F05D96994D5D9CF3F9DAE457764FA18E55CFCE0_OpenStatic;
+			__this->___invoke_impl_1 = (intptr_t)&UnityPurchasingCallback_Invoke_mE6A42E5FA4CA666A5D1ACBFBF1D010E2BA72801A_OpenStatic;
 		else
 			{
 				__this->___invoke_impl_1 = (intptr_t)__this->___method_ptr_0;
@@ -1215,10 +1215,10 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void UnityPurchasingCallback__ctor_mF6C91FDD1
 	}
 	else
 	{
-		bool isOpen = parameterCount == 4;
+		bool isOpen = parameterCount == 5;
 		if (isOpen)
 		{
-			__this->___invoke_impl_1 = (intptr_t)&UnityPurchasingCallback_Invoke_m0F05D96994D5D9CF3F9DAE457764FA18E55CFCE0_OpenInst;
+			__this->___invoke_impl_1 = (intptr_t)&UnityPurchasingCallback_Invoke_mE6A42E5FA4CA666A5D1ACBFBF1D010E2BA72801A_OpenInst;
 		}
 		else
 		{
@@ -1228,22 +1228,29 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void UnityPurchasingCallback__ctor_mF6C91FDD1
 			__this->___method_code_6 = (intptr_t)__this->___m_target_2;
 		}
 	}
-	__this->___extra_arg_5 = (intptr_t)&UnityPurchasingCallback_Invoke_m0F05D96994D5D9CF3F9DAE457764FA18E55CFCE0_Multicast;
+	__this->___extra_arg_5 = (intptr_t)&UnityPurchasingCallback_Invoke_mE6A42E5FA4CA666A5D1ACBFBF1D010E2BA72801A_Multicast;
 }
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void UnityPurchasingCallback_Invoke_m0F05D96994D5D9CF3F9DAE457764FA18E55CFCE0 (UnityPurchasingCallback_tFC58410D7A50DD05CC7430C76C7E0277A213757D* __this, String_t* ___0_subject, String_t* ___1_payload, String_t* ___2_receipt, String_t* ___3_transactionId, String_t* ___4_originalTransactionId, const RuntimeMethod* method) 
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void UnityPurchasingCallback_Invoke_mE6A42E5FA4CA666A5D1ACBFBF1D010E2BA72801A (UnityPurchasingCallback_tFC58410D7A50DD05CC7430C76C7E0277A213757D* __this, String_t* ___0_subject, String_t* ___1_payload, String_t* ___2_receipt, String_t* ___3_transactionId, String_t* ___4_originalTransactionId, bool ___5_isRestored, const RuntimeMethod* method) 
 {
-	typedef void (*FunctionPointerType) (RuntimeObject*, String_t*, String_t*, String_t*, String_t*, String_t*, const RuntimeMethod*);
-	((FunctionPointerType)__this->___invoke_impl_1)((Il2CppObject*)__this->___method_code_6, ___0_subject, ___1_payload, ___2_receipt, ___3_transactionId, ___4_originalTransactionId, reinterpret_cast<RuntimeMethod*>(__this->___method_3));
+	typedef void (*FunctionPointerType) (RuntimeObject*, String_t*, String_t*, String_t*, String_t*, String_t*, bool, const RuntimeMethod*);
+	((FunctionPointerType)__this->___invoke_impl_1)((Il2CppObject*)__this->___method_code_6, ___0_subject, ___1_payload, ___2_receipt, ___3_transactionId, ___4_originalTransactionId, ___5_isRestored, reinterpret_cast<RuntimeMethod*>(__this->___method_3));
 }
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* UnityPurchasingCallback_BeginInvoke_mF9E079F879B7853C701180170789DEB1FDB64B36 (UnityPurchasingCallback_tFC58410D7A50DD05CC7430C76C7E0277A213757D* __this, String_t* ___0_subject, String_t* ___1_payload, String_t* ___2_receipt, String_t* ___3_transactionId, String_t* ___4_originalTransactionId, AsyncCallback_t7FEF460CBDCFB9C5FA2EF776984778B9A4145F4C* ___5_callback, RuntimeObject* ___6_object, const RuntimeMethod* method) 
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* UnityPurchasingCallback_BeginInvoke_mB75E43D3920198570C93C4509CEC970E2544A542 (UnityPurchasingCallback_tFC58410D7A50DD05CC7430C76C7E0277A213757D* __this, String_t* ___0_subject, String_t* ___1_payload, String_t* ___2_receipt, String_t* ___3_transactionId, String_t* ___4_originalTransactionId, bool ___5_isRestored, AsyncCallback_t7FEF460CBDCFB9C5FA2EF776984778B9A4145F4C* ___6_callback, RuntimeObject* ___7_object, const RuntimeMethod* method) 
 {
-	void *__d_args[6] = {0};
+	static bool s_Il2CppMethodInitialized;
+	if (!s_Il2CppMethodInitialized)
+	{
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Boolean_t09A6377A54BE2F9E6985A8149F19234FD7DDFE22_il2cpp_TypeInfo_var);
+		s_Il2CppMethodInitialized = true;
+	}
+	void *__d_args[7] = {0};
 	__d_args[0] = ___0_subject;
 	__d_args[1] = ___1_payload;
 	__d_args[2] = ___2_receipt;
 	__d_args[3] = ___3_transactionId;
 	__d_args[4] = ___4_originalTransactionId;
-	return (RuntimeObject*)il2cpp_codegen_delegate_begin_invoke((RuntimeDelegate*)__this, __d_args, (RuntimeDelegate*)___5_callback, (RuntimeObject*)___6_object);
+	__d_args[5] = Box(Boolean_t09A6377A54BE2F9E6985A8149F19234FD7DDFE22_il2cpp_TypeInfo_var, &___5_isRestored);
+	return (RuntimeObject*)il2cpp_codegen_delegate_begin_invoke((RuntimeDelegate*)__this, __d_args, (RuntimeDelegate*)___6_callback, (RuntimeObject*)___7_object);
 }
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void UnityPurchasingCallback_EndInvoke_m048526672E91F6764201A48784A7C16B0BEF8E9A (UnityPurchasingCallback_tFC58410D7A50DD05CC7430C76C7E0277A213757D* __this, RuntimeObject* ___0_result, const RuntimeMethod* method) 
 {

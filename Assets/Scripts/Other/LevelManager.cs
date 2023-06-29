@@ -5,12 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
-    private MovementManager player; // player
     private DataManager dataManager;
-
-    [Header("Skins")]
-    [HideInInspector] public int equippedSkin; // currently active skin
-    [SerializeField] private PlayerSkin[] Skins; // all player skins
+    private PlayerManager playerManager;
 
     [Header("Level info")]
     [HideInInspector] public int difficulty; // level difficulty
@@ -46,6 +42,7 @@ public class LevelManager : MonoBehaviour
     private void Awake()
     {
         dataManager = GetComponent<DataManager>();
+        playerManager = GetComponent<PlayerManager>();
 
         SetQuality();
         GetComponent<FileSaver>().ReadFile();
@@ -112,8 +109,6 @@ public class LevelManager : MonoBehaviour
 
         SetAllAudiosToSavedValue();
         dataManager.SwitchAudioSource(); // enable music
-
-        //EndLevelMoney.gameObject.SetActive(false);
     }
 
     /// <summary>
@@ -122,13 +117,11 @@ public class LevelManager : MonoBehaviour
     private void StartOfLevel()
     {
         GameCanvas.SetActive(true);
-        player = MovementManager.instance;
-        GetComponent<UserInput>().UpdatePlayerInstance(player);
+        playerManager.StartOfLevel();
 
         RealLevel = int.Parse(SceneManager.GetActiveScene().name.Remove(0, 5)); // get level number
         LevelInList = RealLevel - 1;
 
-        SyncPlayerSkin();
         PrepareMainUI();
 
         if (lastCoroutine != null)
@@ -149,32 +142,11 @@ public class LevelManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Sets player's skin and other effects.
-    /// </summary>
-    private void SyncPlayerSkin()
-    {
-        player.GetComponent<SpriteRenderer>().sprite = Skins[equippedSkin].sprite;
-        player.GetComponentInChildren<TrailRenderer>().colorGradient = Skins[equippedSkin].color;
-        player.GetComponentInChildren<TrailRenderer>().time = Skins[equippedSkin].time;
-
-        Color dieCol = Skins[equippedSkin].dieColor;
-
-        var mainPs = player.DeathParticles.GetComponent<ParticleSystem>().main; // main death particle system
-        mainPs.startColor = dieCol;
-
-        var c = player.DeathParticles.GetComponentsInChildren<ParticleSystem>()[1].colorOverLifetime; // splash particles
-        Gradient grad = new Gradient();
-        grad.SetKeys(new GradientColorKey[] { new GradientColorKey(dieCol, 0.0f), new GradientColorKey(dieCol, 1.0f) },
-            new GradientAlphaKey[] { new GradientAlphaKey(1.0f, 0.0f), new GradientAlphaKey(1.0f, 0.8f), new GradientAlphaKey(0.0f, 1.0f) });
-        c.color = grad;
-    }
-
-    /// <summary>
     /// Stops the game.
     /// </summary>
     public void Pause()
     {
-        pausePlayerAudio();
+        playerManager.pausePlayerAudio();
 
         AudioSlider.value = dataManager.saveData.volume;
         MusicToggle.isOn = dataManager.saveData.musikEnabled;
@@ -187,7 +159,7 @@ public class LevelManager : MonoBehaviour
     /// </summary>
     public void Continue()
     {
-        continuePlayerAudio();
+        playerManager.continuePlayerAudio();
         setDataToSettingsValuesAndSave();
 
         TapToStartPanel.SetActive(true);
@@ -203,7 +175,6 @@ public class LevelManager : MonoBehaviour
             setDataToSettingsValuesAndSave();
 
         Time.timeScale = 1f;
-        //PrepareMainUI();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
@@ -214,22 +185,6 @@ public class LevelManager : MonoBehaviour
     {
         dataManager.SaveDataFromSettings(AudioSlider.value, MusicToggle.isOn);
         SetAllAudiosToSavedValue();
-    }
-
-    /// <summary>
-    /// Pauses player's movement audio.
-    /// </summary>
-    private void pausePlayerAudio()
-    {
-        player.GetComponentsInChildren<AudioSource>()[1].Pause();
-    }
-
-    /// <summary>
-    /// Unpauses player's movement audio.
-    /// </summary>
-    private void continuePlayerAudio()
-    {
-        player.GetComponentsInChildren<AudioSource>()[1].Play();
     }
 
     /// <summary>
@@ -252,7 +207,7 @@ public class LevelManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         TapToStartPanel.SetActive(false);
-        player.StartFromTap();
+        playerManager.StartFromTap();
     }
 
     /// <summary>
@@ -366,7 +321,7 @@ public class LevelManager : MonoBehaviour
     /// </summary>
     public void RespawnPlayer()
     {
-        player.RespawnOnLastCheckpoint();
+        playerManager.RespawnOnLastCheckpoint();
     }
 
     /// <summary>
@@ -407,7 +362,7 @@ public class LevelManager : MonoBehaviour
         InteractableEndLevelButtons(true);
         EndLevelX2Button.transition = Selectable.Transition.ColorTint;
 
-        if (player != null)  player.gameObject.SetActive(false);
+        playerManager.DisablePlayerIfEnabled();
     }
 
     /// <summary>

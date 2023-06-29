@@ -7,7 +7,7 @@ public class Shop : MonoBehaviour
 {
     [SerializeField] private Animator MenuAnim; // animator with menu ui
 
-    private LevelManager levelManager; // level manager
+    private PlayerManager playerManager; // level manager
     private DataManager dataManager; // data manager
     private List<int> boughtSkins; // list of purchased skins
 
@@ -29,17 +29,17 @@ public class Shop : MonoBehaviour
 
     private void Awake()
     {
-        if(levelManager == null)
-            levelManager = FindObjectOfType<LevelManager>();
+        if(playerManager == null)
+            playerManager = FindObjectOfType<PlayerManager>();
 
-        dataManager = levelManager.GetComponent<DataManager>();
+        dataManager = playerManager.GetComponent<DataManager>();
         boughtSkins = dataManager.saveData.boughtSkins;
     }
 
     private void Start()
     {
         shopItems.Sort((x, y) => x.id.CompareTo(y.id));
-        shopItems[levelManager.equippedSkin].ChangeItemState(true);
+        shopItems[playerManager.equippedSkin].ChangeItemState(true);
 
         for(int i = 0; i < boughtSkins.Count; i++)
         {
@@ -60,7 +60,7 @@ public class Shop : MonoBehaviour
     /// </summary>
     public void CloseShop()
     {
-        dataManager.saveData.equippedSkin = levelManager.equippedSkin;
+        dataManager.saveData.equippedSkin = playerManager.equippedSkin;
         dataManager.SaveDataToFile();
         MenuAnim.SetBool("OpenShop", false);
     }
@@ -78,7 +78,7 @@ public class Shop : MonoBehaviour
     /// <returns>Id of equipped skin.</returns>
     public int GetEquippedSkin()
     {
-        return levelManager.equippedSkin;
+        return playerManager.equippedSkin;
     }
 
     /// <summary>
@@ -87,8 +87,8 @@ public class Shop : MonoBehaviour
     /// <param name="id"></param>
     public void EquipSelectedSkin(int id)
     {
-        shopItems[levelManager.equippedSkin].ChangeItemState(false);
-        levelManager.equippedSkin = id;
+        shopItems[playerManager.equippedSkin].ChangeItemState(false);
+        playerManager.equippedSkin = id;
     }
 
     /// <summary>
@@ -141,7 +141,7 @@ public class Shop : MonoBehaviour
 
         FindObjectOfType<MenuMoneyManager>().updateMoney(dataManager.saveData.crystalls);
         shopItems[currentId].UnlockItem();
-        shopItems[levelManager.equippedSkin].ChangeItemState(true);
+        shopItems[playerManager.equippedSkin].ChangeItemState(true);
         confirmationPanel.SetActive(false);
     }
 

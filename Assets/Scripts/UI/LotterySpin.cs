@@ -169,5 +169,6 @@ public class LotterySpin : MonoBehaviour
     public void CloseLottery()
     {
         transform.parent.gameObject.SetActive(false);
+        FindObjectOfType<LotteryTimer>().StartTimer();
     }
 }

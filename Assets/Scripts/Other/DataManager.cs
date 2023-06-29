@@ -12,7 +12,7 @@ public class DataManager : MonoBehaviour
     public void RestoreSaveData(SaveData loadedSaveData)
     {
         saveData = loadedSaveData;
-        GetComponent<LevelManager>().equippedSkin = saveData.equippedSkin;
+        GetComponent<PlayerManager>().equippedSkin = saveData.equippedSkin;
         GetComponent<AudioSource>().enabled = saveData.musikEnabled;
         GetComponent<LevelManager>().SetAllAudiosToSavedValue();
     }

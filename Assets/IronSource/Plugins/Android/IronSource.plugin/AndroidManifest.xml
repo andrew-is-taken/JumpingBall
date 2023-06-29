@@ -8,5 +8,6 @@
     <!--<meta-data-->
     <!--android:name="com.google.android.gms.ads.APPLICATION_ID"-->
     <!--android:value="YOUR_ADMOB_APP_ID"/>-->
+    <meta-data android:name="com.google.android.gms.ads.APPLICATION_ID" android:value="ca-app-pub-4005765961994794~2923499394" />
   </application>
 </manifest>

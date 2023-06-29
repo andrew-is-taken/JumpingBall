@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a679b8640d04834b4f09b8c6adec7a, type: 3}
   m_Name: IronSourceMediationSettings
   m_EditorClassIdentifier: 
-  AndroidAppKey: 
+  AndroidAppKey: 19c430e3d
   IOSAppKey: 
   EnableIronsourceSDKInitAPI: 0
   AddIronsourceSkadnetworkID: 0

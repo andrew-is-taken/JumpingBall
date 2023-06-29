@@ -1,64 +1,117 @@
+using System;
 using UnityEngine;
 using UnityEngine.Purchasing;
+using UnityEngine.Purchasing.Extension;
 
-public class IAPManager : MonoBehaviour, IStoreListener
+[RequireComponent(typeof(IAPProcessor))]
+public class IAPManager : MonoBehaviour, IDetailedStoreListener
 {
-    private IStoreController controller;
-    private IExtensionProvider extensions;
+    IStoreController m_StoreController;
 
-    private void Awake()
+    private IAPProcessor processor;
+
+    private string coins_1000 = "1000_coins";
+    private string coins_3000 = "3000_coins";
+    private string coins_8000 = "8000_coins";
+    private string coins_20000 = "20000_coins";
+    private string no_ads = "no_ads";
+
+    private void Start()
+    {
+        processor = GetComponent<IAPProcessor>();
+        InitializePurchasing();
+    }
+
+    /// <summary>
+    /// Initializes the iap system.
+    /// </summary>
+    private void InitializePurchasing()
     {
         var builder = ConfigurationBuilder.Instance(StandardPurchasingModule.Instance());
 
-        builder.AddProduct("1000_coins", ProductType.Consumable);
-        builder.AddProduct("3000_coins", ProductType.Consumable);
-        builder.AddProduct("8000_coins", ProductType.Consumable);
-        builder.AddProduct("20000_coins", ProductType.Consumable);
-        builder.AddProduct("no_ads", ProductType.NonConsumable);
+        builder.AddProduct(coins_1000, ProductType.Consumable);
+        builder.AddProduct(coins_3000, ProductType.Consumable);
+        builder.AddProduct(coins_8000, ProductType.Consumable);
+        builder.AddProduct(coins_20000, ProductType.Consumable);
+        builder.AddProduct(no_ads, ProductType.NonConsumable);
 
         UnityPurchasing.Initialize(this, builder);
     }
 
     /// <summary>
-    /// Called when Unity IAP is ready to make purchases.
+    /// When user pressed button to donate.
     /// </summary>
-    public void OnInitialized(IStoreController controller, IExtensionProvider extensions)
+    /// <param name="id"></param>
+    public void Purchase(int id)
     {
-        this.controller = controller;
-        this.extensions = extensions;
+        switch (id)
+        {
+            case 0:
+                m_StoreController.InitiatePurchase(coins_1000);
+                break;
+            case 1:
+                m_StoreController.InitiatePurchase(coins_3000);
+                break;
+            case 2:
+                m_StoreController.InitiatePurchase(coins_8000);
+                break;
+            case 3:
+                m_StoreController.InitiatePurchase(coins_20000);
+                break;
+            case 4:
+                m_StoreController.InitiatePurchase(no_ads);
+                break;
+        }
     }
 
-    /// <summary>
-    /// Called when Unity IAP encounters an unrecoverable initialization error.
-    ///
-    /// Note that this will not be called if Internet is unavailable; Unity IAP
-    /// will attempt initialization until it becomes available.
-    /// </summary>
-    public void OnInitializeFailed(InitializationFailureReason error, string message)
+    public void OnInitialized(IStoreController controller, IExtensionProvider extensions)
     {
-        Debug.Log(error);
+        Debug.Log("In-App Purchasing successfully initialized");
+        m_StoreController = controller;
     }
 
     public void OnInitializeFailed(InitializationFailureReason error)
     {
-        // obsolete, idk why it's still in the interface
+        OnInitializeFailed(error, null);
     }
 
-    /// <summary>
-    /// Called when a purchase fails.
-    /// </summary>
-    public void OnPurchaseFailed(Product i, PurchaseFailureReason p)
+    public void OnInitializeFailed(InitializationFailureReason error, string message)
     {
-        Debug.Log(p);
+        var errorMessage = $"Purchasing failed to initialize. Reason: {error}.";
+
+        if (message != null)
+        {
+            errorMessage += $" More details: {message}";
+        }
+
+        Debug.Log(errorMessage);
     }
 
-    /// <summary>
-    /// Called when a purchase completes.
-    ///
-    /// May be called at any time after OnInitialized().
-    /// </summary>
-    public PurchaseProcessingResult ProcessPurchase(PurchaseEventArgs e)
+    public PurchaseProcessingResult ProcessPurchase(PurchaseEventArgs args)
     {
+        var product = args.purchasedProduct;
+
+        OnPurchaseComplete(product.definition.id);
+
+        Debug.Log($"Purchase Complete - Product: {product.definition.id}");
+
         return PurchaseProcessingResult.Complete;
+    }
+
+    public void OnPurchaseFailed(Product product, PurchaseFailureReason failureReason)
+    {
+        Debug.Log($"Purchase failed - Product: '{product.definition.id}', PurchaseFailureReason: {failureReason}");
+    }
+
+    public void OnPurchaseFailed(Product product, PurchaseFailureDescription failureDescription)
+    {
+        Debug.Log($"Purchase failed - Product: '{product.definition.id}'," +
+            $" Purchase failure reason: {failureDescription.reason}," +
+            $" Purchase failure details: {failureDescription.message}");
+    }
+
+    public void OnPurchaseComplete(string id)
+    {
+        processor.OnPurchaseComplete(id);
     }
 }
