@@ -20,9 +20,14 @@ public class AdsManager : MonoBehaviour
 
         // SDK init
         Debug.Log("unity-script: IronSource.Agent.init");
-        IronSource.Agent.init(appKey);
+        IronSource.Agent.init(appKey, IronSourceAdUnits.INTERSTITIAL);
 #else
+        Debug.Log("unity-script: IronSource.Agent.validateIntegration");
         IronSource.Agent.validateIntegration();
+
+        Debug.Log("unity-script: unity version" + IronSource.unityVersion());
+
+        Debug.Log("unity-script: IronSource.Agent.init");
         IronSource.Agent.init(appKey);
 #endif
 

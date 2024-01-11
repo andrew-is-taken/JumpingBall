@@ -1,8 +1,8 @@
 <dependencies>
-  <unityversion>7.3.0</unityversion>
+  <unityversion>7.5.1</unityversion>
 
   <androidPackages>
-    <androidPackage spec="com.ironsource.sdk:mediationsdk:7.3.0">
+    <androidPackage spec="com.ironsource.sdk:mediationsdk:7.5.1">
       <repositories>
         <repository>https://android-sdk.is.com/</repository>
       </repositories>
@@ -26,7 +26,7 @@
   </androidPackages>
 
   <iosPods>
-    <iosPod name="IronSourceSDK" version="7.3.0.0">
+    <iosPod name="IronSourceSDK" version="7.5.0.0">
       <sources>
         <source>https://github.com/CocoaPods/Specs</source>
       </sources>

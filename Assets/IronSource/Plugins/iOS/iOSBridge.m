@@ -999,6 +999,18 @@ char *const IRONSOURCE_BANNER_EVENTS = "IronSourceBannerEvents";
 extern "C" {
 #endif
     
+    typedef struct {
+        double floor;
+        double ceiling;
+    } LPPWaterfallConfigurationData;
+    
+    enum LPPAdFormat
+    {
+        LPPAdFormatRewardedVideo,
+        LPPAdFormatInterstitial,
+        LPPAdFormatBanner
+    };
+    
     void RegisterCallback(ISUnityBackgroundCallback func){
             backgroundCallback=func;
         }
@@ -1238,6 +1250,41 @@ extern "C" {
         [[iOSBridge start] setSegment:GetStringParam(jsonString)];
     }
     
+#pragma mark Set Waterfall Configuration API
+
+    void LPPSetWaterfallConfiguration(LPPWaterfallConfigurationData configurationParams, enum LPPAdFormat adFormat) {
+        ISWaterfallConfigurationBuilder *builder = [ISWaterfallConfiguration builder];
+        const double defaultValue = 0.00;
+        
+        if (configurationParams.floor != defaultValue) {
+            NSNumber *floorValue = [NSNumber numberWithDouble:configurationParams.floor];
+            [builder setFloor:floorValue];
+        }
+    
+        if (configurationParams.ceiling != defaultValue) {
+            NSNumber *ceilingValue = [NSNumber numberWithDouble:configurationParams.ceiling];
+            [builder setCeiling:ceilingValue];
+        }
+    
+        ISWaterfallConfiguration *waterfallConfig = [builder build];
+        ISAdUnit *adUnit;
+        switch (adFormat) {
+            case LPPAdFormatInterstitial:
+                adUnit = [ISAdUnit IS_AD_UNIT_INTERSTITIAL];
+                break;
+            case LPPAdFormatRewardedVideo:
+                adUnit = [ISAdUnit IS_AD_UNIT_REWARDED_VIDEO];
+                break;
+            case LPPAdFormatBanner:
+                adUnit = [ISAdUnit IS_AD_UNIT_BANNER];
+                break;
+            default:
+                return;
+        }
+    
+        [IronSource setWaterfallConfiguration:waterfallConfig forAdUnit:adUnit];
+    }
+
 #pragma mark ConsentView API
     
     void CFLoadConsentViewWithType (char* consentViewType){

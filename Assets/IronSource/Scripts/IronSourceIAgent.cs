@@ -4,6 +4,13 @@ public interface IronSourceIAgent
 {
 	//******************* Base API *******************//
 
+	/// <summary>
+	/// Allows publishers to set configurations for a waterfall of a given ad type.
+	/// </summary>
+	/// <param name="waterfallConfiguration">The configuration for the given ad types waterfall. </param>
+	/// <param name="adFormat">The AdFormat for which to configure the waterfall.</param>
+	void SetWaterfallConfiguration(WaterfallConfiguration waterfallConfiguration, AdFormat adFormat);
+	
 	void onApplicationPause(bool pause);
 
 	string getAdvertiserId();

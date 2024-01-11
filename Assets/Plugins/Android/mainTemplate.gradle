@@ -5,13 +5,13 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "androidx.fragment:fragment:1.5.7"
 // Android Resolver Dependencies Start
-    implementation 'com.google.android.gms:play-services-ads:21.5.0' // Assets/IronSource/Editor/ISAdMobAdapterDependencies.xml:8
+    implementation 'com.google.android.gms:play-services-ads:22.2.0' // Assets/IronSource/Editor/ISAdMobAdapterDependencies.xml:8
     implementation 'com.google.android.gms:play-services-ads-identifier:18.0.1' // Assets/IronSource/Editor/IronSourceSDKDependencies.xml:17
     implementation 'com.google.android.gms:play-services-basement:18.1.0' // Assets/IronSource/Editor/IronSourceSDKDependencies.xml:25
-    implementation 'com.ironsource.adapters:admobadapter:4.3.35' // Assets/IronSource/Editor/ISAdMobAdapterDependencies.xml:16
-    implementation 'com.ironsource.adapters:unityadsadapter:4.3.27' // Assets/IronSource/Editor/ISUnityAdsAdapterDependencies.xml:8
-    implementation 'com.ironsource.sdk:mediationsdk:7.3.0' // Assets/IronSource/Editor/IronSourceSDKDependencies.xml:9
-    implementation 'com.unity3d.ads:unity-ads:4.6.1' // Assets/IronSource/Editor/ISUnityAdsAdapterDependencies.xml:15
+    implementation 'com.ironsource.adapters:admobadapter:4.3.39' // Assets/IronSource/Editor/ISAdMobAdapterDependencies.xml:16
+    implementation 'com.ironsource.adapters:unityadsadapter:4.3.33' // Assets/IronSource/Editor/ISUnityAdsAdapterDependencies.xml:8
+    implementation 'com.ironsource.sdk:mediationsdk:7.5.1' // Assets/IronSource/Editor/IronSourceSDKDependencies.xml:9
+    implementation 'com.unity3d.ads:unity-ads:4.9.1' // Assets/IronSource/Editor/ISUnityAdsAdapterDependencies.xml:15
 // Android Resolver Dependencies End
 **DEPS**}
 

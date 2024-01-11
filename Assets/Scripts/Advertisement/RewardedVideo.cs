@@ -12,6 +12,8 @@ public class RewardedVideo : MonoBehaviour
         IronSourceRewardedVideoEvents.onAdShowFailedEvent += RewardedVideoOnAdShowFailedEvent;
         IronSourceRewardedVideoEvents.onAdRewardedEvent += RewardedVideoOnAdRewardedEvent;
         IronSourceRewardedVideoEvents.onAdClickedEvent += RewardedVideoOnAdClickedEvent;
+
+        IronSource.Agent.loadRewardedVideo();
     }
 
     /// <summary>
@@ -28,6 +30,7 @@ public class RewardedVideo : MonoBehaviour
         else
         {
             Debug.Log("NOT AVAILABLE REWARDED AD");
+            IronSource.Agent.loadRewardedVideo();
             button.OnAdUnavailable();
         }
     }

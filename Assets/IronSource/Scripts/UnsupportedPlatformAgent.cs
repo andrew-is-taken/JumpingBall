@@ -10,6 +10,15 @@ public class UnsupportedPlatformAgent : IronSourceIAgent
     }
 
     #region IronSourceAgent implementation
+    
+    /// <summary>
+    /// This function is not supported on the current platform and does nothing.
+    /// </summary>
+    /// <param name="waterfallConfiguration">The configuration for the given ad types waterfall. </param>
+    /// <param name="adFormat">The AdFormat for which to configure the waterfall.</param>
+    public void SetWaterfallConfiguration(WaterfallConfiguration waterfallConfiguration, AdFormat adFormat)
+    {
+    }
 
     public void start()
     {

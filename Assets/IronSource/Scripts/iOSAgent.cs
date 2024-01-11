@@ -1,14 +1,23 @@
 #if UNITY_IPHONE || UNITY_IOS
 using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
-using System.Linq;
 using System;
 using System.Globalization;
 
+
 public class iOSAgent : IronSourceIAgent
 {
+	
+	struct IOSWaterfallConfiguration 
+	{
+		public double Floor;
+		public double Ceiling;
+	}
+	
+	[DllImport("__Internal")]
+	private static extern void LPPSetWaterfallConfiguration(IOSWaterfallConfiguration configurationParams, AdFormat adFormat);
+	
 	[DllImport("__Internal")]
 	private static extern void CFSetPluginData(string pluginType, string pluginVersion, string pluginFrameworkVersion);
 
@@ -190,6 +199,22 @@ public class iOSAgent : IronSourceIAgent
 	#region IronSourceIAgent implementation
 
 	//******************* Base API *******************//
+
+	/// <summary>
+	/// Allows publishers to set configurations for a waterfall of a given ad type.
+	/// </summary>
+	/// <param name="adFormat">The AdFormat for which to configure the waterfall.</param>
+	/// <param name="waterfallConfiguration">The configuration for the given ad types waterfall. </param>
+	public void SetWaterfallConfiguration(WaterfallConfiguration waterfallConfiguration, AdFormat adFormat)
+	{
+		var config = new IOSWaterfallConfiguration
+		{
+			Floor = waterfallConfiguration.Floor ?? 0.0,
+			Ceiling = waterfallConfiguration.Ceiling ?? 0.0
+		};
+		
+		LPPSetWaterfallConfiguration(config, adFormat);
+	}
 
 	public void onApplicationPause(bool pause)
 	{
